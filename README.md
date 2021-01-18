@@ -1,13 +1,13 @@
 # Algorithms
 
- Algorithms for computing Kemeny winning ranking
+Algorithms for computing Kemeny winning ranking
  
 **DFS branch and bound algorithms pruning the branches using a distance bound**
 
 - `kemenyDFS0()` explores all the search space
 - `kemenyDFS1()` extended version of the kemeny1 algorithm that receives the distance
-  - Check worst, Borda Count
-  - Check Tideman (EUSFLAT)
+  - Check worst, Borda Count (EUSFLAT)
+  - Check Tideman (does it guarantee always the min distance?)
 
 **Complementary rankings**
 
@@ -16,6 +16,7 @@
 **A* **
 
 - `kemenyA1()` sorting the candidates according to the value of their prefix
+Ponderation using the number of candidates that have been already added to the prefix?
 
 **Azzini**
 
