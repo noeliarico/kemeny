@@ -40,8 +40,6 @@ class AzziniMunda1:
                 self.solution[remaining[1]] = level
                 self.solution[remaining[0]] = level + 1
                 self.all_solutions.extend(self.solution)
-                
-            
             return None
 
         # For the candidates that have not been explored yet:
