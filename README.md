@@ -1,3 +1,8 @@
+- :file_folder: `agreement` to store the files that contain functions to measure the agreement among the voters
+- :file_folder: `creation`
+- :file_folder: `kemeny`
+- :file_folder: `latex`
+
 # Algorithms
 
 Algorithms for computing Kemeny winning ranking
@@ -22,6 +27,7 @@ Ponderation using the number of candidates that have been already added to the p
 
 - `kemenyAzzini1()` implementation described in the paper
 - `kemenyAzzini2()` adds check of Condorcet ranking at the beginning and consideration of matrix 2x2 when both elements are equal
-- `kemenyAzzini3()` extends kemenyAzzini2 including Condorcet winner
-- `kemenyAzzini4()` extends kemenyAzzini3 including Condorcet ranking in the recursive call
-- `kemenyAzzini5()` extends kemenyAzzini4 adding distance bound
+- `kemenyAzzini3()` extends `kemenyAzzini2()` including Condorcet winner
+- `kemenyAzzini4()` extends `kemenyAzzini3()` including Condorcet ranking in the recursive call
+- `kemenyAzzini5()` extends `kemenyAzzini4()` adding distance bound
+
