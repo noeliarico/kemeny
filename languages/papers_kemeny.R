@@ -1,5 +1,3 @@
-
-
 p1 <- parse_profile_of_rankings("2, F>G>D>A>B>C>E,
                                  2, F>G>E>A>B>C>D,
                                  1, F>G>C>D>E>A>B,
@@ -52,27 +50,6 @@ p <- parse_profile_of_rankings(
 
 
 
-ranking_to_lineal <- function(r) {
-  m <- max(r)
-  i <- 1
-  for(iter in 1:m) {
-    print(iter)
-    indexes <- which(r == i)
-    print(indexes)
-    if(length(indexes) > 1) { # there are tied candidates
-      # Increment all the candidates that are later on the ranking
-      r[r > i] <- r[r > i] + (length(indexes)-1)
-      # Untie
-      values <- i + 0:(length(indexes)-1)
-      r[indexes] <- values
-      # Update
-      i <- i + (length(indexes)-1)
-    }
-    else {
-      i <- i + 1
-    }
-  }
-  return(r)
-}
+
 
 

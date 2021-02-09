@@ -19,7 +19,7 @@ class AzziniMunda0:
     def AM0(self, level):
         # Stop condition: matrix of dimension 2 x 2
         if self.to_explore.sum() == 2:
-            # The remaining candidates are those that has not been explored yet
+            # The remaining candidates are those that have not been explored yet
             remaining = self.np.asarray(self.np.where(self.to_explore == True)).flatten()
             # print("matrix 2x2 comparing: {} and {}".format(oom[remaining[0],remaining[1]],oom[remaining[1],remaining[0]]))
             # esto tiene un fallo, qué pasa si om[0,1] == om[1,0] ? da empate?
@@ -37,11 +37,12 @@ class AzziniMunda0:
             return None
 
         # For the candidates that have not been explored yet:
-        # Only the ones which rowsum is greater than their columsum will be kept
-        keep = self.np.logical_and(self.to_explore, (self.oom.sum(axis=1) >= self.oom.sum(axis=0)))
-        # print("to explore: {}, now keep: {} (rows = {}, cols = {})".format(to_explore, keep, oom.sum(axis=1), oom.sum(axis=0)))
-
-        # Consider the elems that aren't part of the solution and have rowsum > colsum
+        # Only the ones which rowsum is >= than their columsum will be kept
+        keep = self.np.logical_and(self.to_explore, 
+            (self.oom.sum(axis=1) >= self.oom.sum(axis=0)))
+        
+        # Consider the elems that have rowsum >= colsum
+        # and aren't part of the current solution yet
         for i in range(self.to_explore.size):
             if keep[i]:
                 self.solution[i] = level # add the element to the solution ranking

@@ -148,9 +148,6 @@ kemeny_to_tikz <- function(por) {
     \\draw [->] (124) edge (124b);
     \\draw [->] (123) edge (123b);
 
-  
-
-
 \\end{tikzpicture}
 }%
          
