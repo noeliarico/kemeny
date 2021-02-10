@@ -1,0 +1,43 @@
+
+\begin{scope}
+  
+  \node at (0, 5.5)    {\large \textbf{Step xX:}};
+  
+  \draw[step=1.0,black,thin,xshift=0.5cm,yshift=0.5cm] (0,0) grid (3, 3);
+  \draw[step=1.0,black,thin,xshift=0.5cm,yshift=0.5cm] (0,3) grid (3, 4);
+  \draw[step=1.0,black,thin,xshift=0.5cm,yshift=0.5cm] (-1,0) grid (0, 3);
+  % rows 
+\node at (0,3)    {\Large $C1$};
+\node at (0,2)    {\Large $C2$};
+\node at (0,1)    {\Large $C4$};
+
+% columns 
+\node at (1,4)    {\Large $C1$};
+\node at (2,4)    {\Large $C2$};
+\node at (3,4)    {\Large $C4$};
+
+% values 
+\node at (1,3)    {\Large $0$};
+\node at (1,2)    {\Large $5$};
+\node at (1,1)    {\Large $8$};
+\node at (2,3)    {\Large $5$};
+\node at (2,2)    {\Large $0$};
+\node at (2,1)    {\Large $5$};
+\node at (3,3)    {\Large $2$};
+\node at (3,2)    {\Large $5$};
+\node at (3,1)    {\Large $0$};
+
+% arrows 
+\draw [arrow] (4,3) -- (5,3);
+\draw [arrow] (4,2) -- (5,2);
+\draw [arrow] (4,1) -- (5,1);
+
+% sum and whether it is ok 
+\node at (6, 3)    {\Large $7$ \xmark};
+\node at (6, 2)    {\Large $10$ \cmark};
+\node at (6, 1)    {\Large $13$ \cmark};
+
+% Current ranking
+  \node[anchor=west,align=left] at (-1,0) {\large Recursive call with ranking: $xX \succ \dots $};
+  
+  \end{scope}

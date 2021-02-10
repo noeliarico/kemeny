@@ -1,1 +1,1 @@
-__all__ = ['azzinimunda', 'dfs', 'sfc']
+__all__ = ['azzinimunda', 'dfs', 'sfc', 'benchmark']

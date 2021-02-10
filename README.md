@@ -1,4 +1,5 @@
 - :file_folder: `agreement` to store the files that contain functions to measure the agreement among the voters
+  - :page_facing_up: `margin.R` has the function `agreement_margin(om, normalize = TRUE)`
 - :file_folder: `creation`
 - :file_folder: `kemeny`
 - :file_folder: `languages` has code to export from R to Latex and Python
@@ -7,7 +8,7 @@
     - `to_python_ranking(ranking, name = "r")` gives the python code to create
     the `ranking` using numpy. `name` is the name of the variable using on python.
     - `to_python_om(matix, name = "om")` gives the python code to create
-    the outranking matrix `matrix` using numpy. `name` is the name of the variable using to store the ouranking matrix on python.
+    the outranking matrix `matrix` using numpy. `name` is the name of the variable using to store the outranking matrix on python.
 
 
 
@@ -24,7 +25,7 @@ Algorithms for computing Kemeny winning ranking
   
   Example for the paper
   
-```
+```r
 p <- parse_profile_of_rankings(
 "3, a_4 > a_2 > a_1 > a_3,
  4, a_3 > a_4 > a_2 > a_1,
@@ -51,7 +52,12 @@ Ponderation using the number of candidates that have been already added to the p
 - `kemenyAzzini4()` extends `kemenyAzzini3()` including Condorcet ranking in the recursive call
 - `kemenyAzzini5()` extends `kemenyAzzini4()` adding distance bound
 
+# Python package:
 
+- azzinimunda
+- benchmark
+- dfs
+- scf
 
 # Further research:
 

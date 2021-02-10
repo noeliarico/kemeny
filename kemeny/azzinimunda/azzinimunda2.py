@@ -1,4 +1,4 @@
-class AzziniMunda1: 
+class AzziniMunda2: 
     
     import numpy as np
     import scf.distance as dist
@@ -6,6 +6,7 @@ class AzziniMunda1:
     def __init__(self, om):
         self.om = om
         self.n = om.shape[0]
+        self.m = om[0,1] + om[1,0]
         # to_explore is a Boolean vector of length n. At the beginning all the 
         # elements must be explored thus it is an array of True values
         self.to_explore = self.np.ones(self.n, dtype=bool)
@@ -15,8 +16,18 @@ class AzziniMunda1:
         self.oom = self.np.ndarray.copy(om)
         # create an array to store all the possible solutions
         self.all_solutions = []
+        
+    def condorcet_winner(self):
+        ombool = self.np.where(self.oom > (self.m//2), 1, 0)
+        i = self.np.where(ombool.sum(axis=1) == ((self.n)-1))[0]
+        return None if i.size == 0 else i[0]
+        
+    def condorcet(self):
+        ombool = (self.np.where(self.oom > (self.m//2), 1, 0)).sum(axis=1)
+        thereis = self.np.all(self.np.in1d(self.np.arange(self.n), ombool))
+        return None if not thereis else self.np.argsort(ombool)
 
-    def AM1(self, level):
+    def AM2(self, level):
         # Stop condition: matrix of dimension 2 x 2
         if self.to_explore.sum() == 2:
             # The remaining candidates are those that has not been explored yet
@@ -57,18 +68,17 @@ class AzziniMunda1:
                 self.oom[i,:] = 0
                 # print("({}) (to_explore = {})".format(solution, to_explore))
                 # all_solutions = self.np.append(all_solutions, azzini(to_explore, current_solution, all_solutions, om, oom, level+1))
-                self.AM1(level+1) # recursive call
+                self.AM2(level+1) # recursive call
                 # print("back i = {}! The matrix is now:".format(i))
                 # In the next iteration this candidate must figure again available to explore
                 self.to_explore[i] = True
                 # Restore the matrix for the next iteration
                 self.oom[:, i] = self.np.where(self.to_explore, self.om[:, i], 0) # om[:, i]
                 self.oom[i, :] = self.np.where(self.to_explore, self.om[i, :], 0) # om[:, i]
-
         return None
 
     def execute(self):
-        self.AM1(0)
+        self.AM2(0)
         res = self.np.asarray(self.all_solutions, dtype=self.np.uint8)
         # reshape in the form of a matrix
         res = self.np.reshape(res, (res.size//self.n, self.n))

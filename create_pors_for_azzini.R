@@ -6,51 +6,62 @@ n <- 8 # number of alternatives
 nvotes <- 10
 reps <- 2 # number of profiles of rankings with each characteristic
 
-create_profiles <- function(n, nvotes, reps, max_iter = Inf)  {
+
+seeds <- profiles
+
+for (number_of_explored_alternatives in 1:n) {
   
+}
+
+create_profiles <- function(n, nvotes, reps)  {
+
   # Create the list that contains all the profile of rankings
-  # It is n-1 because for the case when the n alternatives have rowsum>=colsum
-  # the uncertainty is max
   profiles <- vector(mode = "list", length = (n-1))
   names(profiles) <- paste0("w",1:(n-1))
-  # Profiles of rankings
+  # For each value of w, create in each quartile
+  qu <- vector(mode = "list", length = 4)
+  names(qu) <- paste0("q",1:4)
+  # Empty spaces for each repetition
+  profiles <- lapply(profiles, function(x) x <- qu)
   pr <- vector(mode = "list", length = reps)
   names(pr) <- paste0("pr",1:reps)
-  # Empty spaces for each repetition
-  profiles <- lapply(profiles, function(x) x <- pr)
+  profiles <- lapply(profiles, function(x) lapply(x, function(y) y <- pr))
   
   seed <- 1
   created <- 0
-  #while(created < ((n-1)*reps) && seed < 500) {
-  
-  #if(is.null(max_iter)) cond <- created < ((n-1)*reps)
-  #else cond <- (created < ((n-1)*reps) && seed < max_iter)
-  
-  while(created < ((n-1)*reps) && seed < max_iter) {
+  while(created <  ((n-1)*4*reps) && seed < 1000) {
     
     print(paste(seed,"#################################################"))
     
     for(d in 2:nvotes) {
-      
-      r <- random_profile_of_rankings(n, nvotes, seed = seed, distinct = d)
+      set.seed(seed)
+      r <- random_profile_of_rankings(n, nvotes, distinct = d)
       v <- votrix(r)
-      w <- sum(rowSums(v) >= colSums(v))
+      w <- (sum(rowSums(v) >= colSums(v))) - 1 # -1 xq me salto el primero 
       
-      if(w != n) { 
+      if(w > 0 &&
+         !condorcet(r) && 
+         !condorcet_winner(r) && 
+         !condorcet_loser(r)) {
+        
+        print(w)
         
         # Agreement among the voters of the profile of rankings
         ag <- agreement_margin(v)
+        # Quartile
+        q <- get_quartile(ag)
         # Get the index to insert the profile of rankings in
-        i <- get_available_index(profiles[[w]])
-        
+        i <- get_available_index(profiles[[w]][[q]])
+        print(i)
         if(!is.null(i)) {
-          print(paste("w =", w, "-- i =", i))
-          profiles[[w]][[i]] <- r
+          print(paste("w =", w, "-- q =", q, "-- i =", i))
+          profiles[[w]][[q]][[i]] <- r
+          seeds[[w]][[q]][[i]] <- seed
           created <- created + 1
         }
       }
     }
-    
+  
     seed <- seed + 1
     
   }
@@ -60,9 +71,23 @@ create_profiles <- function(n, nvotes, reps, max_iter = Inf)  {
 }
 
 get_summary <- function(profiles) {
-  sapply(profiles, function(x) sum(sapply(x, is.por)))
+  lapply(profiles, function(x) sapply(x, function(y) sum(sapply(y, is.por))))
 }
 
+get_quartile <- function(ag) {
+  if(ag < 0.25) {
+    return(1)
+  }
+  else if(ag < 0.5) {
+    return(2)
+  }
+  else if(ag < 0.75) {
+    return(3)
+  }
+  else {
+    return(4)
+  }
+}
 
 get_available_index <- function(the_list) {
   
