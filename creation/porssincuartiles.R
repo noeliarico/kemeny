@@ -36,7 +36,7 @@ create_profiles <- function(n, nvotes, reps, max_iter = Inf)  {
       v <- votrix(r)
       w <- sum(rowSums(v) >= colSums(v))
       
-      if(w != n) { 
+      if(w != n && !condorcet(r)) { 
         
         # Agreement among the voters of the profile of rankings
         ag <- agreement_margin(v)
