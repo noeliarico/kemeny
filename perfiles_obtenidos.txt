@@ -1,0 +1,37 @@
+    w1 w2 w3 w4 w5 w6 w7 w8 w9 w10 w11 w12
+n5   5  5  5 NA NA NA NA NA NA  NA  NA  NA
+n6   5  5  5  5 NA NA NA NA NA  NA  NA  NA
+n7   5  5  5  5  5 NA NA NA NA  NA  NA  NA
+n8   5  5  5  5  5  5 NA NA NA  NA  NA  NA
+n9   2  5  5  5  5  5  2 NA NA  NA  NA  NA
+n10  0  5  5  5  5  5  5  0 NA  NA  NA  NA
+n11  0  5  5  5  5  5  5  5  0  NA  NA  NA
+n12  0  5  5  5  5  5  5  5  0   0  NA  NA
+n13  0  1  5  5  5  5  5  5  5   0   0  NA
+n14  0  0  5  5  5  5  5  5  5   5   0   0
+
+
+    w1 w2 w3 w4 w5 w6 w7 w8 w9 w10 w11 w12
+n5   5  5  5 NA NA NA NA NA NA  NA  NA  NA
+n6   5  5  5  5 NA NA NA NA NA  NA  NA  NA
+n7   5  5  5  5  5 NA NA NA NA  NA  NA  NA
+n8   0  5  5  5  5  5 NA NA NA  NA  NA  NA
+n9   0  5  5  5  5  5  0 NA NA  NA  NA  NA
+n10  0  5  5  5  5  5  5  0 NA  NA  NA  NA
+n11  0  2  5  5  5  5  5  0  0  NA  NA  NA
+n12  0  0  5  5  5  5  5  5  0   0  NA  NA
+n13  0  0  5  5  5  5  5  5  5   0   0  NA
+n14  0  0  3  5  5  5  5  5  5   3   0   0
+
+
+    w1 w2 w3 w4 w5 w6 w7 w8 w9 w10 w11 w12
+n5   5  5  5 NA NA NA NA NA NA  NA  NA  NA
+n6   5  5  5  5 NA NA NA NA NA  NA  NA  NA
+n7   5  5  5  5  5 NA NA NA NA  NA  NA  NA
+n8   1  5  5  5  5  5 NA NA NA  NA  NA  NA
+n9   0  5  5  5  5  5  5 NA NA  NA  NA  NA
+n10  0  5  5  5  5  5  5  5 NA  NA  NA  NA
+n11  0  5  5  5  5  5  5  5  1  NA  NA  NA
+n12  0  4  5  5  5  5  5  5  5   0  NA  NA
+n13  0  0  5  5  5  5  5  5  5   5   0  NA
+n14  0  0  5  5  5  5  5  5  5   5   5   0

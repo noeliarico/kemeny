@@ -1,5 +1,19 @@
+#' Permute candidate
+#' 
+#' Takes an outranking matrix and two candidates and permute their positions
+#' in the outranking matrix
+#'
+#' @param om  outranking matrix
+#' @param c1  candidate to permute
+#' @param c2  candidate to permute
+#'
+#' @return the outranking matrix with the two candidates permuted
+#' @export
+#'
+#' @examples
 permute_candidates <- function(om, c1, c2) {
   n <- ncol(om)
+  # Store the corresponding rows and columns
   c1row <- om[c1, ]
   c1col <- om[ ,c1]
   c2row <- om[c2, ]

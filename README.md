@@ -1,6 +1,8 @@
 - :file_folder: `agreement` to store the files that contain functions to measure the agreement among the voters
   - :page_facing_up: `margin.R` has the function `agreement_margin(om, normalize = TRUE)`
 - :file_folder: `creation`
+  - permute_om has a function of the same name that given an outranking matrix and two candidates permutes their position in the matrix
+- :file_folder: `experiments`
 - :file_folder: `kemeny`
 - :file_folder: `languages` has code to export from R to Latex and Python
   - :page_facing_up: `kemeny_to_tikz.R`
@@ -9,8 +11,7 @@
     the `ranking` using numpy. `name` is the name of the variable using on python.
     - `to_python_om(matix, name = "om")` gives the python code to create
     the outranking matrix `matrix` using numpy. `name` is the name of the variable using to store the outranking matrix on python.
-
-
+    
 
 # Algorithms
 
@@ -46,8 +47,10 @@ Ponderation using the number of candidates that have been already added to the p
 
 **Azzini**
 
-- `kemenyAzzini1()` implementation described in the paper
-- `kemenyAzzini2()` adds check of Condorcet ranking at the beginning and consideration of matrix 2x2 when both elements are equal
+- `kemenyAzzini1()` implementation described in the paper adding the consideration of 
+- `kemenyAzzini2()` adds check of Condorcet winner at the beginning
+- `kemenyAzzini3()` adds check of Condorcer winner recursively
+
 - `kemenyAzzini3()` extends `kemenyAzzini2()` including Condorcet winner
 - `kemenyAzzini4()` extends `kemenyAzzini3()` including Condorcet ranking in the recursive call
 - `kemenyAzzini5()` extends `kemenyAzzini4()` adding distance bound
