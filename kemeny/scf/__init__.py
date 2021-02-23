@@ -1,1 +1,1 @@
-print("Loading scf")
+print("SCF loaded")

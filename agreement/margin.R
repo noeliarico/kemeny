@@ -17,3 +17,18 @@ agreement_margin <- function(om, normalize = TRUE) {
   }
   
 }
+
+get_quartile <- function(ag) {
+  if(ag < 0.25) {
+    return(1)
+  }
+  else if(ag < 0.5) {
+    return(2)
+  }
+  else if(ag < 0.75) {
+    return(3)
+  }
+  else {
+    return(4)
+  }
+}
