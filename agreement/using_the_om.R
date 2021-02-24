@@ -46,8 +46,8 @@ get_alpha <- function(om) {
 
 # Omega -------------------------------------------------------------------
 
-get_omega <- function(om) {
-  v <- votrix(r)
+get_omega <- function(por) {
+  v <- votrix(por)
   w <- sum(rowSums(v) >= colSums(v))
   return(w)
 }
