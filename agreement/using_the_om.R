@@ -1,3 +1,5 @@
+# Agreement among the voters of the profile -------------------------------
+
 agreement_margin <- function(om, normalize = TRUE) {
   # For complete orders the outranking matrix has constant sum
   nvoters <- om[1,2] + om[2,1]
@@ -33,10 +35,17 @@ get_quartile <- function(ag) {
   }
 }
 
+
+# Alpha -------------------------------------------------------------------
+
 get_alpha <- function(om) {
   v <- votrix(r)
   return(rowSums(v) >= colSums(v))
 }
+
+
+# Omega -------------------------------------------------------------------
+
 get_omega <- function(om) {
   v <- votrix(r)
   w <- sum(rowSums(v) >= colSums(v))

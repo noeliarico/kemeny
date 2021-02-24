@@ -24,11 +24,12 @@ scripts_azzini(pors13cw, 13, "experiments/azzini13cw.py", rep = 3, type = "cw")
 
 # No Condorcet -----------------------------------------------------------
 
-scripts_azzini(pors5nc, 5, "experiments/azzini5nc.py", rep = 3, type = "cr")
-scripts_azzini(pors6nc, 6, "experiments/azzini6nc.py", rep = 3, type = "cr")
-scripts_azzini(pors7nc, 7, "experiments/azzini7nc.py", rep = 3, type = "cr")
-scripts_azzini(pors8nc, 8, "experiments/azzini8nc.py", rep = 3, type = "cr")
-scripts_azzini(pors9nc, 9, "experiments/azzini9nc.py", rep = 3, type = "cr")
+scripts_azzini(pors5nc, 5, "experiments/azzini5nc.py", rep = 3, type = "nc")
+scripts_azzini(pors6nc, 6, "experiments/azzini6nc.py", rep = 3, type = "nc")
+scripts_azzini(pors7nc, 7, "experiments/azzini7nc.py", rep = 3, type = "nc")
+comparar_fuzzieee(pors8nc, 8, "azzini8nc.py", rep = 3, type = "nc")
+comparar_fuzzieee(pors9nc, 9, "azzini9nc.py", rep = 3, type = "nc")
+scripts_azzini(pors9nc, 9, "experiments/azzini9nc.py", rep = 3, type = "nc")
 scripts_azzini(pors10nc, 10, "experiments/azzini10nc.py", rep = 3, type = "nc")
 scripts_azzini(pors11nc, 11, "experiments/azzini11nc.py", rep = 3, type = "nc")
 scripts_azzini(pors12nc, 12, "experiments/azzini12nc.py", rep = 3, type = "nc")
