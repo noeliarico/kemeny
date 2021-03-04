@@ -15,6 +15,7 @@ get_omega(r)
 votrix(r)
 agreement_margin(votrix(r))
 condorcet_winner(r)
+pors7nc$w1[[2]] <- r
 
 r <- parse_profile_of_rankings("
 1, C7 ≻ C4 ≻ C3 ≻ C5 ≻ C2 ≻ C1 ≻ C6,
@@ -26,6 +27,7 @@ r <- parse_profile_of_rankings("
 get_omega(r)
 agreement_margin(votrix(r))
 condorcet_winner(r)
+pors7nc$w1[[3]] <- r
 
 r <- parse_profile_of_rankings("
 2, C7 ≻ C3 ≻ C6 ≻ C4 ≻ C2 ≻ C5 ≻ C1,
@@ -39,6 +41,7 @@ votrix(r)
 get_alpha(r)
 agreement_margin(votrix(r))
 condorcet_winner(r)
+pors7nc$w1[[4]] <- r
 
 r <- parse_profile_of_rankings("
 4, C6 ≻ C4 ≻ C7 ≻ C2 ≻ C1 ≻ C5 ≻ C3,
@@ -50,6 +53,7 @@ votrix(r)
 get_alpha(r)
 agreement_margin(votrix(r))
 condorcet_winner(r)
+pors7nc$w1[[5]] <- r
 
 # n = 8 -------------------------------------------------------------------
 
@@ -437,6 +441,74 @@ agreement_margin(votrix(r))
 condorcet_winner(r)
 pors11nc$w2[[5]] <- r
 
+## w = 10 faltan 5 ----------------------------------------------------------
+
+r <- parse_profile_of_rankings("
+3, C6 ≻ C1 ≻ C9 ≻ C3 ≻ C8 ≻ C5 ≻ C10 ≻ C7 ≻ C4 ≻ C2 ≻ C11,
+5, C7 ≻ C2 ≻ C11 ≻ C10 ≻ C4 ≻ C3 ≻ C9 ≻ C8 ≻ C6 ≻ C1 ≻ C5,
+2, C1 ≻ C8 ≻ C4 ≻ C6 ≻ C11 ≻ C10 ≻ C5 ≻ C9 ≻ C3 ≻ C2 ≻ C7")
+get_omega(r)
+votrix(r)
+get_alpha(r)
+agreement_margin(votrix(r))
+condorcet_winner(r)
+pors11nc$w10[[1]] <- r
+
+r <- parse_profile_of_rankings("
+3, C1 ≻ C11 ≻ C3 ≻ C9 ≻ C2 ≻ C6 ≻ C8 ≻ C5 ≻ C10 ≻ C7 ≻ C4,
+2, C5 ≻ C10 ≻ C1 ≻ C2 ≻ C7 ≻ C8 ≻ C3 ≻ C6 ≻ C11 ≻ C4 ≻ C9,
+1, C9 ≻ C7 ≻ C6 ≻ C10 ≻ C2 ≻ C11 ≻ C3 ≻ C1 ≻ C8 ≻ C4 ≻ C5,
+1, C6 ≻ C10 ≻ C2 ≻ C5 ≻ C9  ≻ C8 ≻ C1 ≻ C4 ≻ C11 ≻ C7 ≻ C3,
+1, C11 ≻ C3 ≻ C1 ≻ C7 ≻ C5 ≻ C10 ≻ C2 ≻ C9 ≻ C6 ≻ C8 ≻ C4,
+2, C8 ≻ C7 ≻ C9 ≻ C3 ≻ C2 ≻ C6 ≻ C5 ≻ C10 ≻ C1 ≻ C11 ≻ C4")
+get_omega(r)
+votrix(r)
+get_alpha(r)
+agreement_margin(votrix(r))
+condorcet_winner(r)
+pors11nc$w10[[2]] <- r
+
+r <- parse_profile_of_rankings("
+3, C1 ≻ C11 ≻ C3 ≻ C9 ≻ C7 ≻ C6 ≻ C8 ≻ C5 ≻ C2 ≻ C10 ≻ C4,
+3, C10 ≻ C5 ≻ C1 ≻ C2 ≻ C11 ≻ C8 ≻ C3 ≻ C6 ≻ C7 ≻ C4 ≻ C9,
+1, C9 ≻ C11 ≻ C6 ≻ C10 ≻ C2 ≻ C7 ≻ C3 ≻ C1 ≻ C8 ≻ C4 ≻ C5,
+1, C6 ≻ C10 ≻ C5 ≻ C2 ≻ C9  ≻ C8 ≻ C1 ≻ C4 ≻ C11 ≻ C7 ≻ C3,
+2, C7 ≻ C8 ≻ C11 ≻ C9  ≻ C3 ≻ C2 ≻ C6 ≻ C5  ≻ C1 ≻ C10 ≻ C4")
+get_omega(r)
+votrix(r)
+get_alpha(r)
+agreement_margin(votrix(r))
+condorcet_winner(r)
+pors11nc$w10[[3]] <- r
+
+
+r <- parse_profile_of_rankings("
+3, C1 ≻ C11 ≻ C3 ≻ C9 ≻ C2 ≻ C6 ≻ C8 ≻ C5 ≻ C4 ≻ C10 ≻ C7,
+1, C5 ≻ C10 ≻ C7 ≻ C2 ≻ C1 ≻ C8 ≻ C3 ≻ C6 ≻ C11 ≻ C4  ≻ C9,
+2, C9 ≻ C7 ≻ C6 ≻ C2 ≻  C11  ≻ C8 ≻ C3 ≻ C10 ≻ C5 ≻ C4 ≻ C1 ,
+1, C5 ≻ C2 ≻ C6 ≻ C9 ≻ C8 ≻ C4 ≻ C1 ≻ C10 ≻ C7 ≻ C11 ≻ C3,
+1, C10 ≻ C11 ≻ C7 ≻ C5 ≻ C1 ≻ C3 ≻ C2 ≻ C9 ≻ C4 ≻ C6 ≻ C8 ,
+2, C10 ≻ C8 ≻ C9 ≻ C7 ≻ C3 ≻ C5 ≻ C6 ≻ C2 ≻ C1 ≻ C4 ≻ C11 ")
+get_omega(r)
+votrix(r)
+get_alpha(r)
+agreement_margin(votrix(r))
+condorcet_winner(r)
+pors11nc$w10[[4]] <- r
+
+
+r <- parse_profile_of_rankings("
+1, C6 ≻ C3 ≻ C11 ≻ C1 ≻ C9 ≻ C2 ≻ C8 ≻ C5 ≻ C4 ≻ C10 ≻ C7,
+4, C5 ≻ C10 ≻ C7 ≻ C11 ≻ C2  ≻ C8 ≻ C6 ≻ C1 ≻ C3 ≻ C4  ≻ C9,
+3, C9 ≻ C7 ≻ C1 ≻ C11  ≻ C3 ≻ C8 ≻  C2  ≻ C10 ≻ C6 ≻ C5 ≻ C4 ,
+2, C6 ≻ C3 ≻ C5 ≻ C9 ≻ C8 ≻ C2 ≻ C1 ≻ C10 ≻ C7 ≻ C4 ≻ C11")
+get_omega(r)
+votrix(r)
+get_alpha(r)
+agreement_margin(votrix(r))
+condorcet_winner(r)
+pors11nc$w10[[5]] <- r
+
 # n = 12 -------------------------------------------------------------------
 
 ## w = 1 faltan 5 ----------------------------------------------------------
@@ -543,7 +615,7 @@ votrix(r)
 get_alpha(r)
 agreement_margin(votrix(r))
 condorcet_winner(r)
-pors13nc$w2[[3]] <- r
+pors12nc$w2[[3]] <- r
 
 r <- parse_profile_of_rankings("
 2, C4 ≻ C1 ≻ C8 ≻ C6 ≻ C3 ≻ C7 ≻ C11 ≻ C12 ≻ C2 ≻ C10 ≻ C5,
@@ -644,7 +716,7 @@ pors12nc$w11[[5]] <- r
 # n = 13 -------------------------------------------------------------------
 
 ## w = 1 faltan 5 ----------------------------------------------------------
-pors13$w1
+pors13nc$w1
 
 r <- parse_profile_of_rankings("
 3, C4 ≻ C2 ≻ C10 ≻ C6 ≻ C11 ≻ C7 ≻ C9 ≻ C5 ≻ C12 ≻ C3 ≻ C13 ≻ C1 ≻ C8,
@@ -703,7 +775,7 @@ agreement_margin(votrix(r))
 condorcet_winner(r)
 
 ## w = 2 faltan 3 ---------------------------------------------------------
-pors13$w2
+pors13nc$w2
 
 r <- parse_profile_of_rankings("
 3, C4 ≻ C2 ≻ C9 ≻ C5 ≻ C11 ≻ C10 ≻ C7 ≻ C6 ≻ C12 ≻ C3 ≻ C13 ≻ C1 ≻ C8,

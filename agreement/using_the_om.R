@@ -38,7 +38,7 @@ get_quartile <- function(ag) {
 
 # Alpha -------------------------------------------------------------------
 
-get_alpha <- function(om) {
+get_alpha <- function(r) {
   v <- votrix(r)
   return(rowSums(v) >= colSums(v))
 }

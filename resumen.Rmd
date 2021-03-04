@@ -10,6 +10,7 @@ get_summary(pors10nc)
 # Experiments
 
 ```{r}
+get_summary(pors7nc)
 get_summary(pors8nc)
 get_summary(pors9nc)
 get_summary(pors10nc)
@@ -17,6 +18,15 @@ get_summary(pors11nc)
 get_summary(pors12nc)
 ```
 ```{r}
-check_data_experiments_omega(pors12nc)
+check_data_experiments_omega(pors11nc)
+```
+
+
+```{r}
+get_summary(pors8cw)
+get_summary(pors9cw)
+get_summary(pors10cw)
+get_summary(pors11cw)
+get_summary(pors12cw)
 ```
 

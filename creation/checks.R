@@ -18,6 +18,10 @@ check_data_experiments_omega <- function(pors) {
   sapply(pors, function(x) sapply(x, function(y) ifelse(!is.null(y), get_omega(y), NA)))
 }
 
+check_data_experiments_nrp <- function(pors) {
+  lapply(pors, function(x) sapply(x, function(y) ifelse(!is.null(y), nrow(y$profileOfRankings), NA)))
+}
+
 check_data_votrix <- function(pors, votes = 10) {
   is_votrix_ok <- function(v) {
     for(i in 1:ncol(v)) {

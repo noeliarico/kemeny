@@ -1,4 +1,4 @@
-class AzziniMunda3: 
+class AzziniMunda5: 
     
     import numpy as np
     import kemeny.scf.distance as dist
@@ -25,7 +25,7 @@ class AzziniMunda3:
         # distance of the current solution
         self.current_dist = 0
 
-    def AM3(self, level):
+    def AM5(self, level):
         
         #print("Current: {} / Best: {}".format(self.current_dist, self.best_dist))
         # # Stop condition: remaining candidates give a Condorcet ranking
@@ -125,7 +125,7 @@ class AzziniMunda3:
                     self.oom[i,:]=0
                     #print("({}) (to_explore = {})".format(self.solution, self.to_explore))
                     # all_solutions = self.np.append(all_solutions, azzini(to_explore, current_solution, all_solutions, om, oom, level+1))
-                    self.AM3(level+1) # recursive call
+                    self.AM5(level+1) # recursive call
                     # print("back i = {}! The matrix is now:".format(i))
                     self.current_dist-=d # remove from the current distance
                     # print("Remove from the distance {}".format(d))
@@ -142,7 +142,7 @@ class AzziniMunda3:
         return(cr)
     
     def execute(self):
-        self.AM3(0)
+        self.AM5(0)
         res = self.np.asarray(self.all_solutions, dtype=self.np.uint8)
         # reshape in the form of a matrix
         res = self.np.reshape(res, (res.size//self.n, self.n))
