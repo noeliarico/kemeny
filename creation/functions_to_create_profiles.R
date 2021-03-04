@@ -199,3 +199,60 @@ get_available_index <- function(the_list) {
 get_summary <- function(profiles) {
   sapply(profiles, function(x) sum(sapply(x, is.por)))
 }
+
+
+
+
+create_profiles_count <- function(n, nvotes, max_iter = 100)  {
+  
+  res <- matrix(rep(0,n*4), ncol = n)
+  rownames(res) <- c("nc", "cw", "cr", "wcw")
+  colnames(res) <- paste0("w", 1:n)
+
+  iter <- 1
+  
+  while(iter <= max_iter) {
+    
+    for(d in 2:nvotes) {
+      r <- random_profile_of_rankings(n, nvotes, distinct = d)
+      v <- votrix(r)
+      w <- sum(rowSums(v) >= colSums(v))
+      if(!any(condorcet(r))) {
+        if(condorcet_winner(r)) {
+          row <- "cw"
+        }
+        if(condorcet_winner(r)) {
+          row <- "wcw"
+        }
+        else {
+          row <- "nc"
+        }
+      }
+      else {
+        row <- "cr"
+      }
+      # if(w==1) {
+      #   print(r)
+      #   votrix(r)
+      #   get_alpha(r)
+      # }
+      res[row,w] <- res[row,w]+1
+      cat(paste0(iter,",",stringr::str_pad(d,width = 6)," ###### ",row, "\n"))
+    }
+    
+    iter <- iter + 1
+  }
+  
+  return(res)
+  
+}
+
+# ejemplo del w1 sin nada para n=4
+por <- parse_profile_of_rankings("
+1, C1 ≻ C4 ≻ C3 ≻ C2,
+3, C1 ≻ C3 ≻ C4 ≻ C2,
+1, C2 ≻ C4 ≻ C1 ≻ C3,
+1, C2 ≻ C1 ≻ C3 ≻ C4,
+1, C3 ≻ C2 ≻ C1 ≻ C4,
+1, C1 ≻ C2 ≻ C3 ≻ C4,
+2, C4 ≻ C2 ≻ C3 ≻ C1")
