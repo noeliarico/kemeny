@@ -84,10 +84,12 @@ resultsCW12 <- read_csv("resultsNC12cw_123.csv", skip = 1,
                         col_names = cn) %>%
   mutate(
     id = index+(5*(omega-1)),
-    agreement = rep(agreements, each = 3),
+    #agreement = rep(agreements, each = 3),
     method = as.factor(method),
     omega = as.factor(omega),
-    nrp = as.factor(rep(nrp, each = 3)))
+    #nrp = as.factor(rep(nrp, each = 3))
+    
+    )
 
 
 resultsCW <- bind_rows(
@@ -237,7 +239,7 @@ p12 <- ggplot(resultsCW %>% filter(n==12,method!=3), aes(id, time, color = omega
     "violetred3")) +
   guides(shape = FALSE)
 
-((p8+p9)/(p10+p11))
+((p8+p9)/(p10+p11))/(p12+p10)
 
 # Plot average alg2 -------------------------------------------------------
 
@@ -255,7 +257,7 @@ results_avg <- resultsCW %>%
          perc1 = 1) %>%
   select(n, omega, starts_with("perc")) %>%
   pivot_longer(-c(n,omega), names_to = "method", values_to = "perc") %>%
-  mutate(method = recode(method, perc3 = "MorkExact3", perc2 = "MorkExact2", perc1 = "MorkExact1"))
+  mutate(method = recode(method, perc3 = "ME-RCW", perc2 = "ME-CW", perc1 = "ME"))
 # ntentative = ntentative/factorial(n))
 
 ggplot(results_avg, aes(omega)) +
@@ -282,11 +284,11 @@ results_avg <- resultsCW %>%
   mutate(perc = alg2/alg1,
          perc_full = 1) %>%
   pivot_longer(-c(n, starts_with("alg")), names_to = "method", values_to = "perc") %>%
-  mutate(method = recode(method, perc = "MorkExact2", perc_full = "MorkExact1")) %>%
-  mutate(time = ifelse(method == "MorkExact2", alg2, alg1)) %>%
+  mutate(method = recode(method, perc = "ME-CW", perc_full = "ME")) %>%
+  mutate(time = ifelse(method == "ME-CW", alg2, alg1)) %>%
   select(!starts_with("alg"))
 
-ggplot(results_avg %>% filter(n!=12), aes(n)) +
+ggplot(results_avg, aes(n)) +
   #geom_text(aes(x=n,y=perc,label=paste0(round(perc,2)*100,"%")), vjust = -.5, size = 3.5) +
   geom_text(aes(x=n,y=perc,label=paste(round(time, 3), "s")), 
             vjust = -.5, size = 4.5, family = "Times New Roman") +
@@ -313,21 +315,23 @@ results_avg <- resultsCW %>%
          perc3 = alg3/alg1,
          perc_full = 1) %>%
   pivot_longer(-c(n, starts_with("alg")), names_to = "method", values_to = "perc") %>%
-  mutate(method = recode(method, perc3 = "MorkExact3", perc2 = "MorkExact2", perc_full = "MorkExact1")) %>%
-  mutate(time = ifelse(method == "MorkExact2", alg2, ifelse(method == "MorkExact3", alg3, alg1))) %>%
+  mutate(method = recode(method, perc3 = "ME-RCW", perc2 = "ME-CW", perc_full = "ME")) %>%
+  mutate(time = ifelse(method == "ME-CW", alg2, ifelse(method == "ME-RCW", alg3, alg1))) %>%
   select(!starts_with("alg"))
 
-ggplot(results_avg %>% filter(n!=12), aes(n)) +
+ggplot(results_avg, aes(n)) +
   #geom_text(aes(x=n,y=perc,label=paste0(round(perc,2)*100,"%")), vjust = -.5, size = 3.5) +
-  geom_text(aes(x=n,y=perc,label=paste(round(time, 3), "s")), 
-            vjust = -.5, size = 4.5, family = "Times New Roman") +
   geom_bar(aes(weight = perc, fill = method), 
            position = "identity",
            alpha = 0.5, color = "black") +
+  geom_text(aes(x=n,y=perc,label=paste(round(time, 3), "s")), 
+            vjust = 1.5, size = 3.5, family = "Times New Roman", alpha = 1,
+            colour = c(rep(c("black","white","black"),5))) +
   scale_fill_manual(values=c("#d0e8f2","#79a3b1","black")) +
   theme_light() +
-  theme(text = element_text(family="Times New Roman", size = 14),
-        legend.position = "bottom") +
-  xlab("") + ylab("") + 
+  theme(text = element_text(family="Times New Roman", size = 12),
+        legend.position = "right") +
+  xlab("") + ylab("") + labs(fill="Algorithm") +
+  scale_y_continuous(breaks = seq(0,1,.25), labels =paste0(seq(0,100,25), "%"), limits = c(0,1))
   scale_y_continuous(breaks = seq(0,1,.25), labels =paste0(seq(0,100,25), "%"), limits = c(0,1.1))
 

@@ -1,0 +1,83 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+## Uncertanty: Measuring the difficulty of the profile of rankings
+
+- $n$ number of alternatives in the profile of rankings
+- $m$ number of voters in the profile of rankings
+
+### u1: lower bound to the optimal cost
+
+The lower bound of the optimal cost.
+
+$$u_1 = \frac{2}{m \times n \times (n-1)} \sum{min(o_{ij},o_{ji})}$$
+
+### u2: upper bound to the optimal 
+
+The upper bound of the optimal cost.
+
+$$u_2 = \frac{2}{m \times n \times (n-1)} \sum{max(o_{ij},o_{ji}) - min(o_{ij},o_{ji})}$$
+
+### u3: uniformity
+
+$$u_3 = \frac{1}{n(n-1)} \sum_{a,b} I(0.5 - \delta \leq Q_{ab} \leq 0.5)$$
+
+which is the proportion of weights $o_{ij}$ which are within $\delta$ from 0.5, for e..g. $\delta=0.1$
+
+### u4: intransitivity
+
+Proportion of intransitive triplets a,b,c in !. An unordered triplet of alternatives (a,b,c) is called intransitive if all three of $o_{ij},o_{jk},o_{ki}$ are either simultaneously greater than 0.5 or smaller than 0.5.
+
+### u5: average rank entropy
+
+where $H(a_i)$ is the discrete entropy of the rank distribution of alternative $a_i$
+
+$$u_5 = \frac{1}{n} \sum_{a=1}^n H(a)$$
+
+### u6: average rank variance
+
+$$u_6 = var(r(a))$$
+
+where $r(a_i)$ is the position of the alternative $a_i$ in the ranking $r$.
+
+### u7: borda score
+
+Borda score of the ranking normalized by $n$
+
+$$u_7 = $$
+
+esta y la anterior intuitivamente me parece que tienen que tener algún tipo de relación.
+
+
+Hasta aquí las que presentan en www. Algunas que propongo
+
+### u8: sum of the absolute majorities
+
+This index measures the number of times that 
+
+For each pair $(o_{ij},o_{ji})$, there are two options:
+- One of the elements is bigger
+- None of the elements is greater. Meaning that candidates are tied
+
+Therefore, if all the candidates are tied, which would be the maximum level of uncertainty between the voters, the value of $u8$ would be 0. The best case is that the none of the elements are tied and for each pair there is a winner. Therefore, the best case is $(n(n-1)/2)-n$.
+
+This index will be normalized for the number of voters:
+
+$$u_8 = \sum{a,b} o_{ij} > o_{ji}$$
+
+### u9: ponderated beta
+
+$$u_9 = $$
+
+### u10: mean of the rowsums
+
+This value is normalized between 0 and 1 so the max value can be $m(n-1)$
+
+$$u_{10} = $$
+
+### u11: condorcet proximity
+
+Comparar de alguna forma la dispersión respecto al ranking de Condorcet
+

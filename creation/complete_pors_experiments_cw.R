@@ -509,5 +509,90 @@ pors11cw$w10[[5]] <- r
 
 
 
+## w = 11 faltan 5 ----------------------------------------------------------
+
+r <- parse_profile_of_rankings("
+2, C9 ≻ C4 ≻ C7 ≻ C10 ≻ C5 ≻ C1 ≻ C11 ≻ C6 ≻ C3 ≻ C2 ≻ C12 ≻ C8,
+2, C7 ≻ C6 ≻ C5 ≻ C11 ≻ C4 ≻ C12 ≻ C3 ≻ C9 ≻ C2 ≻ C10 ≻ C8 ≻ C1,
+3, C12 ≻ C2 ≻ C3 ≻ C10 ≻ C1 ≻ C4 ≻ C5 ≻ C6 ≻ C9 ≻ C11 ≻ C7 ≻ C8,
+1, C10 ≻ C3 ≻ C7 ≻ C5 ≻ C12 ≻ C2 ≻ C1 ≻ C9 ≻ C11 ≻ C6 ≻ C8 ≻ C4,
+2, C4 ≻ C11 ≻ C1 ≻ C2 ≻ C6 ≻ C9 ≻ C3 ≻ C12 ≻ C7 ≻ C5 ≻ C8 ≻ C10")
+get_omega(r)
+get_alpha(r)
+votrix(r)
+condorcet_winner(r)
+condorcet(r, seePoints = T)
+pors12cw$w11[[1]] <- r
+
+r <- parse_profile_of_rankings("
+1, C5 ≻ C1 ≻ C2 ≻ C11 ≻ C10 ≻ C12 ≻ C3 ≻ C7 ≻ C4 ≻ C9 ≻ C8 ≻ C6,
+1, C3 ≻ C4 ≻ C1 ≻ C2 ≻ C8 ≻ C11 ≻ C10 ≻ C9 ≻ C12 ≻ C5 ≻ C6 ≻ C7,
+1, C6 ≻ C10 ≻ C4 ≻ C12 ≻ C11 ≻ C3 ≻ C1 ≻ C5 ≻ C8 ≻ C2 ≻ C7 ≻ C9,
+1, C2 ≻ C4 ≻ C12 ≻ C1 ≻ C5 ≻ C3 ≻ C10 ≻ C6 ≻ C9 ≻ C8 ≻ C11 ≻ C7,
+2, C5 ≻ C6 ≻ C11 ≻ C8 ≻ C7 ≻ C2 ≻ C4 ≻ C12 ≻ C1 ≻ C10 ≻ C9 ≻ C3,
+2, C7 ≻ C10 ≻ C3 ≻ C8 ≻ C11 ≻ C6 ≻ C12 ≻ C1 ≻ C9 ≻ C5 ≻ C4 ≻ C2,
+1, C11 ≻ C6 ≻ C12 ≻ C3 ≻ C5 ≻  C4 ≻ C7 ≻ C8 ≻ C2 ≻ C9 ≻ C1 ≻ C10,
+1, C2 ≻ C7 ≻ C1 ≻ C11 ≻ C8 ≻ C4 ≻ C10 ≻ C6 ≻ C9 ≻ C12 ≻ C3 ≻ C5")
+get_omega(r)
+get_alpha(r)
+votrix(r)
+condorcet_winner(r)
+condorcet(r, seePoints = T)
+pors12cw$w11[[2]] <- r
+
+r <- parse_profile_of_rankings("
+1, C5 ≻ C1 ≻ C2 ≻ C11 ≻ C10 ≻ C12 ≻ C3 ≻ C7 ≻ C4 ≻ C9 ≻ C8 ≻ C6,
+1, C3 ≻ C4 ≻ C1 ≻ C2 ≻ C8 ≻ C11 ≻ C10 ≻ C9 ≻ C12 ≻ C5 ≻ C6 ≻ C7,
+1, C6 ≻ C10 ≻ C4 ≻ C12 ≻ C11 ≻ C3 ≻ C1 ≻ C5 ≻ C8 ≻ C2 ≻ C7 ≻ C9,
+1, C2 ≻ C4 ≻ C12 ≻ C1 ≻ C5 ≻ C3 ≻ C10 ≻ C6 ≻ C9 ≻ C8 ≻ C11 ≻ C7,
+2, C5 ≻ C6 ≻ C11 ≻ C8 ≻ C7 ≻ C2 ≻ C4 ≻ C12 ≻ C1 ≻ C10 ≻ C9 ≻ C3,
+2, C7 ≻ C10 ≻ C3 ≻ C8 ≻ C11 ≻ C6 ≻ C12 ≻ C1 ≻ C9 ≻ C5 ≻ C4 ≻ C2,
+1, C11 ≻ C6 ≻ C12 ≻ C3 ≻ C5 ≻  C4 ≻ C7 ≻ C8 ≻ C2 ≻ C9 ≻ C1 ≻ C10,
+1, C2 ≻ C7 ≻ C1 ≻ C11 ≻ C8 ≻ C4 ≻ C10 ≻ C6 ≻ C9 ≻ C12 ≻ C3 ≻ C5")
+get_omega(r)
+get_alpha(r)
+votrix(r)
+condorcet_winner(r)
+condorcet(r, seePoints = T)
+pors12cw$w11[[2]] <- r
+
+r <- parse_profile_of_rankings("
+1, C6 ≻ C3 ≻ C11 ≻ C1 ≻ C9 ≻ C2 ≻ C8 ≻ C5 ≻ C4 ≻ C10 ≻ C7 ≻ C12,
+4, C5 ≻ C10 ≻ C7 ≻ C4 ≻ C11 ≻ C2 ≻ C8 ≻ C6 ≻ C1 ≻ C3 ≻ C9  ≻ C12,
+3, C9 ≻ C7 ≻ C1 ≻ C11 ≻ C3 ≻ C8 ≻ C2 ≻ C10 ≻ C6 ≻ C4 ≻ C5  ≻ C12,
+2, C5 ≻ C6 ≻ C3 ≻ C4 ≻ C9 ≻ C8 ≻ C2 ≻ C1 ≻ C10 ≻ C7 ≻ C11  ≻ C12")
+get_omega(r)
+get_alpha(r)
+votrix(r)
+condorcet_winner(r)
+condorcet(r, seePoints = T)
+pors12cw$w11[[3]] <- r
+
+
+r <- parse_profile_of_rankings("
+3, C11 ≻ C1 ≻ C3 ≻ C9 ≻ C7 ≻ C6 ≻ C12 ≻ C8 ≻ C5 ≻ C2 ≻ C10 ≻ C4,
+3, C10 ≻ C5 ≻ C1 ≻  C2 ≻ C12 ≻ C11 ≻ C8 ≻ C3 ≻ C6 ≻ C7 ≻ C4 ≻ C9,
+1, C9 ≻ C11 ≻ C6 ≻ C10 ≻ C2 ≻ C12 ≻ C7 ≻ C3 ≻ C8 ≻ C4 ≻ C1 ≻  C5,
+1, C6 ≻ C10 ≻ C5 ≻ C2 ≻ C12 ≻ C9 ≻ C8 ≻ C1 ≻ C4 ≻  C11 ≻ C7 ≻ C3,
+2, C7 ≻ C8 ≻ C11 ≻ C9 ≻ C3 ≻ C2 ≻ C5 ≻ C6 ≻ C12 ≻ C1 ≻ C10 ≻  C4")
+get_omega(r)
+get_alpha(r)
+votrix(r)
+condorcet_winner(r)
+condorcet(r, seePoints = T)
+pors12cw$w11[[4]] <- r
+
+
+r <- parse_profile_of_rankings("
+3, C6 ≻ C1 ≻ C9 ≻ C3 ≻ C8 ≻ C5 ≻ C2 ≻ C10 ≻ C7 ≻ C4 ≻ C12 ≻ C11,
+5, C4 ≻ C11 ≻ C7 ≻ C2 ≻ C10 ≻  C3 ≻ C5 ≻ C9 ≻ C8 ≻ C1 ≻ C6 ≻ C12,
+2, C4 ≻ C8 ≻ C6 ≻ C1 ≻ C5 ≻ C11 ≻ C10 ≻ C9 ≻ C3 ≻ C2 ≻ C7 ≻ C12")
+get_omega(r)
+get_alpha(r)
+votrix(r)
+condorcet_winner(r)
+condorcet(r, seePoints = T)
+pors12cw$w11[[5]] <- r
+
 
 

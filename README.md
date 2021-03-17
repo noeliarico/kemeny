@@ -91,8 +91,27 @@ For all of the profiles of rankings that I have checked this is the case but pro
 
 Even if it is not the case this can be a good heuristic for a directed search.
 
-## Agreement among the voters
+## Uncertanty: Measuring the agreement among the voters
 
-Relationship among the number of alterntives which rowsum >= colsum and the agreement among the voters.
+### u1: lower bound to the optimal cost
+
+
+
+### u2: upper bound to the optimal 
+
+### u3: uniformity
+
+### u4: intransitivity
+
+### u5: average rank entropy
+
+### u6: average rank variance
+
+### u7: borda score
+
+### u8: sum of the absolute majorities
+
+
+### u9: ponderated beta
 
 

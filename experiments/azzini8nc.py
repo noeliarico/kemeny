@@ -2,7 +2,7 @@
 import numpy as np
 import pandas as pd
 import time
-from kemeny import azzinimunda1 as am1
+import kemeny.azzinimunda.azzinimunda1 as am1
 import kemeny.azzinimunda.azzinimunda2 as am2
 import kemeny.azzinimunda.azzinimunda3 as am3
 
@@ -1935,4 +1935,4 @@ print(result[:7])
 results8 = np.vstack((results8, result))
 
  
-pd.DataFrame(results8).to_csv("resultsNC8cr_123.csv")
+pd.DataFrame(results8).to_csv("resultsNC8nc_123.csv")

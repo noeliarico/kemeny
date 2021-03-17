@@ -104,11 +104,11 @@ resultsNC <- bind_rows(
 
 # General view of the results by n ---------------------------------------------
 
-ggplot(resultsNC %>% filter(n < 13), aes(agreement, time)) +
+ggplot(resultsNC %>% filter(as.numeric(omega) < 8), aes(agreement, time)) +
   geom_line(aes(color = omega, group = id)) +
   geom_point(size = 2, aes(color = omega, shape = method), stroke = .5) +
   facet_wrap(~n) +
-  # facet_wrap(~n, scales = "free") +
+  facet_wrap(~n, scales = "free") +
   scale_shape_manual(values = c(22,21,18))
 
 ggplot(resultsNC, aes(agreement, time, color = omega)) +
@@ -120,12 +120,31 @@ ggplot(resultsNC, aes(agreement, time, color = omega)) +
   theme(text = element_text(family="Times New Roman", size = 14)) +
   xlab("") + ylab("") 
 
+
+
+resultsNCt <- resultsNC %>%
+  select(id,n,omega,index,method,time,ntentative) %>%
+  group_by(id) %>%
+  mutate(ntentative = max(ntentative)) %>% 
+  ungroup()
+
+ggplot(resultsNCt %>% filter(as.numeric(omega)< 7), aes(ntentative, time, color = omega)) +
+  geom_line(aes(group = id)) +
+  geom_point(aes(shape = method)) +
+  scale_x_continuous(trans = 'log2') + 
+  facet_wrap(~n, scales = "free") +
+  #scale_shape_manual(values = c(22,21,18)) +
+  theme_light() +
+  theme(text = element_text(family="Times New Roman", size = 14)) +
+  
+  xlab("") + ylab("")
+
 # Average results by method, n and omega ---------------------------------------
 
 results_avg <- resultsNC %>% 
   group_by(n, method, omega) %>%
-  summarise(meantime = mean(time), 
-            agreement = mean(agreement),
+  summarise(meantime = median(time), 
+            agreement = median(agreement),
             nsolutions = mean(nsolutions),
             # ntentative = mean(ntentative), ests no porque cambian dependiendo dle método
             .groups = "drop") %>%
@@ -135,16 +154,15 @@ results_avg <- resultsNC %>%
         # ntentative = ntentative/factorial(n))
 
 
-ggplot(results_avg, aes(omega)) +
+ggplot(results_avg %>% filter(n<12), aes(omega)) +
   geom_bar(aes(weight = perc), 
            position = "dodge", 
            fill = "#fabada",
            color = "gray",
            alpha = 0.5) +
+  facet_wrap(~n) +
   geom_point(aes(y = agreement)) +
   geom_line(aes(y = agreement, group = n)) +
-  geom_line(aes(y = nsolutions, group = n)) +
-  facet_wrap(~n) + # pintar agreement 
   ylab("relative execution time and agreement")
 
 # Percentage of reduction: average results by method and n ---------------------
@@ -159,22 +177,23 @@ results_avg <- resultsNC %>%
          perc3 = alg3/alg1,
          perc_full = 1) %>%
   pivot_longer(-c(n, starts_with("alg")), names_to = "method", values_to = "perc") %>%
-  mutate(method = recode(method, perc3 = "MorkExact3", perc2 = "MorkExact2", perc_full = "MorkExact1")) %>%
-  mutate(time = ifelse(method == "MorkExact2", alg2, ifelse(method == "MorkExact3", alg3, alg1))) %>%
+  mutate(method = recode(method, perc3 = "ME-RCW", perc2 = "ME-CW", perc_full = "ME")) %>%
+  mutate(time = ifelse(method == "ME-CW", alg2, ifelse(method == "ME-RCW", alg3, alg1))) %>%
   select(!starts_with("alg"))
 
-ggplot(results_avg %>% filter(method!="MorkExact2"), aes(n)) +
-  geom_text(aes(x=n,y=perc,label=paste(round(time, 3), "s")), 
-            vjust = -.5, size = 4.5, family = "Times New Roman") +
+ggplot(results_avg %>% filter(method!="ME-CW"), aes(n)) +
   geom_bar(aes(weight = perc, fill = method), 
            position = "identity",
            alpha = rep(c(.5,1), each=5), color = "black") +
+  geom_text(aes(x=n,y=perc,label=paste(round(time, 3), "s")), 
+            vjust = 1.5, size = 3.5, family = "Times New Roman",
+            colour = c(rep(c("white","black"),5))) +
   scale_fill_manual(values=c("#d0e8f2","#5B6569")) +
   theme_light() +
-  theme(text = element_text(family="Times New Roman", size = 14),
-        legend.position = "bottom") +
-  xlab("") + ylab("") + 
-  scale_y_continuous(breaks = seq(0,1,.25), labels =paste0(seq(0,100,25), "%"), limits = c(0,1.1))
+  theme(text = element_text(family="Times New Roman", size = 12),
+        legend.position = "right") +
+  xlab("") + ylab("") +  labs(fill="Algorithm") +
+  scale_y_continuous(breaks = seq(0,1,.25), labels =paste0(seq(0,100,25), "%"), limits = c(0,1))
 
 # Exponential time: average results by method and n ----------------------------
 
@@ -183,7 +202,7 @@ results_avg <- resultsNC %>%
   summarise(meantime = mean(time), .groups = "drop") %>%
   group_by(n, method) %>%
   summarise(meantime = mean(meantime), .groups = "drop") %>%
-  mutate(#method = recode(method, `1` = "MorkExact1", `2` = "MorkExact2", `3` = "MorkExact3"),
+  mutate(#method = recode(method, `1` = "ME", `2` = "ME-CW", `3` = "ME-RCW"),
          method = fct_relevel(method, rev))
 
 ggplot(results_avg, aes(n)) +
@@ -204,7 +223,7 @@ ggplot(results_avg, aes(n)) +
 results_avg <- resultsNC %>% 
   group_by(n, method, omega) %>%
   summarise(meantime = mean(time), .groups = "drop") %>%
-  mutate(#method = recode(method, `1` = "MorkExact1", `2` = "MorkExact2", `3` = "MorkExact3"),
+  mutate(#method = recode(method, `1` = "ME", `2` = "ME-CW", `3` = "ME-RCW"),
     method = fct_relevel(method, rev))
 
 # filter(as.numeric(omega) < 10

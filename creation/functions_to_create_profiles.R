@@ -202,7 +202,7 @@ get_summary <- function(profiles) {
 
 
 
-create_profiles_count <- function(n, nvotes, max_iter = 100)  {
+create_profiles_distribution <- function(n, nvotes, max_iter = 100, distribution = "norm")  {
   
   res <- matrix(rep(0,n*4), ncol = n)
   rownames(res) <- c("nc", "cw", "cr", "wcw")
@@ -210,17 +210,21 @@ create_profiles_count <- function(n, nvotes, max_iter = 100)  {
 
   iter <- 1
   
+  pors <- vector("list", length = max_iter)
+  details <- tribble(~n, ~w, ~d, ~type)
+  i <- 1
+  
   while(iter <= max_iter) {
-    
-    for(d in 2:nvotes) {
-      r <- random_profile_of_rankings(n, nvotes, distinct = d)
+    maxd <-ifelse(nvotes < factorial(n), nvotes, factorial(n))
+    for(d in 2:maxd) {
+      r <- random_profile_of_rankings(n, nvotes, distinct = d, distribution = distribution)
       v <- votrix(r)
       w <- sum(rowSums(v) >= colSums(v))
       if(!any(condorcet(r))) {
         if(condorcet_winner(r)) {
           row <- "cw"
         }
-        if(condorcet_winner(r)) {
+        else if(any(condorcet_winner(r, weak = TRUE))) {
           row <- "wcw"
         }
         else {
@@ -236,14 +240,16 @@ create_profiles_count <- function(n, nvotes, max_iter = 100)  {
       #   get_alpha(r)
       # }
       res[row,w] <- res[row,w]+1
+      pors[[i]] <- r
+      details <- details %>% bind_rows(c(n = n, w = w, d = d, type = row))
+      i <- i+1
       cat(paste0(iter,",",stringr::str_pad(d,width = 6)," ###### ",row, "\n"))
     }
     
     iter <- iter + 1
   }
   
-  return(res)
-  
+  return(list(res = res, pors = pors, details = details))
 }
 
 # ejemplo del w1 sin nada para n=4
