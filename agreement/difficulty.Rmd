@@ -8,6 +8,8 @@ output: html_notebook
 - $n$ number of alternatives in the profile of rankings
 - $m$ number of voters in the profile of rankings
 
+All the measure presented below are adapted to represent the difficulty of the problem in a [0,1] scale, representing 1 the maximum degree of difficulty according to that index.
+
 ### u1: lower bound to the optimal cost
 
 The lower bound of the optimal cost.
@@ -63,21 +65,61 @@ For each pair $(o_{ij},o_{ji})$, there are two options:
 
 Therefore, if all the candidates are tied, which would be the maximum level of uncertainty between the voters, the value of $u8$ would be 0. The best case is that the none of the elements are tied and for each pair there is a winner. Therefore, the best case is $(n(n-1)/2)-n$.
 
+
+
 This index will be normalized for the number of voters:
 
 $$u_8 = \sum{a,b} o_{ij} > o_{ji}$$
+This is equivalent to count the number of ties in the profile of rankings. If a profile of rankings has a $u_8$ index of 0 then it does not have ties. Profiles of rankings that have a Condorcet ranking have $u_8=0$ but there are more perfiles that fulfills this property also.
 
-### u9: ponderated beta
+
+```{r}
+por <- parse_profile_of_rankings(
+  "5, a > b > c > d,
+   5, d > c > b > a"
+)
+votrix(por)
+u8(por)
+```
+
+```{r}
+set.seed(123)
+por <- random_profile_of_rankings(ncandidates = 4,
+                                  nvoters = 10,
+                                  cnames = letters[1:4],
+                                  distinct = 5)
+votrix(por)
+por$votrix > 5
+u8(por)
+```
+
+### u9: mean value of beta
 
 $$u_9 = $$
 
-### u10: mean of the rowsums
+### u10: desviación de la media de las rowsums
+
+La mean of the rowsums es siempre la misma
 
 This value is normalized between 0 and 1 so the max value can be $m(n-1)$
 
 $$u_{10} = $$
 
-### u11: condorcet proximity
+### u11: difference between the mean and the median of beta
+
+Given the vector $\beta = \{\beta_i, \beta_j, \dots\}$ 
+
+$$u_{11} = | mean(\beta) - median(\beta)|$$
+Given a Condorcet ranking, the mean and the media is asured to be the same
+
+### u12: ponderated beta
+
+Dar una puntuación de kemeny a la distribución de beta
+
+### u13: condorcet proximity
+
+
+Por ejemplo, yo creo que los que tengan 0,0 siempre van a tardar más en ejecutarse.
 
 Comparar de alguna forma la dispersión respecto al ranking de Condorcet
 
