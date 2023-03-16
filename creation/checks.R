@@ -10,23 +10,31 @@ check_data_experiments_is_condorcet_winner <- function(pors) {
   sapply(pors, function(x) sapply(x, function(y) as.logical(ifelse(!is.null(y), condorcet_winner(y), NA))))
 }
 
-check_data_experiments_condorcet_dist <- function(pors, v = 10) {
-  lapply(pors, function(x) lapply(x, function(y) ifelse(!is.null(y), rowSums(votrix(y) > (v/2)), NA)))
+check_data_experiments_n <- function(pors, v = 10) {
+  lapply(pors, function(x) lapply(x, function(y) ifelse(!is.null(y), length(y$candidates), NA)))
+}
+
+check_data_experiments_alphas <- function(pors) {
+  lapply(pors, function(x) lapply(x, function(y) get_alpha(y)))
+}
+
+check_data_experiments_betas <- function(pors, v = 10) {
+  lapply(pors, function(x) lapply(x, function(y) sort(rowSums(votrix(y) > (v/2)))))
 }
 
 check_data_experiments_margin <- function(pors) {
   lapply(pors, function(x) sapply(x, function(y) ifelse(!is.null(y), agreement_margin(votrix(y)), NA)))
 }
 
-check_data_experiments_u <- function(pors, u) {
-  lapply(pors, function(x) sapply(x, function(y) ifelse(!is.null(y), u(y), NA)))
+check_data_experiments_d <- function(pors, d) {
+  lapply(pors, function(x) sapply(x, function(y) ifelse(!is.null(y), d(y), NA)))
 }
 
 check_data_experiments_omega <- function(pors) {
   sapply(pors, function(x) sapply(x, function(y) ifelse(!is.null(y), get_omega(y), NA)))
 }
 
-check_data_experiments_nrp <- function(pors) {
+check_data_experiments_distinct <- function(pors) {
   lapply(pors, function(x) sapply(x, function(y) ifelse(!is.null(y), nrow(y$profileOfRankings), NA)))
 }
 

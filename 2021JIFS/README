@@ -1,0 +1,12 @@
+1. load_execution_times: takes the files in the results folder and load them
+2. load_profiles: load the profiles of rankings, which are needed to compute the indexes
+3. define_indexes: defines the functions used to measure the execution time
+4. create_dataset: compute the indexes
+5. normalize
+6. normalize_dataset: normalizes the dataset
+
+MACHINE LEARNING
+
+7. exploratory_analysis
+8. problem1
+9. problem2

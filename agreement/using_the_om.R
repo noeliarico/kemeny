@@ -43,6 +43,12 @@ get_alpha <- function(r) {
   return(rowSums(v) >= colSums(v))
 }
 
+get_beta <- function(y) {
+  v <- votrix(y)
+  h <- (v[1,2]+v[2,1])/2
+  sort(rowSums(v > h))
+}
+
 
 # Omega -------------------------------------------------------------------
 

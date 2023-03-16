@@ -12,6 +12,16 @@
     - `to_python_om(matix, name = "om")` gives the python code to create
     the outranking matrix `matrix` using numpy. `name` is the name of the variable using to store the outranking matrix on python.
     
+    
+# Carpeta `ejor`
+
+- `0.setup`
+- `1.function_create_profiles`
+- `2.function_create_scripts`
+- `3.create_profiles_of_scripts`
+- `4.load_profiles`
+- `5.add_scripts`
+
 
 # Algorithms
 

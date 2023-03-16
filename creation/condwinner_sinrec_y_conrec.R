@@ -183,6 +183,7 @@ pd.DataFrame(results',n,').to_csv("poda',n,type,'.csv")'))
   sink()
 }
 
+
 solo_fuzzieee <- function(pors,n,file_name,rep=0,type) {
   out <- c(paste0('
 import numpy as np
@@ -222,7 +223,7 @@ results',n,' = np.vstack((results',n,', result))
   } # end for
   
   out <- c(out, paste0(' 
-pd.DataFrame(results',n,').to_csv("fuzziee',n,type,'_123.csv")'))
+pd.DataFrame(results',n,').to_csv("fuzzieev2',n,type,'_123.csv")'))
   out <- paste(out, collapse = "\n")
   sink(file_name)
   cat(out)

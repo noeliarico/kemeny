@@ -33,7 +33,7 @@ def dfs1(om, d):
 
 def dfs1_rec(om, prefix, to_explore, dist, current_best_dist, solution):
 
-  # Stop condition: the ranking gives a order for all the candidates
+  # Stop condition: the ranking gives an order for all the candidates
   if to_explore.size == 0:
     if dist < current_best_dist: # if it is best, overwritte
       # print("{} NEW BEST! old distance = {}, best = {}".format(prefix, current_best_dist, dist))
@@ -80,15 +80,6 @@ def dfs1_rec(om, prefix, to_explore, dist, current_best_dist, solution):
     # else:
       # print("{} skipping with distance = {}".format(prefix, dist))
 
-      # if sol[0] < current_best_dist:
-      #   current_best_dist = sol[0]
-      #   solution = sol[1]
-      #   # print("Update current best distance to {}".format(current_best_dist))
-      #   # print(solution)
-      # elif sol[0] == current_best_dist:
-      #   solution = np.append(solution, sol[1])
-      #   # print("Keep current best distance as {}".format(current_best_dist))
-      #   # print(solution)
 
   return current_best_dist, solution
 

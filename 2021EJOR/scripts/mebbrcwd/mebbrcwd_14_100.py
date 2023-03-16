@@ -1,0 +1,7012 @@
+
+import numpy as np
+import pandas as pd
+import time
+from kemeny import algorithms as alg
+from kemeny import sc
+
+rep = 1
+results = np.zeros(0).reshape(0,7+rep)
+
+##############################################################
+om = np.array([
+[0,63,48,57,47,53,54,49,41,54,62,63,53,62],
+[37,0,52,54,42,51,41,42,39,52,44,60,46,49],
+[52,48,0,52,34,56,48,42,38,49,45,61,35,52],
+[43,46,48,0,51,52,49,58,36,45,48,50,57,47],
+[53,58,66,49,0,53,51,53,57,54,60,65,56,61],
+[47,49,44,48,47,0,37,38,44,42,57,53,42,67],
+[46,59,52,51,49,63,0,55,40,52,43,74,45,59],
+[51,58,58,42,47,62,45,0,44,48,55,60,55,53],
+[59,61,62,64,43,56,60,56,0,48,62,77,57,69],
+[46,48,51,55,46,58,48,52,52,0,59,64,56,56],
+[38,56,55,52,40,43,57,45,38,41,0,56,44,50],
+[37,40,39,50,35,47,26,40,23,36,44,0,41,46],
+[47,54,65,43,44,58,55,45,43,44,56,59,0,66],
+[38,51,48,53,39,33,41,47,31,44,50,54,34,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 1, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,32,45,47,42,50,34,41,56,55,48,47,51,42],
+[68,0,55,51,47,54,61,51,57,67,58,51,62,49],
+[55,45,0,54,50,52,47,47,55,64,56,49,57,52],
+[53,49,46,0,56,38,43,44,46,57,51,46,47,42],
+[58,53,50,44,0,52,49,49,53,69,51,49,64,56],
+[50,46,48,62,48,0,49,46,56,68,58,57,55,43],
+[66,39,53,57,51,51,0,50,51,76,61,59,62,57],
+[59,49,53,56,51,54,50,0,52,62,54,53,58,51],
+[44,43,45,54,47,44,49,48,0,60,53,51,61,45],
+[45,33,36,43,31,32,24,38,40,0,39,34,41,36],
+[52,42,44,49,49,42,39,46,47,61,0,38,45,50],
+[53,49,51,54,51,43,41,47,49,66,62,0,72,55],
+[49,38,43,53,36,45,38,42,39,59,55,28,0,48],
+[58,51,48,58,44,57,43,49,55,64,50,45,52,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 2, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,54,47,50,52,41,52,47,48,46,51,46,44,45],
+[46,0,43,48,44,46,38,41,46,48,55,44,41,42],
+[53,57,0,56,53,47,48,52,53,54,54,48,45,52],
+[50,52,44,0,56,46,42,52,50,47,52,53,47,50],
+[48,56,47,44,0,44,44,47,42,48,53,41,42,48],
+[59,54,53,54,56,0,53,52,51,53,57,49,54,49],
+[48,62,52,58,56,47,0,54,59,52,54,54,48,45],
+[53,59,48,48,53,48,46,0,47,48,53,42,49,43],
+[52,54,47,50,58,49,41,53,0,48,54,47,46,48],
+[54,52,46,53,52,47,48,52,52,0,52,49,52,51],
+[49,45,46,48,47,43,46,47,46,48,0,47,48,40],
+[54,56,52,47,59,51,46,58,53,51,53,0,51,51],
+[56,59,55,53,58,46,52,51,54,48,52,49,0,53],
+[55,58,48,50,52,51,55,57,52,49,60,49,47,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 3, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,53,48,45,56,45,69,43,47,60,54,53,64,50],
+[47,0,34,46,42,37,46,51,40,43,45,54,52,37],
+[52,66,0,53,59,46,59,54,48,63,51,69,56,60],
+[55,54,47,0,61,45,67,43,48,50,56,65,65,46],
+[44,58,41,39,0,41,47,47,50,53,45,57,50,55],
+[55,63,54,55,59,0,60,42,45,54,41,70,60,41],
+[31,54,41,33,53,40,0,45,41,54,30,56,43,40],
+[57,49,46,57,53,58,55,0,56,54,50,69,67,44],
+[53,60,52,52,50,55,59,44,0,52,60,74,64,39],
+[40,57,37,50,47,46,46,46,48,0,42,65,56,48],
+[46,55,49,44,55,59,70,50,40,58,0,61,55,39],
+[47,46,31,35,43,30,44,31,26,35,39,0,53,32],
+[36,48,44,35,50,40,57,33,36,44,45,47,0,45],
+[50,63,40,54,45,59,60,56,61,52,61,68,55,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 4, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,49,57,51,52,53,45,49,52,57,51,52,45,49],
+[51,0,56,50,54,58,50,51,57,65,42,54,47,50],
+[43,44,0,48,50,58,49,57,59,55,46,66,50,46],
+[49,50,52,0,47,61,53,60,60,57,48,56,47,48],
+[48,46,50,53,0,48,52,54,52,60,57,49,49,40],
+[47,42,42,39,52,0,51,54,54,52,47,61,52,43],
+[55,50,51,47,48,49,0,43,52,50,48,49,51,48],
+[51,49,43,40,46,46,57,0,51,52,42,55,43,37],
+[48,43,41,40,48,46,48,49,0,51,47,57,39,48],
+[43,35,45,43,40,48,50,48,49,0,41,52,32,39],
+[49,58,54,52,43,53,52,58,53,59,0,59,45,54],
+[48,46,34,44,51,39,51,45,43,48,41,0,31,42],
+[55,53,50,53,51,48,49,57,61,68,55,69,0,47],
+[51,50,54,52,60,57,52,63,52,61,46,58,53,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 5, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,51,47,51,44,48,52,50,50,59,48,63,61,55],
+[49,0,45,45,45,49,53,52,49,59,51,55,62,54],
+[53,55,0,58,52,48,54,53,56,51,57,57,62,54],
+[49,55,42,0,43,51,49,49,52,53,52,54,54,54],
+[56,55,48,57,0,58,63,53,58,58,60,59,61,59],
+[52,51,52,49,42,0,51,46,47,50,54,51,54,54],
+[48,47,46,51,37,49,0,51,50,50,48,54,52,54],
+[50,48,47,51,47,54,49,0,55,55,50,57,57,53],
+[50,51,44,48,42,53,50,45,0,51,46,55,58,51],
+[41,41,49,47,42,50,50,45,49,0,46,53,54,51],
+[52,49,43,48,40,46,52,50,54,54,0,51,56,51],
+[37,45,43,46,41,49,46,43,45,47,49,0,53,47],
+[39,38,38,46,39,46,48,43,42,46,44,47,0,50],
+[45,46,46,46,41,46,46,47,49,49,49,53,50,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 6, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,45,49,61,41,40,44,45,41,65,45,44,47,54],
+[55,0,39,47,37,38,33,36,43,56,38,50,44,45],
+[51,61,0,64,48,54,52,46,50,55,49,56,54,57],
+[39,53,36,0,38,45,29,42,48,50,39,45,47,47],
+[59,63,52,62,0,49,42,54,49,60,50,57,52,70],
+[60,62,46,55,51,0,45,50,57,55,55,50,56,53],
+[56,67,48,71,58,55,0,51,63,59,58,56,57,67],
+[55,64,54,58,46,50,49,0,57,60,53,57,46,58],
+[59,57,50,52,51,43,37,43,0,56,44,52,50,53],
+[35,44,45,50,40,45,41,40,44,0,38,46,47,47],
+[55,62,51,61,50,45,42,47,56,62,0,59,57,56],
+[56,50,44,55,43,50,44,43,48,54,41,0,48,56],
+[53,56,46,53,48,44,43,54,50,53,43,52,0,57],
+[46,55,43,53,30,47,33,42,47,53,44,44,43,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 7, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,44,52,43,51,42,48,44,42,54,41,46,43,47],
+[56,0,50,52,56,53,55,56,58,56,56,58,59,47],
+[48,50,0,45,53,39,43,45,50,45,47,54,53,48],
+[57,48,55,0,58,56,56,50,49,57,55,57,54,59],
+[49,44,47,42,0,50,47,45,46,49,45,46,48,52],
+[58,47,61,44,50,0,59,51,50,51,50,51,54,54],
+[52,45,57,44,53,41,0,46,46,50,45,48,53,52],
+[56,44,55,50,55,49,54,0,53,43,46,53,52,49],
+[58,42,50,51,54,50,54,47,0,49,58,51,56,47],
+[46,44,55,43,51,49,50,57,51,0,55,53,53,48],
+[59,44,53,45,55,50,55,54,42,45,0,46,57,48],
+[54,42,46,43,54,49,52,47,49,47,54,0,54,48],
+[57,41,47,46,52,46,47,48,44,47,43,46,0,41],
+[53,53,52,41,48,46,48,51,53,52,52,52,59,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 8, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,73,65,66,54,66,69,57,62,72,57,77,46,53],
+[27,0,37,42,34,63,58,42,34,46,34,47,32,35],
+[35,63,0,74,42,66,59,21,49,58,61,64,57,56],
+[34,58,26,0,33,37,45,28,34,42,45,47,38,51],
+[46,66,58,67,0,72,60,52,53,47,57,65,46,50],
+[34,37,34,63,28,0,38,39,32,43,47,53,40,36],
+[31,42,41,55,40,62,0,31,51,55,40,53,42,43],
+[43,58,79,72,48,61,69,0,64,64,60,66,73,59],
+[38,66,51,66,47,68,49,36,0,82,57,71,56,60],
+[28,54,42,58,53,57,45,36,18,0,34,52,46,41],
+[43,66,39,55,43,53,60,40,43,66,0,66,37,41],
+[23,53,36,53,35,47,47,34,29,48,34,0,28,34],
+[54,68,43,62,54,60,58,27,44,54,63,72,0,58],
+[47,65,44,49,50,64,57,41,40,59,59,66,42,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 9, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,56,62,49,60,57,54,53,52,52,56,53,60,57],
+[44,0,45,50,49,60,57,47,64,45,42,53,55,61],
+[38,55,0,51,55,53,51,47,70,53,49,50,58,42],
+[51,50,49,0,59,57,44,46,61,57,54,49,63,40],
+[40,51,45,41,0,70,51,54,66,48,53,39,61,51],
+[43,40,47,43,30,0,40,36,52,48,49,36,58,50],
+[46,43,49,56,49,60,0,47,60,42,44,51,50,52],
+[47,53,53,54,46,64,53,0,69,46,42,56,54,62],
+[48,36,30,39,34,48,40,31,0,39,29,43,44,39],
+[48,55,47,43,52,52,58,54,61,0,43,59,55,60],
+[44,58,51,46,47,51,56,58,71,57,0,57,66,52],
+[47,47,50,51,61,64,49,44,57,41,43,0,66,59],
+[40,45,42,37,39,42,50,46,56,45,34,34,0,50],
+[43,39,58,60,49,50,48,38,61,40,48,41,50,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 10, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,37,84,79,61,77,61,74,89,57,51,87,71,56],
+[63,0,63,65,78,78,67,78,79,43,59,78,63,63],
+[16,37,0,60,41,73,42,54,34,16,32,51,36,32],
+[21,35,40,0,56,62,55,42,59,20,52,56,40,40],
+[39,22,59,44,0,59,42,54,75,38,55,38,22,54],
+[23,22,27,38,41,0,24,58,58,22,19,42,6,22],
+[39,33,58,45,58,76,0,54,55,54,39,54,54,38],
+[26,22,46,58,46,42,46,0,56,6,32,40,22,26],
+[11,21,66,41,25,42,45,44,0,41,22,41,41,26],
+[43,57,84,80,62,78,46,94,59,0,53,92,75,76],
+[49,41,68,48,45,81,61,68,78,47,0,57,67,50],
+[13,22,49,44,62,58,46,60,59,8,43,0,44,46],
+[29,37,64,60,78,94,46,78,59,25,33,56,0,56],
+[44,37,68,60,46,78,62,74,74,24,50,54,44,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 11, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,45,44,50,48,50,53,49,52,49,52,48,52,48],
+[55,0,44,54,46,43,52,49,61,56,54,39,59,49],
+[56,56,0,55,45,50,52,57,56,51,53,52,56,49],
+[50,46,45,0,40,43,45,50,49,49,49,50,50,44],
+[52,54,55,60,0,61,55,55,60,55,50,46,62,51],
+[50,57,50,57,39,0,46,48,59,47,50,47,58,54],
+[47,48,48,55,45,54,0,56,56,55,52,47,50,44],
+[51,51,43,50,45,52,44,0,44,48,44,41,44,37],
+[48,39,44,51,40,41,44,56,0,52,41,35,50,37],
+[51,44,49,51,45,53,45,52,48,0,48,42,50,44],
+[48,46,47,51,50,50,48,56,59,52,0,48,55,48],
+[52,61,48,50,54,53,53,59,65,58,52,0,61,54],
+[48,41,44,50,38,42,50,56,50,50,45,39,0,44],
+[52,51,51,56,49,46,56,63,63,56,52,46,56,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 12, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,62,48,50,56,57,39,52,51,49,57,51,46,51],
+[38,0,45,39,47,47,36,46,41,47,43,44,43,53],
+[52,55,0,52,46,52,39,50,46,46,45,48,42,56],
+[50,61,48,0,43,54,41,50,50,50,47,52,53,54],
+[44,53,54,57,0,56,47,51,48,53,52,58,48,57],
+[43,53,48,46,44,0,32,46,45,49,33,49,48,48],
+[61,64,61,59,53,68,0,52,56,57,60,52,46,65],
+[48,54,50,50,49,54,48,0,50,49,50,45,50,57],
+[49,59,54,50,52,55,44,50,0,49,52,55,48,63],
+[51,53,54,50,47,51,43,51,51,0,40,53,49,47],
+[43,57,55,53,48,67,40,50,48,60,0,56,54,56],
+[49,56,52,48,42,51,48,55,45,47,44,0,51,54],
+[54,57,58,47,52,52,54,50,52,51,46,49,0,52],
+[49,47,44,46,43,52,35,43,37,53,44,46,48,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 13, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,44,44,49,50,47,40,55,44,48,47,40,44,49],
+[56,0,56,48,54,47,43,49,49,53,46,41,49,59],
+[56,44,0,45,54,42,41,51,45,50,37,42,41,51],
+[51,52,55,0,52,48,49,52,53,51,46,42,47,55],
+[50,46,46,48,0,51,47,45,43,48,46,40,49,45],
+[53,53,58,52,49,0,44,52,51,51,47,52,50,49],
+[60,57,59,51,53,56,0,63,53,49,52,47,51,48],
+[45,51,49,48,55,48,37,0,51,49,40,36,46,53],
+[56,51,55,47,57,49,47,49,0,50,50,48,49,55],
+[52,47,50,49,52,49,51,51,50,0,47,40,49,50],
+[53,54,63,54,54,53,48,60,50,53,0,55,55,52],
+[60,59,58,58,60,48,53,64,52,60,45,0,54,60],
+[56,51,59,53,51,50,49,54,51,51,45,46,0,55],
+[51,41,49,45,55,51,52,47,45,50,48,40,45,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 14, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,46,48,39,49,45,41,60,44,49,44,44,34,45],
+[54,0,56,53,58,59,47,67,46,54,50,60,45,57],
+[52,44,0,51,50,47,46,57,39,41,44,48,41,51],
+[61,47,49,0,57,62,42,58,46,49,48,59,53,56],
+[51,42,50,43,0,43,42,47,31,37,48,46,45,43],
+[55,41,53,38,57,0,40,54,45,48,44,54,43,50],
+[59,53,54,58,58,60,0,52,48,62,56,59,39,62],
+[40,33,43,42,53,46,48,0,43,45,48,43,33,48],
+[56,54,61,54,69,55,52,57,0,69,52,60,43,67],
+[51,46,59,51,63,52,38,55,31,0,53,56,37,50],
+[56,50,56,52,52,56,44,52,48,47,0,57,46,46],
+[56,40,52,41,54,46,41,57,40,44,43,0,44,47],
+[66,55,59,47,55,57,61,67,57,63,54,56,0,65],
+[55,43,49,44,57,50,38,52,33,50,54,53,35,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 15, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,55,37,49,58,47,42,40,53,45,50,49,41,54],
+[45,0,34,48,50,38,42,32,51,46,39,43,43,43],
+[63,66,0,60,63,51,53,57,62,65,59,54,45,54],
+[51,52,40,0,52,53,42,41,44,56,43,49,40,47],
+[42,50,37,48,0,44,45,53,47,53,35,44,38,44],
+[53,62,49,47,56,0,49,50,52,55,55,47,48,42],
+[58,58,47,58,55,51,0,46,54,46,55,53,56,60],
+[60,68,43,59,47,50,54,0,56,60,56,57,46,59],
+[47,49,38,56,53,48,46,44,0,53,53,50,50,56],
+[55,54,35,44,47,45,54,40,47,0,42,51,42,45],
+[50,61,41,57,65,45,45,44,47,58,0,52,52,54],
+[51,57,46,51,56,53,47,43,50,49,48,0,42,63],
+[59,57,55,60,62,52,44,54,50,58,48,58,0,55],
+[46,57,46,53,56,58,40,41,44,55,46,37,45,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 16, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,55,53,53,56,55,57,50,52,52,46,47,47,46],
+[45,0,53,48,48,50,49,47,42,47,50,45,43,50],
+[47,47,0,47,45,45,48,42,37,56,39,36,44,45],
+[47,52,53,0,55,59,44,45,44,52,41,46,49,42],
+[44,52,55,45,0,55,52,42,39,52,42,40,43,44],
+[45,50,55,41,45,0,48,39,38,52,53,49,45,47],
+[43,51,52,56,48,52,0,53,51,53,49,48,47,52],
+[50,53,58,55,58,61,47,0,41,56,50,42,44,57],
+[48,58,63,56,61,62,49,59,0,57,47,51,55,57],
+[48,53,44,48,48,48,47,44,43,0,45,38,43,51],
+[54,50,61,59,58,47,51,50,53,55,0,54,51,63],
+[53,55,64,54,60,51,52,58,49,62,46,0,56,47],
+[53,57,56,51,57,55,53,56,45,57,49,44,0,48],
+[54,50,55,58,56,53,48,43,43,49,37,53,52,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 17, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,80,98,59,85,80,67,42,80,67,66,67,67,87],
+[20,0,44,77,44,46,64,20,39,66,44,44,44,44],
+[2,56,0,35,43,43,43,2,35,43,22,2,23,2],
+[41,23,65,0,65,47,61,20,60,87,44,21,41,41],
+[15,56,57,35,0,35,22,15,39,22,35,15,15,15],
+[20,54,57,53,65,0,61,20,37,63,64,20,20,20],
+[33,36,57,39,78,39,0,35,39,60,59,13,57,59],
+[58,80,98,80,85,80,65,0,80,67,67,45,65,80],
+[20,61,65,40,61,63,61,20,0,63,40,20,41,41],
+[33,34,57,13,78,37,40,33,37,0,57,13,33,33],
+[34,56,78,56,65,36,41,33,60,43,0,21,34,56],
+[33,56,98,79,85,80,87,55,80,87,79,0,98,80],
+[33,56,77,59,85,80,43,35,59,67,66,2,0,59],
+[13,56,98,59,85,80,41,20,59,67,44,20,41,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 18, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,53,48,54,53,52,47,53,50,55,44,54,50,43],
+[47,0,46,44,48,50,46,45,48,56,44,58,52,42],
+[52,54,0,45,53,52,44,48,47,55,39,53,53,41],
+[46,56,55,0,51,55,48,49,54,56,51,57,48,53],
+[47,52,47,49,0,51,53,42,42,52,42,59,45,50],
+[48,50,48,45,49,0,51,46,50,53,46,61,53,47],
+[53,54,56,52,47,49,0,53,55,59,49,59,50,48],
+[47,55,52,51,58,54,47,0,54,59,54,59,49,51],
+[50,52,53,46,58,50,45,46,0,55,46,51,46,54],
+[45,44,45,44,48,47,41,41,45,0,37,49,49,41],
+[56,56,61,49,58,54,51,46,54,63,0,53,56,51],
+[46,42,47,43,41,39,41,41,49,51,47,0,41,41],
+[50,48,47,52,55,47,50,51,54,51,44,59,0,53],
+[57,58,59,47,50,53,52,49,46,59,49,59,47,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 19, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,45,40,51,49,35,42,44,53,47,45,39,36,39],
+[55,0,57,45,43,42,52,51,59,60,59,50,47,46],
+[60,43,0,42,46,35,45,55,47,47,45,38,35,45],
+[49,55,58,0,51,44,58,54,53,64,61,43,51,54],
+[51,57,54,49,0,38,52,52,52,60,63,47,45,47],
+[65,58,65,56,62,0,57,60,55,62,58,47,57,53],
+[58,48,55,42,48,43,0,58,47,55,54,42,53,49],
+[56,49,45,46,48,40,42,0,52,49,52,40,36,39],
+[47,41,53,47,48,45,53,48,0,50,48,37,45,34],
+[53,40,53,36,40,38,45,51,50,0,41,42,48,43],
+[55,41,55,39,37,42,46,48,52,59,0,39,43,38],
+[61,50,62,57,53,53,58,60,63,58,61,0,44,44],
+[64,53,65,49,55,43,47,64,55,52,57,56,0,48],
+[61,54,55,46,53,47,51,61,66,57,62,56,52,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 20, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,50,59,38,77,22,9,18,82,70,46,55,66,45],
+[50,0,59,61,66,31,32,61,71,70,28,55,66,79],
+[41,41,0,41,80,29,41,41,41,48,39,57,47,59],
+[62,39,59,0,55,50,23,41,62,59,39,55,66,78],
+[23,34,20,45,0,22,23,23,23,31,0,37,27,34],
+[78,69,71,50,78,0,32,50,78,59,46,55,66,68],
+[91,68,59,77,77,68,0,29,91,77,46,77,66,100],
+[82,39,59,59,77,50,71,0,82,59,39,66,77,89],
+[18,29,59,38,77,22,9,18,0,70,28,55,45,45],
+[30,30,52,41,69,41,23,41,30,0,51,46,59,48],
+[54,72,61,61,100,54,54,61,72,49,0,77,79,79],
+[45,45,43,45,63,45,23,34,45,54,23,0,43,63],
+[34,34,53,34,73,34,34,23,55,41,21,57,0,52],
+[55,21,41,22,66,32,0,11,55,52,21,37,48,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 21, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,44,44,46,54,52,33,44,50,51,49,45,46,54],
+[56,0,55,51,54,55,52,48,59,49,56,51,43,54],
+[56,45,0,51,57,44,38,49,53,54,50,56,46,56],
+[54,49,49,0,59,46,44,53,64,50,54,49,47,52],
+[46,46,43,41,0,46,40,42,46,49,49,52,36,54],
+[48,45,56,54,54,0,44,51,57,52,51,51,45,50],
+[67,48,62,56,60,56,0,53,69,63,64,67,57,60],
+[56,52,51,47,58,49,47,0,56,50,49,45,49,52],
+[50,41,47,36,54,43,31,44,0,46,41,46,47,50],
+[49,51,46,50,51,48,37,50,54,0,53,45,47,52],
+[51,44,50,46,51,49,36,51,59,47,0,53,46,54],
+[55,49,44,51,48,49,33,55,54,55,47,0,49,51],
+[54,57,54,53,64,55,43,51,53,53,54,51,0,57],
+[46,46,44,48,46,50,40,48,50,48,46,49,43,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 22, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,43,55,48,43,54,48,51,50,47,46,61,52,50],
+[57,0,45,50,53,52,51,55,50,53,40,55,54,57],
+[45,55,0,51,45,52,51,49,52,50,49,59,52,57],
+[52,50,49,0,42,45,46,43,56,54,44,53,51,47],
+[57,47,55,58,0,54,47,54,51,53,48,61,53,50],
+[46,48,48,55,46,0,58,47,58,43,45,59,54,53],
+[52,49,49,54,53,42,0,49,44,50,48,53,58,52],
+[49,45,51,57,46,53,51,0,54,49,50,53,50,49],
+[50,50,48,44,49,42,56,46,0,59,50,55,51,48],
+[53,47,50,46,47,57,50,51,41,0,41,49,51,52],
+[54,60,51,56,52,55,52,50,50,59,0,57,55,56],
+[39,45,41,47,39,41,47,47,45,51,43,0,51,45],
+[48,46,48,49,47,46,42,50,49,49,45,49,0,50],
+[50,43,43,53,50,47,48,51,52,48,44,55,50,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 23, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,51,58,48,55,52,35,65,56,51,50,50,35,52],
+[49,0,53,56,60,49,42,72,55,63,46,39,31,59],
+[42,47,0,59,63,61,41,63,60,59,56,53,35,46],
+[52,44,41,0,58,42,39,70,51,64,49,44,32,49],
+[45,40,37,42,0,52,37,58,43,58,45,33,25,35],
+[48,51,39,58,48,0,39,60,48,64,44,33,31,43],
+[65,58,59,61,63,61,0,70,61,74,59,50,52,59],
+[35,28,37,30,42,40,30,0,31,60,47,27,20,38],
+[44,45,40,49,57,52,39,69,0,61,42,31,24,49],
+[49,37,41,36,42,36,26,40,39,0,43,27,29,39],
+[50,54,44,51,55,56,41,53,58,57,0,40,43,44],
+[50,61,47,56,67,67,50,73,69,73,60,0,51,63],
+[65,69,65,68,75,69,48,80,76,71,57,49,0,69],
+[48,41,54,51,65,57,41,62,51,61,56,37,31,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 24, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,60,45,40,59,62,47,51,57,55,55,53,41,46],
+[40,0,39,39,51,46,42,43,49,50,56,48,42,43],
+[55,61,0,48,61,56,58,53,59,60,64,51,54,57],
+[60,61,52,0,62,53,61,54,59,61,68,48,54,54],
+[41,49,39,38,0,49,43,50,52,54,56,42,47,45],
+[38,54,44,47,51,0,50,48,56,53,59,44,44,51],
+[53,58,42,39,57,50,0,55,58,55,62,48,42,51],
+[49,57,47,46,50,52,45,0,53,49,54,42,48,40],
+[43,51,41,41,48,44,42,47,0,47,54,43,38,42],
+[45,50,40,39,46,47,45,51,53,0,56,42,42,46],
+[45,44,36,32,44,41,38,46,46,44,0,40,41,45],
+[47,52,49,52,58,56,52,58,57,58,60,0,50,56],
+[59,58,46,46,53,56,58,52,62,58,59,50,0,54],
+[54,57,43,46,55,49,49,60,58,54,55,44,46,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 25, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,60,66,44,54,54,57,52,60,52,65,54,43,62],
+[40,0,65,37,45,50,54,55,52,56,54,48,44,64],
+[34,35,0,35,29,31,26,41,42,39,28,34,32,40],
+[56,63,65,0,54,50,48,58,59,63,63,52,61,58],
+[46,55,71,46,0,46,51,57,53,54,58,49,44,61],
+[46,50,69,50,54,0,51,47,56,54,53,47,50,55],
+[43,46,74,52,49,49,0,54,44,45,55,55,48,63],
+[48,45,59,42,43,53,46,0,52,46,54,45,50,49],
+[40,48,58,41,47,44,56,48,0,51,40,42,40,50],
+[48,44,61,37,46,46,55,54,49,0,48,50,55,55],
+[35,46,72,37,42,47,45,46,60,52,0,52,34,49],
+[46,52,66,48,51,53,45,55,58,50,48,0,49,63],
+[57,56,68,39,56,50,52,50,60,45,66,51,0,54],
+[38,36,60,42,39,45,37,51,50,45,51,37,46,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 26, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,56,59,48,49,49,57,53,49,54,54,55,49,53],
+[44,0,44,48,40,50,45,46,51,44,51,44,44,50],
+[41,56,0,49,53,44,59,51,43,49,52,56,39,49],
+[52,52,51,0,51,45,60,51,47,57,57,61,52,48],
+[51,60,47,49,0,47,49,46,49,57,52,59,52,51],
+[51,50,56,55,53,0,57,51,51,60,57,58,54,52],
+[43,55,41,40,51,43,0,41,49,49,44,49,51,52],
+[47,54,49,49,54,49,59,0,55,55,59,57,53,50],
+[51,49,57,53,51,49,51,45,0,50,52,53,43,47],
+[46,56,51,43,43,40,51,45,50,0,52,53,50,43],
+[46,49,48,43,48,43,56,41,48,48,0,54,50,44],
+[45,56,44,39,41,42,51,43,47,47,46,0,43,44],
+[51,56,61,48,48,46,49,47,57,50,50,57,0,53],
+[47,50,51,52,49,48,48,50,53,57,56,56,47,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 27, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,49,31,35,48,53,48,48,55,30,33,50,38,54],
+[51,0,39,45,57,62,49,66,60,35,57,42,45,75],
+[69,61,0,47,66,61,64,56,80,40,54,57,53,80],
+[65,55,53,0,58,68,50,63,68,51,64,48,54,81],
+[52,43,34,42,0,51,55,52,56,36,44,43,52,56],
+[47,38,39,32,49,0,46,61,60,34,33,47,56,58],
+[52,51,36,50,45,54,0,45,55,23,37,50,29,68],
+[52,34,44,37,48,39,55,0,54,50,28,33,29,70],
+[45,40,20,32,44,40,45,46,0,32,24,38,34,75],
+[70,65,60,49,64,66,77,50,68,0,60,57,70,71],
+[67,43,46,36,56,67,63,72,76,40,0,50,62,81],
+[50,58,43,52,57,53,50,67,62,43,50,0,46,65],
+[62,55,47,46,48,44,71,71,66,30,38,54,0,58],
+[46,25,20,19,44,42,32,30,25,29,19,35,42,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 28, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,71,66,64,62,58,68,52,66,49,63,61,61,51],
+[29,0,48,35,52,40,42,31,50,35,46,41,45,40],
+[34,52,0,48,47,42,50,37,56,36,56,48,48,46],
+[36,65,52,0,64,48,55,39,70,42,51,56,45,57],
+[38,48,53,36,0,34,43,39,50,33,51,48,46,43],
+[42,60,58,52,66,0,62,52,61,42,51,57,56,55],
+[32,58,50,45,57,38,0,29,49,45,46,45,52,45],
+[48,69,63,61,61,48,71,0,66,54,64,58,64,62],
+[34,50,44,30,50,39,51,34,0,36,44,37,43,48],
+[51,65,64,58,67,58,55,46,64,0,58,51,66,55],
+[37,54,44,49,49,49,54,36,56,42,0,43,52,62],
+[39,59,52,44,52,43,55,42,63,49,57,0,62,54],
+[39,55,52,55,54,44,48,36,57,34,48,38,0,56],
+[49,60,54,43,57,45,55,38,52,45,38,46,44,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 29, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,42,43,46,40,45,43,47,45,44,46,47,36,54],
+[58,0,47,54,55,51,38,54,43,49,47,46,49,55],
+[57,53,0,43,52,54,46,47,50,42,47,60,44,50],
+[54,46,57,0,48,49,48,56,49,56,51,58,51,55],
+[60,45,48,52,0,55,48,53,59,53,48,53,38,62],
+[55,49,46,51,45,0,45,54,49,50,47,64,42,64],
+[57,62,54,52,52,55,0,50,49,61,44,74,48,63],
+[53,46,53,44,47,46,50,0,40,56,48,54,49,61],
+[55,57,50,51,41,51,51,60,0,55,48,55,47,59],
+[56,51,58,44,47,50,39,44,45,0,46,58,49,57],
+[54,53,53,49,52,53,56,52,52,54,0,59,47,56],
+[53,54,40,42,47,36,26,46,45,42,41,0,37,54],
+[64,51,56,49,62,58,52,51,53,51,53,63,0,68],
+[46,45,50,45,38,36,37,39,41,43,44,46,32,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 30, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,49,55,39,48,59,44,48,49,53,41,46,50,46],
+[51,0,52,43,53,57,48,56,51,60,46,50,47,54],
+[45,48,0,44,48,55,44,52,50,50,38,45,43,45],
+[61,57,56,0,55,63,51,62,50,60,44,53,51,59],
+[52,47,52,45,0,55,48,51,48,60,53,44,46,49],
+[41,43,45,37,45,0,38,46,42,48,39,40,41,47],
+[56,52,56,49,52,62,0,61,48,55,48,53,52,58],
+[52,44,48,38,49,54,39,0,46,49,43,42,44,49],
+[51,49,50,50,52,58,52,54,0,53,47,50,52,50],
+[47,40,50,40,40,52,45,51,47,0,40,46,47,51],
+[59,54,62,56,47,61,52,57,53,60,0,51,54,61],
+[54,50,55,47,56,60,47,58,50,54,49,0,47,52],
+[50,53,57,49,54,59,48,56,48,53,46,53,0,51],
+[54,46,55,41,51,53,42,51,50,49,39,48,49,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 31, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,43,42,54,29,24,54,48,48,34,53,41,48,42],
+[57,0,50,50,42,30,51,46,46,40,55,38,45,55],
+[58,50,0,50,36,39,59,43,46,43,54,56,46,39],
+[46,50,50,0,49,38,49,51,47,41,51,48,46,46],
+[71,58,64,51,0,49,64,50,61,48,58,56,44,52],
+[76,70,61,62,51,0,57,49,64,58,48,54,44,48],
+[46,49,41,51,36,43,0,38,50,36,55,52,43,36],
+[52,54,57,49,50,51,62,0,62,50,56,56,53,57],
+[52,54,54,53,39,36,50,38,0,42,56,43,41,40],
+[66,60,57,59,52,42,64,50,58,0,59,59,55,52],
+[47,45,46,49,42,52,45,44,44,41,0,44,39,51],
+[59,62,44,52,44,46,48,44,57,41,56,0,42,52],
+[52,55,54,54,56,56,57,47,59,45,61,58,0,54],
+[58,45,61,54,48,52,64,43,60,48,49,48,46,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 32, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,39,42,55,44,47,49,46,42,45,41,42,47,48],
+[61,0,49,60,61,56,62,54,51,52,58,55,56,60],
+[58,51,0,56,58,49,48,54,49,43,52,51,47,56],
+[45,40,44,0,45,42,41,48,51,44,45,46,39,52],
+[56,39,42,55,0,46,46,45,45,38,44,56,51,51],
+[53,44,51,58,54,0,52,54,48,49,49,55,51,59],
+[51,38,52,59,54,48,0,55,48,49,47,57,52,51],
+[54,46,46,52,55,46,45,0,48,37,43,52,50,57],
+[58,49,51,49,55,52,52,52,0,48,46,58,46,54],
+[55,48,57,56,62,51,51,63,52,0,52,52,47,63],
+[59,42,48,55,56,51,53,57,54,48,0,52,53,59],
+[58,45,49,54,44,45,43,48,42,48,48,0,48,49],
+[53,44,53,61,49,49,48,50,54,53,47,52,0,59],
+[52,40,44,48,49,41,49,43,46,37,41,51,41,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 33, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,42,50,42,44,45,47,51,46,40,44,49,54,48],
+[58,0,48,49,45,55,59,58,51,60,61,64,64,52],
+[50,52,0,42,44,40,53,48,49,57,53,47,54,50],
+[58,51,58,0,52,49,58,52,48,63,54,51,66,49],
+[56,55,56,48,0,46,55,50,47,56,54,60,61,53],
+[55,45,60,51,54,0,53,55,47,56,55,62,55,55],
+[53,41,47,42,45,47,0,48,44,52,55,53,54,47],
+[49,42,52,48,50,45,52,0,44,47,45,47,59,45],
+[54,49,51,52,53,53,56,56,0,53,52,58,67,51],
+[60,40,43,37,44,44,48,53,47,0,45,47,58,46],
+[56,39,47,46,46,45,45,55,48,55,0,48,55,50],
+[51,36,53,49,40,38,47,53,42,53,52,0,56,48],
+[46,36,46,34,39,45,46,41,33,42,45,44,0,34],
+[52,48,50,51,47,45,53,55,49,54,50,52,66,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 34, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,0,23,0,6,19,19,0,20,27,0,31,9,50],
+[100,0,56,50,78,69,69,64,47,56,36,73,56,77],
+[77,44,0,0,64,46,77,58,51,58,71,31,58,77],
+[100,50,100,0,91,60,77,77,51,87,77,64,73,77],
+[94,22,36,9,0,22,55,40,20,36,49,40,9,71],
+[81,31,54,40,78,0,86,58,51,67,67,40,40,71],
+[81,31,23,23,45,14,0,31,45,50,58,40,40,31],
+[100,36,42,23,60,42,69,0,20,50,49,54,29,50],
+[80,53,49,49,80,49,55,80,0,36,80,67,36,71],
+[73,44,42,13,64,33,50,50,64,0,44,31,46,50],
+[100,64,29,23,51,33,42,51,20,56,0,60,29,64],
+[69,27,69,36,60,60,60,46,33,69,40,0,69,77],
+[91,44,42,27,91,60,60,71,64,54,71,31,0,77],
+[50,23,23,23,29,29,69,50,29,50,36,23,23,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 35, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,51,49,54,59,63,49,56,58,58,59,51,52,48],
+[49,0,37,39,50,51,46,49,47,48,50,51,43,52],
+[51,63,0,54,55,64,51,50,58,55,60,52,51,37],
+[46,61,46,0,50,61,50,46,50,53,55,46,46,44],
+[41,50,45,50,0,51,48,45,49,42,46,50,47,39],
+[37,49,36,39,49,0,39,44,39,33,51,43,46,36],
+[51,54,49,50,52,61,0,49,52,51,61,49,53,50],
+[44,51,50,54,55,56,51,0,57,46,55,52,54,50],
+[42,53,42,50,51,61,48,43,0,47,54,43,48,44],
+[42,52,45,47,58,67,49,54,53,0,54,53,50,32],
+[41,50,40,45,54,49,39,45,46,46,0,45,45,46],
+[49,49,48,54,50,57,51,48,57,47,55,0,43,44],
+[48,57,49,54,53,54,47,46,52,50,55,57,0,45],
+[52,48,63,56,61,64,50,50,56,68,54,56,55,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 36, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,49,39,57,49,43,55,56,55,43,62,56,59,53],
+[51,0,46,53,45,53,46,46,46,44,54,47,49,63],
+[61,54,0,59,43,55,58,63,51,57,53,65,61,73],
+[43,47,41,0,50,55,56,52,58,46,63,55,57,65],
+[51,55,57,50,0,56,61,64,52,50,64,60,53,63],
+[57,47,45,45,44,0,45,39,43,37,55,45,50,63],
+[45,54,42,44,39,55,0,55,52,48,58,57,50,67],
+[44,54,37,48,36,61,45,0,48,43,57,45,45,59],
+[45,54,49,42,48,57,48,52,0,37,51,59,49,64],
+[57,56,43,54,50,63,52,57,63,0,58,63,49,67],
+[38,46,47,37,36,45,42,43,49,42,0,50,47,47],
+[44,53,35,45,40,55,43,55,41,37,50,0,51,65],
+[41,51,39,43,47,50,50,55,51,51,53,49,0,62],
+[47,37,27,35,37,37,33,41,36,33,53,35,38,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 37, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,45,43,61,58,43,48,51,43,63,46,46,56,60],
+[55,0,63,52,39,57,43,46,53,51,55,52,42,46],
+[57,37,0,47,41,37,48,56,50,50,44,42,48,46],
+[39,48,53,0,41,47,41,50,42,48,46,49,50,51],
+[42,61,59,59,0,55,64,58,50,66,54,66,53,62],
+[57,43,63,53,45,0,53,42,54,57,57,52,46,49],
+[52,57,52,59,36,47,0,51,47,50,48,55,43,50],
+[49,54,44,50,42,58,49,0,49,46,44,47,40,51],
+[57,47,50,58,50,46,53,51,0,56,52,42,55,57],
+[37,49,50,52,34,43,50,54,44,0,48,39,35,49],
+[54,45,56,54,46,43,52,56,48,52,0,48,49,53],
+[54,48,58,51,34,48,45,53,58,61,52,0,40,57],
+[44,58,52,50,47,54,57,60,45,65,51,60,0,47],
+[40,54,54,49,38,51,50,49,43,51,47,43,53,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 38, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,55,57,65,42,52,44,50,54,58,58,53,58,60],
+[45,0,41,44,43,44,43,42,53,50,48,43,48,50],
+[43,59,0,46,49,48,50,50,56,52,61,42,55,61],
+[35,56,54,0,38,46,38,50,52,52,50,50,50,56],
+[58,57,51,62,0,45,47,48,55,60,61,46,60,56],
+[48,56,52,54,55,0,48,49,53,55,57,52,57,53],
+[56,57,50,62,53,52,0,61,63,57,62,52,52,64],
+[50,58,50,50,52,51,39,0,50,56,54,46,62,55],
+[46,47,44,48,45,47,37,50,0,50,53,48,47,48],
+[42,50,48,48,40,45,43,44,50,0,52,40,48,53],
+[42,52,39,50,39,43,38,46,47,48,0,40,37,51],
+[47,57,58,50,54,48,48,54,52,60,60,0,56,61],
+[42,52,45,50,40,43,48,38,53,52,63,44,0,56],
+[40,50,39,44,44,47,36,45,52,47,49,39,44,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 39, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,45,52,55,38,53,58,47,55,62,47,42,44,39],
+[55,0,62,61,52,63,61,60,60,71,52,57,50,60],
+[48,38,0,47,42,52,45,46,41,50,51,45,37,44],
+[45,39,53,0,53,57,62,49,55,55,45,57,45,49],
+[62,48,58,47,0,63,59,51,51,58,65,55,49,56],
+[47,37,48,43,37,0,53,44,45,55,56,48,39,49],
+[42,39,55,38,41,47,0,36,42,50,45,53,43,45],
+[53,40,54,51,49,56,64,0,59,61,63,58,49,56],
+[45,40,59,45,49,55,58,41,0,58,52,51,47,48],
+[38,29,50,45,42,45,50,39,42,0,49,52,38,41],
+[53,48,49,55,35,44,55,37,48,51,0,51,38,49],
+[58,43,55,43,45,52,47,42,49,48,49,0,49,49],
+[56,50,63,55,51,61,57,51,53,62,62,51,0,59],
+[61,40,56,51,44,51,55,44,52,59,51,51,41,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 40, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,45,56,34,42,56,37,48,39,48,34,43,39,43],
+[55,0,59,42,42,56,45,48,56,48,43,48,46,49],
+[44,41,0,45,52,41,35,39,41,36,41,43,40,35],
+[66,58,55,0,58,56,49,52,52,49,60,56,65,48],
+[58,58,48,42,0,51,39,56,37,46,40,43,52,42],
+[44,44,59,44,49,0,43,47,44,46,40,35,49,46],
+[63,55,65,51,61,57,0,53,52,48,48,52,52,61],
+[52,52,61,48,44,53,47,0,55,51,44,40,53,48],
+[61,44,59,48,63,56,48,45,0,49,55,56,54,52],
+[52,52,64,51,54,54,52,49,51,0,48,46,57,53],
+[66,57,59,40,60,60,52,56,45,52,0,47,55,48],
+[57,52,57,44,57,65,48,60,44,54,53,0,53,67],
+[61,54,60,35,48,51,48,47,46,43,45,47,0,42],
+[57,51,65,52,58,54,39,52,48,47,52,33,58,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 41, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,49,40,54,44,39,45,46,54,42,39,53,55,60],
+[51,0,46,52,44,34,44,53,46,47,49,52,47,62],
+[60,54,0,63,48,47,49,56,60,50,49,69,60,60],
+[46,48,37,0,38,41,37,53,58,50,41,61,52,57],
+[56,56,52,62,0,46,50,60,68,58,54,60,58,59],
+[61,66,53,59,54,0,50,62,66,60,58,67,60,67],
+[55,56,51,63,50,50,0,59,62,53,59,68,62,68],
+[54,47,44,47,40,38,41,0,54,49,44,53,51,59],
+[46,54,40,42,32,34,38,46,0,49,43,55,49,64],
+[58,53,50,50,42,40,47,51,51,0,49,58,51,57],
+[61,51,51,59,46,42,41,56,57,51,0,67,53,65],
+[47,48,31,39,40,33,32,47,45,42,33,0,47,54],
+[45,53,40,48,42,40,38,49,51,49,47,53,0,56],
+[40,38,40,43,41,33,32,41,36,43,35,46,44,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 42, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,52,49,53,59,37,48,46,47,46,54,51,48,64],
+[48,0,52,37,50,41,46,46,43,46,40,43,49,45],
+[51,48,0,50,62,40,48,55,49,51,51,53,47,62],
+[47,63,50,0,58,44,54,56,53,55,53,50,54,60],
+[41,50,38,42,0,36,39,47,39,38,49,45,51,54],
+[63,59,60,56,64,0,51,54,50,48,61,57,54,57],
+[52,54,52,46,61,49,0,43,49,44,45,48,51,60],
+[54,54,45,44,53,46,57,0,47,47,45,46,43,52],
+[53,57,51,47,61,50,51,53,0,56,51,53,52,58],
+[54,54,49,45,62,52,56,53,44,0,48,58,52,57],
+[46,60,49,47,51,39,55,55,49,52,0,51,46,60],
+[49,57,47,50,55,43,52,54,47,42,49,0,47,55],
+[52,51,53,46,49,46,49,57,48,48,54,53,0,58],
+[36,55,38,40,46,43,40,48,42,43,40,45,42,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 43, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,50,60,43,48,45,51,54,55,49,54,54,45,51],
+[50,0,58,54,61,52,55,55,58,53,46,57,51,59],
+[40,42,0,36,42,38,43,39,50,35,38,48,36,43],
+[57,46,64,0,63,52,53,56,58,48,50,58,53,59],
+[52,39,58,37,0,54,46,48,51,49,52,66,51,49],
+[55,48,62,48,46,0,54,57,54,44,57,56,49,57],
+[49,45,57,47,54,46,0,48,49,44,55,58,49,52],
+[46,45,61,44,52,43,52,0,46,54,49,63,41,52],
+[45,42,50,42,49,46,51,54,0,47,49,49,51,51],
+[51,47,65,52,51,56,56,46,53,0,51,57,62,54],
+[46,54,62,50,48,43,45,51,51,49,0,48,45,49],
+[46,43,52,42,34,44,42,37,51,43,52,0,43,44],
+[55,49,64,47,49,51,51,59,49,38,55,57,0,50],
+[49,41,57,41,51,43,48,48,49,46,51,56,50,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 44, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,50,54,46,47,46,52,47,53,47,46,57,46,48],
+[50,0,42,41,45,43,43,52,51,41,41,48,42,51],
+[46,58,0,42,55,47,48,47,44,45,44,54,47,47],
+[54,59,58,0,60,48,53,56,54,53,45,57,53,50],
+[53,55,45,40,0,45,56,44,47,33,47,51,39,44],
+[54,57,53,52,55,0,55,51,46,47,47,54,54,53],
+[48,57,52,47,44,45,0,40,46,34,43,50,45,48],
+[53,48,53,44,56,49,60,0,52,46,43,61,53,50],
+[47,49,56,46,53,54,54,48,0,49,43,56,55,55],
+[53,59,55,47,67,53,66,54,51,0,52,60,55,53],
+[54,59,56,55,53,53,57,57,57,48,0,61,52,51],
+[43,52,46,43,49,46,50,39,44,40,39,0,47,49],
+[54,58,53,47,61,46,55,47,45,45,48,53,0,47],
+[52,49,53,50,56,47,52,50,45,47,49,51,53,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 45, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,45,58,59,58,46,57,63,48,53,62,65,56,59],
+[55,0,62,60,60,49,56,65,60,51,62,52,52,57],
+[42,38,0,49,60,48,53,53,44,40,47,49,45,44],
+[41,40,51,0,59,46,49,51,49,39,44,55,44,46],
+[42,40,40,41,0,38,45,43,46,41,50,45,36,35],
+[54,51,52,54,62,0,51,57,51,47,52,53,53,53],
+[43,44,47,51,55,49,0,57,41,45,48,52,48,48],
+[37,35,47,49,57,43,43,0,44,42,45,49,39,46],
+[52,40,56,51,54,49,59,56,0,49,52,55,45,47],
+[47,49,60,61,59,53,55,58,51,0,68,57,62,53],
+[38,38,53,56,50,48,52,55,48,32,0,51,34,41],
+[35,48,51,45,55,47,48,51,45,43,49,0,45,46],
+[44,48,55,56,64,47,52,61,55,38,66,55,0,44],
+[41,43,56,54,65,47,52,54,53,47,59,54,56,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 46, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,54,55,44,53,50,48,44,59,59,50,47,35,38],
+[46,0,50,42,52,43,48,34,45,56,50,39,42,33],
+[45,50,0,45,51,49,58,47,44,47,48,36,43,37],
+[56,58,55,0,51,48,63,38,55,58,49,53,56,50],
+[47,48,49,49,0,43,59,36,46,48,42,44,35,39],
+[50,57,51,52,57,0,52,33,50,53,51,46,48,36],
+[52,52,42,37,41,48,0,42,56,53,51,42,39,42],
+[56,66,53,62,64,67,58,0,53,60,58,54,54,45],
+[41,55,56,45,54,50,44,47,0,55,45,50,37,36],
+[41,44,53,42,52,47,47,40,45,0,46,36,40,34],
+[50,50,52,51,58,49,49,42,55,54,0,50,46,46],
+[53,61,64,47,56,54,58,46,50,64,50,0,47,45],
+[65,58,57,44,65,52,61,46,63,60,54,53,0,52],
+[62,67,63,50,61,64,58,55,64,66,54,55,48,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 47, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,50,43,42,51,31,50,35,50,54,32,43,37,62],
+[50,0,49,51,40,45,50,57,61,65,37,41,35,55],
+[57,51,0,55,58,46,53,59,62,57,44,45,51,63],
+[58,49,45,0,53,49,62,44,51,58,28,44,46,68],
+[49,60,42,47,0,33,43,46,50,63,50,51,50,60],
+[69,55,54,51,67,0,56,49,61,71,52,59,60,67],
+[50,50,47,38,57,44,0,49,42,63,36,42,37,40],
+[65,43,41,56,54,51,51,0,63,63,38,42,65,63],
+[50,39,38,49,50,39,58,37,0,60,56,44,51,51],
+[46,35,43,42,37,29,37,37,40,0,26,33,37,45],
+[68,63,56,72,50,48,64,62,44,74,0,36,52,66],
+[57,59,55,56,49,41,58,58,56,67,64,0,49,47],
+[63,65,49,54,50,40,63,35,49,63,48,51,0,67],
+[38,45,37,32,40,33,60,37,49,55,34,53,33,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 48, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,53,49,57,52,50,49,53,51,57,59,64,54,55],
+[47,0,54,44,57,46,49,56,53,47,52,62,59,50],
+[51,46,0,48,50,46,46,45,43,47,48,54,46,47],
+[43,56,52,0,61,48,48,49,54,49,54,56,51,52],
+[48,43,50,39,0,44,51,45,49,49,49,57,43,45],
+[50,54,54,52,56,0,55,55,48,57,52,59,51,55],
+[51,51,54,52,49,45,0,52,57,53,57,58,57,52],
+[47,44,55,51,55,45,48,0,47,52,46,55,50,42],
+[49,47,57,46,51,52,43,53,0,54,53,54,51,59],
+[43,53,53,51,51,43,47,48,46,0,55,57,46,46],
+[41,48,52,46,51,48,43,54,47,45,0,57,45,46],
+[36,38,46,44,43,41,42,45,46,43,43,0,43,40],
+[46,41,54,49,57,49,43,50,49,54,55,57,0,41],
+[45,50,53,48,55,45,48,58,41,54,54,60,59,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 49, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,57,42,45,43,61,46,39,45,41,42,56,56,44],
+[43,0,43,47,40,46,45,42,35,40,44,50,53,46],
+[58,57,0,51,52,59,53,48,46,44,51,62,51,51],
+[55,53,49,0,47,59,56,47,46,49,44,49,56,56],
+[57,60,48,53,0,66,52,55,59,47,59,54,59,62],
+[39,54,41,41,34,0,53,40,45,38,35,53,46,52],
+[54,55,47,44,48,47,0,50,49,39,40,53,48,52],
+[61,58,52,53,45,60,50,0,47,45,45,65,50,60],
+[55,65,54,54,41,55,51,53,0,46,51,53,58,55],
+[59,60,56,51,53,62,61,55,54,0,47,56,59,55],
+[58,56,49,56,41,65,60,55,49,53,0,54,61,51],
+[44,50,38,51,46,47,47,35,47,44,46,0,49,50],
+[44,47,49,44,41,54,52,50,42,41,39,51,0,56],
+[56,54,49,44,38,48,48,40,45,45,49,50,44,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 50, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,47,40,47,46,46,53,45,46,44,47,49,47,45],
+[53,0,48,59,54,56,60,57,50,58,58,56,57,50],
+[60,52,0,58,52,46,64,51,53,51,45,51,55,51],
+[53,41,42,0,44,48,58,51,51,54,49,50,55,40],
+[54,46,48,56,0,52,50,54,47,53,49,51,54,49],
+[54,44,54,52,48,0,49,52,50,55,48,53,52,47],
+[47,40,36,42,50,51,0,44,46,50,41,37,48,38],
+[55,43,49,49,46,48,56,0,51,47,49,45,56,39],
+[54,50,47,49,53,50,54,49,0,57,51,45,54,45],
+[56,42,49,46,47,45,50,53,43,0,45,46,57,43],
+[53,42,55,51,51,52,59,51,49,55,0,49,53,47],
+[51,44,49,50,49,47,63,55,55,54,51,0,59,46],
+[53,43,45,45,46,48,52,44,46,43,47,41,0,36],
+[55,50,49,60,51,53,62,61,55,57,53,54,64,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 51, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,39,56,41,58,57,58,60,39,37,39,58,41,56],
+[61,0,58,39,60,57,25,64,39,37,57,60,23,55],
+[44,42,0,8,60,42,24,44,26,22,26,43,8,40],
+[59,61,92,0,76,79,64,82,45,58,45,62,39,78],
+[42,40,40,24,0,58,26,26,24,36,40,4,24,38],
+[43,43,58,21,42,0,27,48,2,21,6,42,23,37],
+[42,75,76,36,74,73,0,75,36,57,54,74,36,73],
+[40,36,56,18,74,52,25,0,20,34,36,56,18,53],
+[61,61,74,55,76,98,64,80,0,74,40,58,39,78],
+[63,63,78,42,64,79,43,66,26,0,26,64,61,78],
+[61,43,74,55,60,94,46,64,60,74,0,60,39,92],
+[42,40,57,38,96,58,26,44,42,36,40,0,38,40],
+[59,77,92,61,76,77,64,82,61,39,61,62,0,96],
+[44,45,60,22,62,63,27,47,22,22,8,60,4,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 52, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,59,53,73,54,64,68,44,62,48,84,66,70,47],
+[41,0,45,55,46,48,60,37,53,37,59,59,60,35],
+[47,55,0,51,66,56,59,42,50,60,56,67,61,56],
+[27,45,49,0,54,54,63,50,64,58,46,56,55,51],
+[46,54,34,46,0,57,54,31,45,35,66,58,64,42],
+[36,52,44,46,43,0,73,38,60,51,59,60,59,43],
+[32,40,41,37,46,27,0,28,39,49,62,57,63,40],
+[56,63,58,50,69,62,72,0,66,57,65,69,54,59],
+[38,47,50,36,55,40,61,34,0,47,64,57,60,39],
+[52,63,40,42,65,49,51,43,53,0,57,46,67,49],
+[16,41,44,54,34,41,38,35,36,43,0,45,46,26],
+[34,41,33,44,42,40,43,31,43,54,55,0,49,27],
+[30,40,39,45,36,41,37,46,40,33,54,51,0,32],
+[53,65,44,49,58,57,60,41,61,51,74,73,68,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 53, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,49,48,52,47,52,49,51,56,48,50,50,43,48],
+[51,0,53,44,48,57,50,50,61,54,62,54,50,53],
+[52,47,0,45,44,50,45,47,56,55,50,53,48,43],
+[48,56,55,0,45,58,58,57,59,57,61,57,53,45],
+[53,52,56,55,0,53,50,52,61,53,61,53,52,55],
+[48,43,50,42,47,0,50,53,51,54,51,54,49,43],
+[51,50,55,42,50,50,0,56,51,54,50,52,48,43],
+[49,50,53,43,48,47,44,0,58,53,44,56,43,47],
+[44,39,44,41,39,49,49,42,0,47,42,48,45,41],
+[52,46,45,43,47,46,46,47,53,0,44,47,49,41],
+[50,38,50,39,39,49,50,56,58,56,0,53,47,41],
+[50,46,47,43,47,46,48,44,52,53,47,0,48,44],
+[57,50,52,47,48,51,52,57,55,51,53,52,0,53],
+[52,47,57,55,45,57,57,53,59,59,59,56,47,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 54, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,57,57,56,52,49,61,59,60,59,49,61,39,64],
+[43,0,55,37,42,38,38,38,41,58,43,43,30,40],
+[43,45,0,56,43,52,52,54,58,54,49,56,43,60],
+[44,63,44,0,54,51,61,36,60,56,41,62,51,58],
+[48,58,57,46,0,39,63,39,49,53,42,47,37,52],
+[51,62,48,49,61,0,67,45,62,67,45,66,39,50],
+[39,62,48,39,37,33,0,51,48,53,55,38,29,55],
+[41,62,46,64,61,55,49,0,67,66,49,51,48,68],
+[40,59,42,40,51,38,52,33,0,54,49,49,36,39],
+[41,42,46,44,47,33,47,34,46,0,40,38,26,40],
+[51,57,51,59,58,55,45,51,51,60,0,47,46,56],
+[39,57,44,38,53,34,62,49,51,62,53,0,29,48],
+[61,70,57,49,63,61,71,52,64,74,54,71,0,61],
+[36,60,40,42,48,50,45,32,61,60,44,52,39,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 55, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,33,52,66,38,53,39,35,45,54,31,43,33,47],
+[67,0,57,64,57,73,59,59,42,69,50,45,67,65],
+[48,43,0,60,55,62,48,43,50,62,37,32,51,51],
+[34,36,40,0,37,36,23,24,26,49,45,32,50,45],
+[62,43,45,63,0,61,55,37,48,58,52,47,44,48],
+[47,27,38,64,39,0,36,45,44,47,40,39,42,44],
+[61,41,52,77,45,64,0,42,39,66,57,65,47,48],
+[65,41,57,76,63,55,58,0,57,62,60,37,57,62],
+[55,58,50,74,52,56,61,43,0,62,46,45,66,67],
+[46,31,38,51,42,53,34,38,38,0,42,34,41,44],
+[69,50,63,55,48,60,43,40,54,58,0,55,39,55],
+[57,55,68,68,53,61,35,63,55,66,45,0,61,68],
+[67,33,49,50,56,58,53,43,34,59,61,39,0,53],
+[53,35,49,55,52,56,52,38,33,56,45,32,47,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 56, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,29,55,46,36,34,52,33,42,43,40,59,48,48],
+[71,0,55,50,48,60,71,51,50,60,55,68,59,56],
+[45,45,0,47,41,45,64,37,46,40,45,53,56,46],
+[54,50,53,0,47,52,59,45,51,50,55,67,56,54],
+[64,52,59,53,0,56,67,43,52,54,50,63,54,60],
+[66,40,55,48,44,0,56,40,49,53,36,60,54,58],
+[48,29,36,41,33,44,0,32,40,39,34,43,40,39],
+[67,49,63,55,57,60,68,0,53,60,56,67,59,59],
+[58,50,54,49,48,51,60,47,0,52,56,66,50,51],
+[57,40,60,50,46,47,61,40,48,0,50,73,54,53],
+[60,45,55,45,50,64,66,44,44,50,0,61,56,62],
+[41,32,47,33,37,40,57,33,34,27,39,0,44,39],
+[52,41,44,44,46,46,60,41,50,46,44,56,0,50],
+[52,44,54,46,40,42,61,41,49,47,38,61,50,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 57, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,80,47,77,61,46,64,80,61,92,69,55,74,57],
+[20,0,17,3,5,32,23,6,52,15,34,17,60,23],
+[53,83,0,45,47,52,35,48,53,69,60,36,73,42],
+[23,97,55,0,34,41,46,35,67,78,43,17,63,23],
+[39,95,53,66,0,51,52,82,66,72,41,35,60,60],
+[54,68,48,59,49,0,34,50,34,65,60,39,42,45],
+[36,77,65,54,48,66,0,37,59,52,56,54,56,36],
+[20,94,52,65,18,50,63,0,76,50,52,32,71,32],
+[39,48,47,33,34,66,41,24,0,36,39,38,59,30],
+[8,85,31,22,28,35,48,50,64,0,34,20,60,45],
+[31,66,40,57,59,40,44,48,61,66,0,37,53,43],
+[45,83,64,83,65,61,46,68,62,80,63,0,83,62],
+[26,40,27,37,40,58,44,29,41,40,47,17,0,17],
+[43,77,58,77,40,55,64,68,70,55,57,38,83,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 58, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,43,62,47,48,48,49,63,45,45,49,44,45,53],
+[57,0,59,54,42,61,56,56,51,51,60,46,59,53],
+[38,41,0,31,37,42,51,37,38,42,43,38,57,39],
+[53,46,69,0,47,60,55,57,60,53,62,55,61,57],
+[52,58,63,53,0,63,48,50,44,52,50,53,55,57],
+[52,39,58,40,37,0,44,39,44,51,42,42,52,42],
+[51,44,49,45,52,56,0,38,43,39,56,36,45,36],
+[37,44,63,43,50,61,62,0,48,54,57,50,60,55],
+[55,49,62,40,56,56,57,52,0,55,58,46,52,53],
+[55,49,58,47,48,49,61,46,45,0,54,45,66,53],
+[51,40,57,38,50,58,44,43,42,46,0,31,44,52],
+[56,54,62,45,47,58,64,50,54,55,69,0,66,57],
+[55,41,43,39,45,48,55,40,48,34,56,34,0,39],
+[47,47,61,43,43,58,64,45,47,47,48,43,61,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 59, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,54,58,50,59,43,45,50,46,44,47,41,48,52],
+[46,0,46,41,54,44,40,41,44,48,47,42,49,47],
+[42,54,0,47,57,45,46,47,49,48,51,46,48,50],
+[50,59,53,0,52,51,55,54,58,52,61,38,48,56],
+[41,46,43,48,0,50,43,45,47,50,50,39,44,43],
+[57,56,55,49,50,0,53,52,56,57,58,41,50,48],
+[55,60,54,45,57,47,0,56,54,56,59,47,52,48],
+[50,59,53,46,55,48,44,0,48,57,57,49,54,47],
+[54,56,51,42,53,44,46,52,0,59,43,36,45,46],
+[56,52,52,48,50,43,44,43,41,0,50,39,49,40],
+[53,53,49,39,50,42,41,43,57,50,0,42,47,44],
+[59,58,54,62,61,59,53,51,64,61,58,0,58,50],
+[52,51,52,52,56,50,48,46,55,51,53,42,0,44],
+[48,53,50,44,57,52,52,53,54,60,56,50,56,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 60, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,42,45,46,48,45,50,52,52,51,48,52,40,51],
+[58,0,53,50,66,51,55,53,50,53,52,59,57,53],
+[55,47,0,52,54,50,56,55,52,49,51,58,53,53],
+[54,50,48,0,63,51,55,52,49,50,57,56,43,56],
+[52,34,46,37,0,33,42,54,43,43,47,47,47,42],
+[55,49,50,49,67,0,49,51,46,44,55,62,57,54],
+[50,45,44,45,58,51,0,57,52,47,53,60,41,54],
+[48,47,45,48,46,49,43,0,41,40,44,61,40,53],
+[48,50,48,51,57,54,48,59,0,56,56,61,44,54],
+[49,47,51,50,57,56,53,60,44,0,61,58,47,59],
+[52,48,49,43,53,45,47,56,44,39,0,58,44,53],
+[48,41,42,44,53,38,40,39,39,42,42,0,39,43],
+[60,43,47,57,53,43,59,60,56,53,56,61,0,55],
+[49,47,47,44,58,46,46,47,46,41,47,57,45,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 61, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,28,70,50,38,19,72,50,39,61,53,18,60,52],
+[72,0,70,54,43,25,64,81,39,47,49,33,46,52],
+[30,30,0,42,40,31,68,46,28,32,40,18,40,46],
+[50,46,58,0,57,11,52,60,48,49,50,22,49,41],
+[62,57,60,43,0,23,50,51,40,62,39,33,40,32],
+[81,75,69,89,77,0,85,99,87,75,77,33,78,70],
+[28,36,32,48,50,15,0,40,10,22,43,0,22,14],
+[50,19,54,40,49,1,60,0,33,33,44,12,54,39],
+[61,61,72,52,60,13,90,67,0,33,61,29,42,38],
+[39,53,68,51,38,25,78,67,67,0,67,51,54,36],
+[47,51,60,50,61,23,57,56,39,33,0,0,32,39],
+[82,67,82,78,67,67,100,88,71,49,100,0,66,67],
+[40,54,60,51,60,22,78,46,58,46,68,34,0,17],
+[48,48,54,59,68,30,86,61,62,64,61,33,83,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 62, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,43,40,47,50,41,55,52,54,51,67,45,38,49],
+[57,0,43,52,46,48,63,61,53,52,71,49,47,47],
+[60,57,0,48,52,51,63,51,57,68,64,46,46,61],
+[53,48,52,0,51,49,55,50,47,64,64,51,43,45],
+[50,54,48,49,0,46,64,57,52,62,57,49,50,54],
+[59,52,49,51,54,0,61,57,56,68,65,45,47,38],
+[45,37,37,45,36,39,0,45,43,57,53,29,33,32],
+[48,39,49,50,43,43,55,0,52,47,52,37,44,49],
+[46,47,43,53,48,44,57,48,0,49,61,35,34,47],
+[49,48,32,36,38,32,43,53,51,0,52,36,38,43],
+[33,29,36,36,43,35,47,48,39,48,0,34,29,37],
+[55,51,54,49,51,55,71,63,65,64,66,0,53,56],
+[62,53,54,57,50,53,67,56,66,62,71,47,0,57],
+[51,53,39,55,46,62,68,51,53,57,63,44,43,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 63, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,54,54,52,49,54,39,50,55,55,48,48,46,48],
+[46,0,52,49,48,54,46,54,47,48,55,51,48,38],
+[46,48,0,50,44,46,42,45,45,46,48,45,43,43],
+[48,51,50,0,43,51,42,46,43,49,54,46,43,46],
+[51,52,56,57,0,52,47,57,47,52,45,49,43,50],
+[46,46,54,49,48,0,44,51,46,47,46,44,54,43],
+[61,54,58,58,53,56,0,53,50,55,57,52,47,59],
+[50,46,55,54,43,49,47,0,39,51,54,48,44,50],
+[45,53,55,57,53,54,50,61,0,55,53,52,52,48],
+[45,52,54,51,48,53,45,49,45,0,50,43,50,52],
+[52,45,52,46,55,54,43,46,47,50,0,42,46,48],
+[52,49,55,54,51,56,48,52,48,57,58,0,52,49],
+[54,52,57,57,57,46,53,56,48,50,54,48,0,52],
+[52,62,57,54,50,57,41,50,52,48,52,51,48,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 64, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,44,54,62,51,55,58,50,44,53,53,50,53,52],
+[56,0,47,54,51,56,59,48,45,59,49,49,54,52],
+[46,53,0,59,48,56,62,48,49,49,53,51,59,56],
+[38,46,41,0,44,51,48,51,40,56,38,54,55,59],
+[49,49,52,56,0,60,63,55,50,53,57,51,53,61],
+[45,44,44,49,40,0,53,45,44,46,55,47,41,41],
+[42,41,38,52,37,47,0,39,41,47,45,47,47,57],
+[50,52,52,49,45,55,61,0,52,48,48,48,49,54],
+[56,55,51,60,50,56,59,48,0,50,56,60,54,62],
+[47,41,51,44,47,54,53,52,50,0,47,52,50,49],
+[47,51,47,62,43,45,55,52,44,53,0,42,50,59],
+[50,51,49,46,49,53,53,52,40,48,58,0,57,59],
+[47,46,41,45,47,59,53,51,46,50,50,43,0,57],
+[48,48,44,41,39,59,43,46,38,51,41,41,43,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 65, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,61,48,52,53,53,57,49,49,45,54,59,48,57],
+[39,0,50,52,45,52,65,54,46,39,55,54,42,60],
+[52,50,0,52,50,53,68,54,50,45,49,60,51,62],
+[48,48,48,0,52,49,59,53,51,44,51,57,53,50],
+[47,55,50,48,0,48,58,57,56,56,54,49,46,55],
+[47,48,47,51,52,0,63,54,46,47,58,44,42,51],
+[43,35,32,41,42,37,0,43,30,32,45,37,24,40],
+[51,46,46,47,43,46,57,0,48,38,52,53,41,50],
+[51,54,50,49,44,54,70,52,0,38,54,47,57,57],
+[55,61,55,56,44,53,68,62,62,0,63,69,56,61],
+[46,45,51,49,46,42,55,48,46,37,0,47,50,43],
+[41,46,40,43,51,56,63,47,53,31,53,0,45,44],
+[52,58,49,47,54,58,76,59,43,44,50,55,0,51],
+[43,40,38,50,45,49,60,50,43,39,57,56,49,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 66, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,49,55,57,53,55,52,63,52,53,44,48,55,54],
+[51,0,42,60,51,56,58,51,52,53,50,46,57,54],
+[45,58,0,59,54,63,57,48,50,53,55,47,56,51],
+[43,40,41,0,36,63,47,48,41,54,43,46,45,40],
+[47,49,46,64,0,65,61,50,51,55,50,54,48,50],
+[45,44,37,37,35,0,46,48,43,48,34,40,42,39],
+[48,42,43,53,39,54,0,54,36,43,38,44,51,57],
+[37,49,52,52,50,52,46,0,43,53,49,40,55,45],
+[48,48,50,59,49,57,64,57,0,63,46,58,59,49],
+[47,47,47,46,45,52,57,47,37,0,48,49,46,42],
+[56,50,45,57,50,66,62,51,54,52,0,49,51,50],
+[52,54,53,54,46,60,56,60,42,51,51,0,52,46],
+[45,43,44,55,52,58,49,45,41,54,49,48,0,49],
+[46,46,49,60,50,61,43,55,51,58,50,54,51,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 67, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,46,47,54,45,47,49,60,53,56,49,61,51,51],
+[54,0,50,55,53,47,50,56,53,60,49,62,45,50],
+[53,50,0,49,56,49,51,52,49,49,54,58,46,55],
+[46,45,51,0,49,46,51,50,49,49,50,49,41,48],
+[55,47,44,51,0,49,49,56,41,45,42,52,49,49],
+[53,53,51,54,51,0,56,65,55,57,56,66,50,52],
+[51,50,49,49,51,44,0,56,53,47,49,56,40,50],
+[40,44,48,50,44,35,44,0,44,49,42,49,45,45],
+[47,47,51,51,59,45,47,56,0,51,54,60,54,53],
+[44,40,51,51,55,43,53,51,49,0,49,63,48,49],
+[51,51,46,50,58,44,51,58,46,51,0,48,50,48],
+[39,38,42,51,48,34,44,51,40,37,52,0,46,43],
+[49,55,54,59,51,50,60,55,46,52,50,54,0,50],
+[49,50,45,52,51,48,50,55,47,51,52,57,50,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 68, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,64,39,59,65,65,57,47,58,63,75,68,66,61],
+[36,0,38,45,55,49,51,42,44,40,58,53,53,48],
+[61,62,0,67,57,63,60,50,51,56,77,60,74,62],
+[41,55,33,0,42,64,51,55,43,50,66,64,57,46],
+[35,45,43,58,0,48,44,37,42,35,69,50,49,48],
+[35,51,37,36,52,0,52,46,46,54,51,54,56,41],
+[43,49,40,49,56,48,0,30,43,35,60,47,43,44],
+[53,58,50,45,63,54,70,0,59,51,61,56,63,59],
+[42,56,49,57,58,54,57,41,0,53,52,55,62,56],
+[37,60,44,50,65,46,65,49,47,0,63,54,59,44],
+[25,42,23,34,31,49,40,39,48,37,0,44,51,27],
+[32,47,40,36,50,46,53,44,45,46,56,0,43,37],
+[34,47,26,43,51,44,57,37,38,41,49,57,0,37],
+[39,52,38,54,52,59,56,41,44,56,73,63,63,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 69, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,42,47,41,45,47,48,48,53,53,51,51,49,46],
+[58,0,49,51,47,51,48,55,54,48,45,53,56,52],
+[53,51,0,49,52,49,52,51,53,54,51,51,54,49],
+[59,49,51,0,48,47,54,55,46,49,52,56,49,47],
+[55,53,48,52,0,52,52,53,59,53,51,54,47,48],
+[53,49,51,53,48,0,52,55,53,47,50,55,47,44],
+[52,52,48,46,48,48,0,56,53,50,49,58,47,44],
+[52,45,49,45,47,45,44,0,57,52,49,55,40,49],
+[47,46,47,54,41,47,47,43,0,51,48,49,49,44],
+[47,52,46,51,47,53,50,48,49,0,48,58,52,41],
+[49,55,49,48,49,50,51,51,52,52,0,53,53,43],
+[49,47,49,44,46,45,42,45,51,42,47,0,45,43],
+[51,44,46,51,53,53,53,60,51,48,47,55,0,47],
+[54,48,51,53,52,56,56,51,56,59,57,57,53,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 70, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,41,53,50,45,36,32,46,36,32,34,48,59,55],
+[59,0,40,34,59,50,46,36,44,37,57,45,69,66],
+[47,60,0,61,59,34,67,58,53,42,38,58,55,54],
+[50,66,39,0,52,60,67,46,58,42,68,40,84,49],
+[55,41,41,48,0,20,59,24,31,34,37,38,53,46],
+[64,50,66,40,80,0,48,61,54,57,59,60,71,60],
+[68,54,33,33,41,52,0,41,33,41,31,35,63,43],
+[54,64,42,54,76,39,59,0,42,51,43,50,83,68],
+[64,56,47,42,69,46,67,58,0,36,51,70,81,62],
+[68,63,58,58,66,43,59,49,64,0,55,58,79,68],
+[66,43,62,32,63,41,69,57,49,45,0,49,69,42],
+[52,55,42,60,62,40,65,50,30,42,51,0,54,53],
+[41,31,45,16,47,29,37,17,19,21,31,46,0,57],
+[45,34,46,51,54,40,57,32,38,32,58,47,43,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 71, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,79,64,71,68,74,57,63,58,68,59,63,56,46],
+[21,0,47,34,46,36,32,51,32,38,23,41,44,29],
+[36,53,0,43,62,61,50,50,40,48,50,57,40,42],
+[29,66,57,0,43,63,47,48,57,52,48,52,44,44],
+[32,54,38,57,0,55,48,45,39,37,45,56,48,44],
+[26,64,39,37,45,0,47,49,49,45,32,33,43,27],
+[43,68,50,53,52,53,0,60,45,56,58,56,48,52],
+[37,49,50,52,55,51,40,0,43,41,54,53,57,35],
+[42,68,60,43,61,51,55,57,0,64,51,57,51,48],
+[32,62,52,48,63,55,44,59,36,0,54,56,53,31],
+[41,77,50,52,55,68,42,46,49,46,0,50,48,39],
+[37,59,43,48,44,67,44,47,43,44,50,0,50,39],
+[44,56,60,56,52,57,52,43,49,47,52,50,0,46],
+[54,71,58,56,56,73,48,65,52,69,61,61,54,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 72, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,58,53,46,58,52,45,55,48,55,52,54,53,52],
+[42,0,53,38,48,40,46,39,42,45,44,38,47,38],
+[47,47,0,42,55,46,50,48,50,42,49,47,45,42],
+[54,62,58,0,61,56,49,59,59,59,52,53,60,57],
+[42,52,45,39,0,42,42,44,48,49,40,43,50,41],
+[48,60,54,44,58,0,50,51,44,55,47,51,54,47],
+[55,54,50,51,58,50,0,53,57,59,48,50,59,54],
+[45,61,52,41,56,49,47,0,46,47,45,55,57,49],
+[52,58,50,41,52,56,43,54,0,52,45,43,48,45],
+[45,55,58,41,51,45,41,53,48,0,49,51,48,39],
+[48,56,51,48,60,53,52,55,55,51,0,44,58,49],
+[46,62,53,47,57,49,50,45,57,49,56,0,55,52],
+[47,53,55,40,50,46,41,43,52,52,42,45,0,46],
+[48,62,58,43,59,53,46,51,55,61,51,48,54,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 73, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,56,47,46,61,50,55,48,48,52,62,55,45,50],
+[44,0,38,50,53,46,49,50,40,48,52,46,51,47],
+[53,62,0,47,61,59,58,44,50,56,60,66,58,54],
+[54,50,53,0,65,58,58,56,52,58,62,68,56,54],
+[39,47,39,35,0,44,48,44,37,45,51,46,43,44],
+[50,54,41,42,56,0,50,44,38,45,51,46,53,48],
+[45,51,42,42,52,50,0,47,40,41,54,54,56,44],
+[52,50,56,44,56,56,53,0,50,46,57,51,52,49],
+[52,60,50,48,63,62,60,50,0,55,62,55,54,61],
+[48,52,44,42,55,55,59,54,45,0,47,51,56,53],
+[38,48,40,38,49,49,46,43,38,53,0,44,44,46],
+[45,54,34,32,54,54,46,49,45,49,56,0,53,38],
+[55,49,42,44,57,47,44,48,46,44,56,47,0,49],
+[50,53,46,46,56,52,56,51,39,47,54,62,51,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 74, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,51,56,41,59,48,49,53,41,58,46,68,50,55],
+[49,0,47,47,49,54,49,47,46,45,42,58,46,44],
+[44,53,0,42,44,42,53,39,36,49,39,51,44,44],
+[59,53,58,0,67,49,52,53,52,51,53,65,48,43],
+[41,51,56,33,0,48,43,37,46,47,36,53,53,43],
+[52,46,58,51,52,0,52,48,51,58,49,67,50,55],
+[51,51,47,48,57,48,0,52,47,51,45,56,61,48],
+[47,53,61,47,63,52,48,0,41,62,42,54,43,49],
+[59,54,64,48,54,49,53,59,0,55,35,52,49,50],
+[42,55,51,49,53,42,49,38,45,0,26,54,46,45],
+[54,58,61,47,64,51,55,58,65,74,0,71,54,58],
+[32,42,49,35,47,33,44,46,48,46,29,0,40,38],
+[50,54,56,52,47,50,39,57,51,54,46,60,0,49],
+[45,56,56,57,57,45,52,51,50,55,42,62,51,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 75, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,63,40,53,50,54,56,56,41,56,44,53,48,43],
+[37,0,35,40,37,45,50,46,32,50,31,45,39,35],
+[60,65,0,62,61,57,55,66,45,57,51,69,57,63],
+[47,60,38,0,51,48,51,62,40,54,45,62,52,44],
+[50,63,39,49,0,49,55,65,41,51,50,60,54,46],
+[46,55,43,52,51,0,55,48,32,50,44,52,47,37],
+[44,50,45,49,45,45,0,54,34,49,39,48,47,36],
+[44,54,34,38,35,52,46,0,40,45,41,40,42,41],
+[59,68,55,60,59,68,66,60,0,54,56,67,63,49],
+[44,50,43,46,49,50,51,55,46,0,47,53,47,41],
+[56,69,49,55,50,56,61,59,44,53,0,57,51,47],
+[47,55,31,38,40,48,52,60,33,47,43,0,40,40],
+[52,61,43,48,46,53,53,58,37,53,49,60,0,55],
+[57,65,37,56,54,63,64,59,51,59,53,60,45,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 76, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,56,51,48,58,54,57,56,49,49,45,51,50,62],
+[44,0,41,40,53,46,47,39,43,40,46,44,47,51],
+[49,59,0,45,57,56,53,44,51,54,54,48,51,56],
+[52,60,55,0,52,55,57,53,49,46,52,56,55,61],
+[42,47,43,48,0,50,51,43,45,47,43,42,44,50],
+[46,54,44,45,50,0,48,43,43,44,44,47,51,56],
+[43,53,47,43,49,52,0,42,44,44,51,44,53,54],
+[44,61,56,47,57,57,58,0,57,48,54,56,50,52],
+[51,57,49,51,55,57,56,43,0,53,53,48,46,58],
+[51,60,46,54,53,56,56,52,47,0,49,51,48,59],
+[55,54,46,48,57,56,49,46,47,51,0,50,52,66],
+[49,56,52,44,58,53,56,44,52,49,50,0,51,56],
+[50,53,49,45,56,49,47,50,54,52,48,49,0,58],
+[38,49,44,39,50,44,46,48,42,41,34,44,42,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 77, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,59,58,54,50,59,58,51,53,58,49,59,62,53],
+[41,0,45,43,40,53,40,44,42,42,43,41,54,42],
+[42,55,0,44,47,53,46,54,46,54,45,49,59,46],
+[46,57,56,0,53,58,48,53,54,54,47,56,52,49],
+[50,60,53,47,0,55,53,50,51,60,49,54,59,46],
+[41,47,47,42,45,0,45,45,45,52,44,44,60,45],
+[42,60,54,52,47,55,0,47,48,59,50,50,60,46],
+[49,56,46,47,50,55,53,0,48,53,46,46,54,53],
+[47,58,54,46,49,55,52,52,0,56,53,54,56,49],
+[42,58,46,46,40,48,41,47,44,0,37,43,55,44],
+[51,57,55,53,51,56,50,54,47,63,0,52,62,48],
+[41,59,51,44,46,56,50,54,46,57,48,0,52,45],
+[38,46,41,48,41,40,40,46,44,45,38,48,0,40],
+[47,58,54,51,54,55,54,47,51,56,52,55,60,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 78, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,52,52,49,44,56,43,57,54,50,54,53,52,44],
+[48,0,54,57,45,52,47,58,52,47,49,46,49,43],
+[48,46,0,52,45,56,52,52,56,56,45,57,51,46],
+[51,43,48,0,45,53,41,53,53,40,49,47,44,41],
+[56,55,55,55,0,64,60,60,59,49,61,56,54,55],
+[44,48,44,47,36,0,48,51,56,42,44,45,44,39],
+[57,53,48,59,40,52,0,55,55,45,47,46,51,44],
+[43,42,48,47,40,49,45,0,49,42,47,33,41,44],
+[46,48,44,47,41,44,45,51,0,52,44,43,40,39],
+[50,53,44,60,51,58,55,58,48,0,56,48,48,44],
+[46,51,55,51,39,56,53,53,56,44,0,47,51,51],
+[47,54,43,53,44,55,54,67,57,52,53,0,48,51],
+[48,51,49,56,46,56,49,59,60,52,49,52,0,45],
+[56,57,54,59,45,61,56,56,61,56,49,49,55,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 79, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,54,65,38,72,35,38,55,30,57,70,52,63,34],
+[46,0,58,45,58,42,48,58,39,61,60,50,53,35],
+[35,42,0,37,41,37,32,43,32,51,45,30,46,39],
+[62,55,63,0,66,31,38,59,34,51,72,46,54,35],
+[28,42,59,34,0,31,33,63,43,51,61,37,48,35],
+[65,58,63,69,69,0,50,57,53,66,77,50,77,45],
+[62,52,68,62,67,50,0,62,48,70,71,63,62,39],
+[45,42,57,41,37,43,38,0,42,56,56,20,42,47],
+[70,61,68,66,57,47,52,58,0,72,63,46,66,58],
+[43,39,49,49,49,34,30,44,28,0,52,28,65,43],
+[30,40,55,28,39,23,29,44,37,48,0,27,59,37],
+[48,50,70,54,63,50,37,80,54,72,73,0,66,54],
+[37,47,54,46,52,23,38,58,34,35,41,34,0,34],
+[66,65,61,65,65,55,61,53,42,57,63,46,66,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 80, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,45,49,45,39,43,43,44,47,44,53,66,42,48],
+[55,0,39,68,41,53,53,55,54,45,47,64,59,46],
+[51,61,0,64,61,48,57,61,53,61,66,70,61,56],
+[55,32,36,0,42,42,45,36,52,45,44,59,52,44],
+[61,59,39,58,0,51,51,49,59,57,69,53,56,58],
+[57,47,52,58,49,0,49,50,55,51,65,62,43,50],
+[57,47,43,55,49,51,0,54,66,50,62,66,49,65],
+[56,45,39,64,51,50,46,0,59,47,58,73,55,58],
+[53,46,47,48,41,45,34,41,0,47,45,48,35,35],
+[56,55,39,55,43,49,50,53,53,0,49,60,52,45],
+[47,53,34,56,31,35,38,42,55,51,0,58,44,49],
+[34,36,30,41,47,38,34,27,52,40,42,0,44,41],
+[58,41,39,48,44,57,51,45,65,48,56,56,0,58],
+[52,54,44,56,42,50,35,42,65,55,51,59,42,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 81, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,51,55,50,49,54,47,57,38,50,42,47,52,48],
+[49,0,46,42,49,45,44,46,40,48,42,55,49,48],
+[45,54,0,49,58,52,51,54,47,48,51,48,57,64],
+[50,58,51,0,48,49,46,60,51,53,51,59,64,54],
+[51,51,42,52,0,41,43,44,40,48,42,52,53,48],
+[46,55,48,51,59,0,52,49,46,57,42,51,52,52],
+[53,56,49,54,57,48,0,54,54,50,50,49,57,50],
+[43,54,46,40,56,51,46,0,41,48,48,53,60,54],
+[62,60,53,49,60,54,46,59,0,43,53,61,68,49],
+[50,52,52,47,52,43,50,52,57,0,43,48,60,45],
+[58,58,49,49,58,58,50,52,47,57,0,61,58,62],
+[53,45,52,41,48,49,51,47,39,52,39,0,57,53],
+[48,51,43,36,47,48,43,40,32,40,42,43,0,41],
+[52,52,36,46,52,48,50,46,51,55,38,47,59,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 82, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,52,41,46,42,48,36,40,46,40,43,42,50,39],
+[48,0,46,56,39,54,41,46,46,48,45,49,44,49],
+[59,54,0,52,51,56,56,44,51,52,48,53,56,43],
+[54,44,48,0,46,54,44,42,52,49,48,47,50,39],
+[58,61,49,54,0,55,51,50,56,50,52,59,55,51],
+[52,46,44,46,45,0,39,50,48,42,38,46,39,40],
+[64,59,44,56,49,61,0,42,51,50,50,59,48,50],
+[60,54,56,58,50,50,58,0,45,53,54,56,51,50],
+[54,54,49,48,44,52,49,55,0,51,49,51,51,53],
+[60,52,48,51,50,58,50,47,49,0,48,52,56,49],
+[57,55,52,52,48,62,50,46,51,52,0,53,52,52],
+[58,51,47,53,41,54,41,44,49,48,47,0,50,43],
+[50,56,44,50,45,61,52,49,49,44,48,50,0,48],
+[61,51,57,61,49,60,50,50,47,51,48,57,52,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 83, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,42,60,45,55,50,34,58,47,54,51,51,37,49],
+[58,0,61,46,37,54,32,60,51,51,54,47,54,57],
+[40,39,0,45,37,45,33,44,51,44,40,47,46,40],
+[55,54,55,0,42,59,32,59,63,56,50,59,47,40],
+[45,63,63,58,0,61,51,64,59,59,63,57,51,42],
+[50,46,55,41,39,0,30,59,68,59,51,44,43,56],
+[66,68,67,68,49,70,0,71,63,71,52,53,47,61],
+[42,40,56,41,36,41,29,0,56,42,50,40,39,30],
+[53,49,49,37,41,32,37,44,0,52,52,57,34,41],
+[46,49,56,44,41,41,29,58,48,0,49,51,41,42],
+[49,46,60,50,37,49,48,50,48,51,0,53,38,47],
+[49,53,53,41,43,56,47,60,43,49,47,0,36,49],
+[63,46,54,53,49,57,53,61,66,59,62,64,0,58],
+[51,43,60,60,58,44,39,70,59,58,53,51,42,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 84, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,99,70,77,46,76,42,1,70,69,69,71,70,51],
+[1,0,42,49,47,29,42,1,42,42,52,30,42,23],
+[30,58,0,58,58,58,42,30,54,46,81,30,52,28],
+[23,51,42,0,46,51,42,1,42,41,51,53,42,23],
+[54,53,42,54,0,81,42,24,72,41,53,53,24,23],
+[24,71,42,49,19,0,42,1,42,42,24,53,42,23],
+[58,58,58,58,58,58,0,58,58,28,58,58,29,28],
+[99,99,70,99,76,99,42,0,100,69,99,71,70,69],
+[30,58,46,58,28,58,42,0,0,46,81,30,29,28],
+[31,58,54,59,59,58,72,31,54,0,82,30,82,53],
+[31,48,19,49,47,76,42,1,19,18,0,48,19,0],
+[29,70,70,47,47,47,42,29,70,70,52,0,70,52],
+[30,58,48,58,76,58,71,30,71,18,81,30,0,30],
+[49,77,72,77,77,77,72,31,72,47,100,48,70,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 85, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,80,77,87,80,80,80,84,77,45,53,67,77,48],
+[20,0,50,50,39,44,57,71,77,23,71,34,36,48],
+[23,50,0,82,66,55,28,53,69,53,42,55,28,28],
+[13,50,18,0,53,53,26,48,61,43,40,45,36,34],
+[20,61,34,47,0,39,30,66,66,23,50,50,34,39],
+[20,56,45,47,61,0,36,79,74,13,48,27,33,45],
+[20,43,72,74,70,64,0,56,66,50,48,77,34,50],
+[16,29,47,52,34,21,44,0,52,18,34,32,52,39],
+[23,23,31,39,34,26,34,48,0,16,40,23,13,29],
+[55,77,47,57,77,87,50,82,84,0,50,37,57,55],
+[47,29,58,60,50,52,52,66,60,50,0,40,60,47],
+[33,66,45,55,50,73,23,68,77,63,60,0,31,32],
+[23,64,72,64,66,67,66,48,87,43,40,69,0,48],
+[52,52,72,66,61,55,50,61,71,45,53,68,52,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 86, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,40,45,37,35,52,67,59,45,55,33,42,55,39],
+[60,0,58,44,48,50,48,60,52,55,44,62,52,60],
+[55,42,0,45,48,48,52,59,47,55,49,45,51,59],
+[63,56,55,0,44,48,65,54,46,68,62,64,76,57],
+[65,52,52,56,0,53,63,58,50,63,61,58,59,74],
+[48,50,52,52,47,0,66,67,49,67,59,51,64,53],
+[33,52,48,35,37,34,0,43,37,43,50,48,49,49],
+[41,40,41,46,42,33,57,0,56,54,53,52,55,44],
+[55,48,53,54,50,51,63,44,0,59,57,56,55,47],
+[45,45,45,32,37,33,57,46,41,0,39,40,46,37],
+[67,56,51,38,39,41,50,47,43,61,0,55,58,49],
+[58,38,55,36,42,49,52,48,44,60,45,0,67,43],
+[45,48,49,24,41,36,51,45,45,54,42,33,0,46],
+[61,40,41,43,26,47,51,56,53,63,51,57,54,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 87, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,56,49,50,52,56,42,51,59,61,43,60,60,44],
+[44,0,42,42,50,51,42,43,39,53,53,53,48,35],
+[51,58,0,43,51,62,40,51,59,58,49,50,52,53],
+[50,58,57,0,43,57,45,45,50,58,51,54,53,47],
+[48,50,49,57,0,53,50,49,52,54,56,53,57,53],
+[44,49,38,43,47,0,40,37,36,50,42,49,45,37],
+[58,58,60,55,50,60,0,51,56,53,53,53,60,50],
+[49,57,49,55,51,63,49,0,55,62,53,53,57,44],
+[41,61,41,50,48,64,44,45,0,52,48,47,50,48],
+[39,47,42,42,46,50,47,38,48,0,37,40,37,37],
+[57,47,51,49,44,58,47,47,52,63,0,52,55,39],
+[40,47,50,46,47,51,47,47,53,60,48,0,51,44],
+[40,52,48,47,43,55,40,43,50,63,45,49,0,44],
+[56,65,47,53,47,63,50,56,52,63,61,56,56,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 88, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,48,55,44,48,40,45,48,50,51,52,47,51,40],
+[52,0,58,47,42,49,46,47,52,48,51,51,43,50],
+[45,42,0,49,43,51,43,47,49,46,57,52,44,44],
+[56,53,51,0,50,47,49,46,53,49,54,49,51,55],
+[52,58,57,50,0,53,47,54,53,51,46,52,46,52],
+[60,51,49,53,47,0,47,44,52,48,54,51,46,51],
+[55,54,57,51,53,53,0,46,55,50,55,53,48,50],
+[52,53,53,54,46,56,54,0,53,43,54,55,51,45],
+[50,48,51,47,47,48,45,47,0,45,48,50,47,47],
+[49,52,54,51,49,52,50,57,55,0,49,50,54,53],
+[48,49,43,46,54,46,45,46,52,51,0,50,48,45],
+[53,49,48,51,48,49,47,45,50,50,50,0,51,50],
+[49,57,56,49,54,54,52,49,53,46,52,49,0,49],
+[60,50,56,45,48,49,50,55,53,47,55,50,51,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 89, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,33,37,40,44,62,48,44,52,49,48,49,33,52],
+[67,0,57,56,71,72,65,61,50,73,71,65,64,74],
+[63,43,0,44,66,62,53,55,44,50,70,51,67,59],
+[60,44,56,0,56,57,49,51,59,51,67,47,60,70],
+[56,29,34,44,0,58,29,42,37,50,56,39,52,46],
+[38,28,38,43,42,0,47,34,46,39,41,43,46,41],
+[52,35,47,51,71,53,0,51,43,59,55,48,61,55],
+[56,39,45,49,58,66,49,0,49,49,58,49,60,47],
+[48,50,56,41,63,54,57,51,0,50,55,55,51,54],
+[51,27,50,49,50,61,41,51,50,0,58,57,44,54],
+[52,29,30,33,44,59,45,42,45,42,0,41,38,28],
+[51,35,49,53,61,57,52,51,45,43,59,0,61,50],
+[67,36,33,40,48,54,39,40,49,56,62,39,0,60],
+[48,26,41,30,54,59,45,53,46,46,72,50,40,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 90, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,47,52,54,55,58,49,58,55,52,49,46,46,53],
+[53,0,50,49,51,50,49,51,49,55,51,43,45,50],
+[48,50,0,44,52,42,45,54,63,48,38,53,43,36],
+[46,51,56,0,51,50,56,58,54,41,52,47,51,42],
+[45,49,48,49,0,44,43,58,47,48,43,50,49,33],
+[42,50,58,50,56,0,43,52,50,60,49,57,44,48],
+[51,51,55,44,57,57,0,50,55,53,44,46,51,47],
+[42,49,46,42,42,48,50,0,50,50,37,47,44,43],
+[45,51,37,46,53,50,45,50,0,50,43,48,50,39],
+[48,45,52,59,52,40,47,50,50,0,46,45,46,42],
+[51,49,62,48,57,51,56,63,57,54,0,51,49,48],
+[54,57,47,53,50,43,54,53,52,55,49,0,49,49],
+[54,55,57,49,51,56,49,56,50,54,51,51,0,44],
+[47,50,64,58,67,52,53,57,61,58,52,51,56,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 91, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,55,55,65,59,56,56,58,52,51,50,51,59,52],
+[45,0,47,57,46,51,49,54,52,48,54,55,54,55],
+[45,53,0,63,51,52,46,55,58,52,49,50,45,50],
+[35,43,37,0,39,57,47,46,48,45,51,48,43,40],
+[41,54,49,61,0,53,45,49,43,46,55,53,48,51],
+[44,49,48,43,47,0,42,48,53,47,48,58,46,49],
+[44,51,54,53,55,58,0,47,51,50,57,55,52,58],
+[42,46,45,54,51,52,53,0,54,47,52,52,52,54],
+[48,48,42,52,57,47,49,46,0,47,49,49,55,49],
+[49,52,48,55,54,53,50,53,53,0,48,50,52,46],
+[50,46,51,49,45,52,43,48,51,52,0,43,48,54],
+[49,45,50,52,47,42,45,48,51,50,57,0,50,54],
+[41,46,55,57,52,54,48,48,45,48,52,50,0,54],
+[48,45,50,60,49,51,42,46,51,54,46,46,46,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 92, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,50,54,51,54,58,51,52,53,48,63,46,60,42],
+[50,0,62,51,59,59,58,46,45,39,46,42,60,44],
+[46,38,0,40,55,62,61,43,45,50,48,46,55,49],
+[49,49,60,0,41,50,49,44,48,40,54,42,58,52],
+[46,41,45,59,0,58,54,49,42,50,56,49,47,44],
+[42,41,38,50,42,0,48,44,39,42,50,48,45,38],
+[49,42,39,51,46,52,0,39,48,35,48,51,46,45],
+[48,54,57,56,51,56,61,0,49,43,59,54,52,45],
+[47,55,55,52,58,61,52,51,0,63,67,58,64,45],
+[52,61,50,60,50,58,65,57,37,0,54,53,66,44],
+[37,54,52,46,44,50,52,41,33,46,0,37,48,43],
+[54,58,54,58,51,52,49,46,42,47,63,0,54,43],
+[40,40,45,42,53,55,54,48,36,34,52,46,0,39],
+[58,56,51,48,56,62,55,55,55,56,57,57,61,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 93, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,42,56,47,56,50,76,51,26,57,70,38,72,61],
+[58,0,61,60,57,66,87,56,37,53,61,54,68,60],
+[44,39,0,24,48,39,61,60,30,47,58,25,77,52],
+[53,40,76,0,42,51,69,69,27,51,70,19,69,54],
+[44,43,52,58,0,66,81,36,54,51,80,43,72,72],
+[50,34,61,49,34,0,59,56,31,37,72,26,54,42],
+[24,13,39,31,19,41,0,23,24,29,49,27,56,29],
+[49,44,40,31,64,44,77,0,35,32,71,27,74,58],
+[74,63,70,73,46,69,76,65,0,59,74,47,76,55],
+[43,47,53,49,49,63,71,68,41,0,75,38,74,70],
+[30,39,42,30,20,28,51,29,26,25,0,31,40,36],
+[62,46,75,81,57,74,73,73,53,62,69,0,80,65],
+[28,32,23,31,28,46,44,26,24,26,60,20,0,30],
+[39,40,48,46,28,58,71,42,45,30,64,35,70,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 94, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,54,56,48,38,48,41,49,58,47,44,55,46,47],
+[46,0,50,46,35,41,44,53,59,39,44,60,44,41],
+[44,50,0,46,38,43,48,56,65,59,47,61,51,48],
+[52,54,54,0,41,40,48,61,61,48,36,45,42,52],
+[62,65,62,59,0,55,54,57,64,55,48,60,41,58],
+[52,59,57,60,45,0,46,60,67,44,46,59,42,50],
+[59,56,52,52,46,54,0,58,66,49,40,58,49,55],
+[51,47,44,39,43,40,42,0,62,48,41,49,45,43],
+[42,41,35,39,36,33,34,38,0,45,41,45,33,33],
+[53,61,41,52,45,56,51,52,55,0,48,54,52,54],
+[56,56,53,64,52,54,60,59,59,52,0,48,45,59],
+[45,40,39,55,40,41,42,51,55,46,52,0,48,39],
+[54,56,49,58,59,58,51,55,67,48,55,52,0,51],
+[53,59,52,48,42,50,45,57,67,46,41,61,49,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 95, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,37,38,43,48,52,43,39,52,43,47,45,45,41],
+[63,0,49,53,56,59,55,54,61,59,54,59,52,46],
+[62,51,0,58,60,55,55,51,59,57,50,55,60,44],
+[57,47,42,0,55,55,52,46,58,56,50,52,53,53],
+[52,44,40,45,0,47,43,44,53,47,53,49,46,47],
+[48,41,45,45,53,0,48,42,49,50,43,43,47,44],
+[57,45,45,48,57,52,0,53,57,55,51,52,51,51],
+[61,46,49,54,56,58,47,0,55,56,48,49,51,48],
+[48,39,41,42,47,51,43,45,0,40,45,43,39,34],
+[57,41,43,44,53,50,45,44,60,0,51,54,41,49],
+[53,46,50,50,47,57,49,52,55,49,0,48,51,44],
+[55,41,45,48,51,57,48,51,57,46,52,0,53,46],
+[55,48,40,47,54,53,49,49,61,59,49,47,0,50],
+[59,54,56,47,53,56,49,52,66,51,56,54,50,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 96, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,49,55,52,55,47,54,53,55,52,60,42,62,63],
+[51,0,43,48,52,48,50,42,49,49,60,45,61,57],
+[45,57,0,42,56,53,56,51,44,55,58,44,66,55],
+[48,52,58,0,61,53,58,59,55,53,65,51,66,60],
+[45,48,44,39,0,46,49,46,47,53,47,42,54,58],
+[53,52,47,47,54,0,50,53,54,59,57,49,63,59],
+[46,50,44,42,51,50,0,54,51,48,50,44,62,59],
+[47,58,49,41,54,47,46,0,57,47,61,38,66,50],
+[45,51,56,45,53,46,49,43,0,47,57,39,65,54],
+[48,51,45,47,47,41,52,53,53,0,56,42,61,51],
+[40,40,42,35,53,43,50,39,43,44,0,34,60,49],
+[58,55,56,49,58,51,56,62,61,58,66,0,70,61],
+[38,39,34,34,46,37,38,34,35,39,40,30,0,48],
+[37,43,45,40,42,41,41,50,46,49,51,39,52,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 97, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,50,47,47,54,47,48,39,49,40,51,48,52,44],
+[50,0,45,62,50,43,52,51,52,40,50,64,52,47],
+[53,55,0,53,49,46,47,44,52,43,51,43,49,44],
+[53,38,47,0,43,40,39,35,46,36,36,44,46,36],
+[46,50,51,57,0,34,47,44,50,50,56,56,50,44],
+[53,57,54,60,66,0,54,49,53,56,57,57,57,46],
+[52,48,53,61,53,46,0,56,54,52,54,55,48,47],
+[61,49,56,65,56,51,44,0,45,45,54,55,53,44],
+[51,48,48,54,50,47,46,55,0,44,51,46,57,41],
+[60,60,57,64,50,44,48,55,56,0,60,56,45,45],
+[49,50,49,64,44,43,46,46,49,40,0,51,48,40],
+[52,36,57,56,44,43,45,45,54,44,49,0,43,36],
+[48,48,51,54,50,43,52,47,43,55,52,57,0,50],
+[56,53,56,64,56,54,53,56,59,55,60,64,50,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 98, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,58,64,46,54,59,48,45,52,56,52,57,62,55],
+[42,0,49,46,48,50,37,31,34,42,42,58,56,46],
+[36,51,0,42,46,57,47,37,39,45,39,45,54,40],
+[54,54,58,0,59,64,56,42,47,52,57,58,60,52],
+[46,52,54,41,0,52,39,36,40,45,52,46,59,48],
+[41,50,43,36,48,0,45,35,43,40,36,38,52,37],
+[52,63,53,44,61,55,0,50,50,50,45,61,64,54],
+[55,69,63,58,64,65,50,0,58,51,60,60,79,58],
+[48,66,61,53,60,57,50,42,0,52,52,61,67,57],
+[44,58,55,48,55,60,50,49,48,0,50,62,68,51],
+[48,58,61,43,48,64,55,40,48,50,0,56,55,51],
+[43,42,55,42,54,62,39,40,39,38,44,0,55,53],
+[38,44,46,40,41,48,36,21,33,32,45,45,0,48],
+[45,54,60,48,52,63,46,42,43,49,49,47,52,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 99, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,40,69,54,44,53,45,51,50,46,50,49,42,49],
+[60,0,72,64,55,52,55,60,58,55,42,51,50,52],
+[31,28,0,40,30,36,26,37,28,26,25,29,27,34],
+[46,36,60,0,35,47,29,45,48,30,36,41,28,47],
+[56,45,70,65,0,54,56,53,56,46,54,57,47,58],
+[47,48,64,53,46,0,48,56,57,48,46,55,37,55],
+[55,45,74,71,44,52,0,52,66,48,46,50,44,54],
+[49,40,63,55,47,44,48,0,55,39,54,50,46,44],
+[50,42,72,52,44,43,34,45,0,45,48,51,45,56],
+[54,45,74,70,54,52,52,61,55,0,45,60,42,54],
+[50,58,75,64,46,54,54,46,52,55,0,59,44,54],
+[51,49,71,59,43,45,50,50,49,40,41,0,44,48],
+[58,50,73,72,53,63,56,54,55,58,56,56,0,54],
+[51,48,66,53,42,45,46,56,44,46,46,52,46,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 100, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,53,41,67,57,35,54,55,49,53,57,37,51,37],
+[47,0,31,48,39,48,51,45,50,54,65,44,53,56],
+[59,69,0,68,52,62,61,58,56,48,75,45,57,58],
+[33,52,32,0,33,56,51,56,52,41,50,40,55,36],
+[43,61,48,67,0,62,61,48,47,46,56,66,47,42],
+[65,52,38,44,38,0,45,46,55,47,61,53,54,40],
+[46,49,39,49,39,55,0,46,39,28,51,50,51,43],
+[45,55,42,44,52,54,54,0,49,41,53,46,54,50],
+[51,50,44,48,53,45,61,51,0,41,49,43,56,35],
+[47,46,52,59,54,53,72,59,59,0,52,56,51,46],
+[43,35,25,50,44,39,49,47,51,48,0,43,47,37],
+[63,56,55,60,34,47,50,54,57,44,57,0,51,49],
+[49,47,43,45,53,46,49,46,44,49,53,49,0,36],
+[63,44,42,64,58,60,57,50,65,54,63,51,64,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 101, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,53,47,46,47,53,51,56,59,43,52,55,45,47],
+[47,0,45,45,38,54,54,49,44,41,46,50,46,38],
+[53,55,0,42,32,56,52,52,42,38,48,52,48,48],
+[54,55,58,0,54,59,54,55,47,50,50,52,56,50],
+[53,62,68,46,0,66,58,63,56,51,59,55,51,51],
+[47,46,44,41,34,0,50,50,40,39,47,51,47,43],
+[49,46,48,46,42,50,0,49,50,40,53,49,50,46],
+[44,51,48,45,37,50,51,0,46,40,48,48,44,47],
+[41,56,58,53,44,60,50,54,0,42,54,58,51,39],
+[57,59,62,50,49,61,60,60,58,0,55,61,53,54],
+[48,54,52,50,41,53,47,52,46,45,0,49,44,42],
+[45,50,48,48,45,49,51,52,42,39,51,0,42,41],
+[55,54,52,44,49,53,50,56,49,47,56,58,0,54],
+[53,62,52,50,49,57,54,53,61,46,58,59,46,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 102, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,55,52,55,51,54,52,58,54,58,50,59,56,52],
+[45,0,36,38,47,42,51,57,51,47,47,50,44,47],
+[48,64,0,52,65,60,59,65,68,62,55,62,54,52],
+[45,62,48,0,57,45,61,65,68,56,57,59,58,57],
+[49,53,35,43,0,44,47,51,51,47,47,46,50,43],
+[46,58,40,55,56,0,58,59,56,53,54,54,43,58],
+[48,49,41,39,53,42,0,61,55,49,46,51,49,50],
+[42,43,35,35,49,41,39,0,47,46,44,45,40,46],
+[46,49,32,32,49,44,45,53,0,50,45,46,47,48],
+[42,53,38,44,53,47,51,54,50,0,54,52,53,50],
+[50,53,45,43,53,46,54,56,55,46,0,57,47,57],
+[41,50,38,41,54,46,49,55,54,48,43,0,44,51],
+[44,56,46,42,50,57,51,60,53,47,53,56,0,48],
+[48,53,48,43,57,42,50,54,52,50,43,49,52,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 103, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,66,67,65,51,54,53,57,62,48,54,65,43,60],
+[34,0,40,44,60,44,53,51,67,53,51,70,58,72],
+[33,60,0,58,45,42,53,51,68,49,70,67,45,58],
+[35,56,42,0,53,49,36,50,73,36,52,61,49,64],
+[49,40,55,47,0,46,55,42,40,59,56,67,41,45],
+[46,56,58,51,54,0,62,46,70,51,77,80,56,43],
+[47,47,47,64,45,38,0,31,48,39,51,90,47,53],
+[43,49,49,50,58,54,69,0,61,51,49,75,51,66],
+[38,33,32,27,60,30,52,39,0,38,50,53,42,55],
+[52,47,51,64,41,49,61,49,62,0,41,74,59,70],
+[46,49,30,48,44,23,49,51,50,59,0,65,47,50],
+[35,30,33,39,33,20,10,25,47,26,35,0,17,46],
+[57,42,55,51,59,44,53,49,58,41,53,83,0,58],
+[40,28,42,36,55,57,47,34,45,30,50,54,42,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 104, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,50,48,52,44,47,48,53,52,53,53,53,45,56],
+[50,0,44,47,48,44,44,50,54,50,52,56,49,57],
+[52,56,0,54,51,55,49,57,53,59,57,62,55,59],
+[48,53,46,0,42,48,52,47,52,52,56,52,51,55],
+[56,52,49,58,0,51,53,51,53,56,57,55,52,55],
+[53,56,45,52,49,0,48,53,51,53,54,54,53,50],
+[52,56,51,48,47,52,0,54,54,53,51,59,50,57],
+[47,50,43,53,49,47,46,0,47,46,51,54,45,54],
+[48,46,47,48,47,49,46,53,0,44,49,55,49,47],
+[47,50,41,48,44,47,47,54,56,0,57,56,46,51],
+[47,48,43,44,43,46,49,49,51,43,0,55,41,50],
+[47,44,38,48,45,46,41,46,45,44,45,0,39,45],
+[55,51,45,49,48,47,50,55,51,54,59,61,0,55],
+[44,43,41,45,45,50,43,46,53,49,50,55,45,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 105, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,54,51,51,70,54,42,72,58,62,49,47,50,69],
+[46,0,26,52,48,39,43,59,48,40,44,45,42,55],
+[49,74,0,63,74,49,59,64,70,57,66,63,65,77],
+[49,48,37,0,50,53,41,57,53,38,54,50,49,61],
+[30,52,26,50,0,42,43,45,59,35,55,40,34,59],
+[46,61,51,47,58,0,35,51,54,46,53,50,48,62],
+[58,57,41,59,57,65,0,54,60,57,62,54,48,54],
+[28,41,36,43,55,49,46,0,54,28,47,44,44,41],
+[42,52,30,47,41,46,40,46,0,34,43,47,30,48],
+[38,60,43,62,65,54,43,72,66,0,69,63,44,59],
+[51,56,34,46,45,47,38,53,57,31,0,49,24,46],
+[53,55,37,50,60,50,46,56,53,37,51,0,41,46],
+[50,58,35,51,66,52,52,56,70,56,76,59,0,73],
+[31,45,23,39,41,38,46,59,52,41,54,54,27,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 106, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,49,51,49,39,50,58,50,57,52,55,55,53,59],
+[51,0,57,45,45,55,53,45,50,46,54,41,45,57],
+[49,43,0,45,42,46,57,42,46,45,48,53,45,58],
+[51,55,55,0,43,52,55,50,51,51,46,43,46,54],
+[61,55,58,57,0,55,51,62,59,55,57,53,49,58],
+[50,45,54,48,45,0,53,42,49,44,53,44,49,51],
+[42,47,43,45,49,47,0,44,48,46,50,53,45,63],
+[50,55,58,50,38,58,56,0,54,63,51,53,52,64],
+[43,50,54,49,41,51,52,46,0,46,53,46,49,67],
+[48,54,55,49,45,56,54,37,54,0,56,54,48,60],
+[45,46,52,54,43,47,50,49,47,44,0,44,48,56],
+[45,59,47,57,47,56,47,47,54,46,56,0,54,58],
+[47,55,55,54,51,51,55,48,51,52,52,46,0,62],
+[41,43,42,46,42,49,37,36,33,40,44,42,38,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 107, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,46,64,18,64,18,18,46,54,64,64,46,18,18],
+[54,0,54,54,18,54,18,36,54,54,54,54,18,18],
+[36,46,0,18,0,36,0,82,36,36,82,82,18,0],
+[82,46,82,0,46,36,0,82,82,82,82,82,18,46],
+[36,82,100,54,0,54,54,82,54,100,100,82,54,54],
+[82,46,64,64,46,0,18,82,82,46,46,82,64,64],
+[82,82,100,100,46,82,0,82,82,82,82,82,64,46],
+[54,64,18,18,18,18,18,0,54,18,64,100,18,18],
+[46,46,64,18,46,18,18,46,0,46,46,46,18,64],
+[36,46,64,18,0,54,18,82,54,0,64,82,18,18],
+[36,46,18,18,0,54,18,36,54,36,0,36,18,18],
+[54,46,18,18,18,18,18,0,54,18,64,0,18,18],
+[82,82,82,82,46,36,36,82,82,82,82,82,0,82],
+[82,82,100,54,46,36,54,82,36,82,82,82,18,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 108, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,51,60,54,59,59,65,69,57,64,35,60,56,68],
+[49,0,55,57,46,55,52,58,70,53,50,67,55,60],
+[40,45,0,40,48,44,57,59,51,40,37,55,49,59],
+[46,43,60,0,52,48,63,72,47,50,42,58,61,62],
+[41,54,52,48,0,48,70,67,57,57,42,56,50,47],
+[41,45,56,52,52,0,66,70,61,65,53,60,50,58],
+[35,48,43,37,30,34,0,55,47,37,41,55,40,44],
+[31,42,41,28,33,30,45,0,46,38,37,53,41,47],
+[43,30,49,53,43,39,53,54,0,50,40,45,50,50],
+[36,47,60,50,43,35,63,62,50,0,31,49,48,58],
+[65,50,63,58,58,47,59,63,60,69,0,59,66,63],
+[40,33,45,42,44,40,45,47,55,51,41,0,59,45],
+[44,45,51,39,50,50,60,59,50,52,34,41,0,51],
+[32,40,41,38,53,42,56,53,50,42,37,55,49,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 109, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,43,63,50,56,67,51,45,56,54,56,50,63,49],
+[57,0,63,69,63,61,56,59,52,60,46,53,56,61],
+[37,37,0,47,47,51,44,40,49,40,30,41,52,56],
+[50,31,53,0,57,54,54,46,36,48,33,45,63,54],
+[44,37,53,43,0,48,47,39,53,43,26,29,51,46],
+[33,39,49,46,52,0,44,45,35,42,36,40,42,27],
+[49,44,56,46,53,56,0,50,42,42,45,29,44,53],
+[55,41,60,54,61,55,50,0,62,55,48,43,57,56],
+[44,48,51,64,47,65,58,38,0,47,46,38,60,56],
+[46,40,60,52,57,58,58,45,53,0,37,39,52,48],
+[44,54,70,67,74,64,55,52,54,63,0,49,67,47],
+[50,47,59,55,71,60,71,57,62,61,51,0,66,55],
+[37,44,48,37,49,58,56,43,40,48,33,34,0,37],
+[51,39,44,46,54,73,47,44,44,52,53,45,63,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 110, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,47,57,52,54,51,57,48,58,51,62,50,51,53],
+[53,0,56,51,58,52,54,49,53,50,56,51,55,58],
+[43,44,0,51,46,46,51,46,49,52,50,49,58,47],
+[48,49,49,0,55,49,54,50,54,52,59,52,50,55],
+[46,42,54,45,0,44,57,47,55,50,61,57,54,47],
+[49,48,54,51,56,0,56,49,50,47,55,59,52,56],
+[43,46,49,46,43,44,0,38,49,45,52,50,45,42],
+[52,51,54,50,53,51,62,0,58,53,55,59,58,49],
+[42,47,51,46,45,50,51,42,0,48,53,49,50,46],
+[49,50,48,48,50,53,55,47,52,0,56,50,52,55],
+[38,44,50,41,39,45,48,45,47,44,0,47,44,42],
+[50,49,51,48,43,41,50,41,51,50,53,0,47,46],
+[49,45,42,50,46,48,55,42,50,48,56,53,0,50],
+[47,42,53,45,53,44,58,51,54,45,58,54,50,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 111, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,59,46,52,44,53,52,43,53,52,41,56,51,43],
+[41,0,43,47,44,45,47,40,46,56,38,51,43,44],
+[54,57,0,57,62,55,59,56,45,56,51,54,40,53],
+[48,53,43,0,45,42,38,48,42,52,43,51,37,41],
+[56,56,38,55,0,59,54,51,37,45,38,46,47,43],
+[47,55,45,58,41,0,48,44,47,46,39,40,42,48],
+[48,53,41,62,46,52,0,55,56,58,50,48,55,54],
+[57,60,44,52,49,56,45,0,50,52,49,41,48,49],
+[47,54,55,58,63,53,44,50,0,47,52,57,47,51],
+[48,44,44,48,55,54,42,48,53,0,50,45,46,47],
+[59,62,49,57,62,61,50,51,48,50,0,63,45,49],
+[44,49,46,49,54,60,52,59,43,55,37,0,52,53],
+[49,57,60,63,53,58,45,52,53,54,55,48,0,44],
+[57,56,47,59,57,52,46,51,49,53,51,47,56,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 112, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,48,43,47,58,46,46,44,35,38,45,51,45,40],
+[52,0,49,57,48,48,45,40,38,48,46,48,43,39],
+[57,51,0,42,50,50,47,48,35,43,42,40,50,44],
+[53,43,58,0,56,46,50,46,43,52,44,51,38,43],
+[42,52,50,44,0,50,50,37,49,47,50,45,50,38],
+[54,52,50,54,50,0,49,40,44,47,56,53,59,41],
+[54,55,53,50,50,51,0,36,44,39,56,51,53,43],
+[56,60,52,54,63,60,64,0,54,54,51,59,54,50],
+[65,62,65,57,51,56,56,46,0,55,44,46,53,51],
+[62,52,57,48,53,53,61,46,45,0,61,54,47,49],
+[55,54,58,56,50,44,44,49,56,39,0,47,63,53],
+[49,52,60,49,55,47,49,41,54,46,53,0,50,54],
+[55,57,50,62,50,41,47,46,47,53,37,50,0,42],
+[60,61,56,57,62,59,57,50,49,51,47,46,58,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 113, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,69,63,52,72,45,61,68,73,57,37,75,50,69],
+[31,0,29,20,31,26,53,13,51,21,32,32,1,34],
+[37,71,0,33,61,49,51,30,57,55,30,55,24,51],
+[48,80,67,0,64,56,56,55,66,53,60,57,54,59],
+[28,69,39,36,0,41,64,55,56,49,37,45,35,29],
+[55,74,51,44,59,0,84,58,85,44,43,63,52,63],
+[39,47,49,44,36,16,0,40,37,39,41,55,27,19],
+[32,87,70,45,45,42,60,0,51,37,56,65,19,60],
+[27,49,43,34,44,15,63,49,0,41,29,43,35,35],
+[43,79,45,47,51,56,61,63,59,0,45,45,14,53],
+[63,68,70,40,63,57,59,44,71,55,0,68,38,66],
+[25,68,45,43,55,37,45,35,57,55,32,0,35,40],
+[50,99,76,46,65,48,73,81,65,86,62,65,0,66],
+[31,66,49,41,71,37,81,40,65,47,34,60,34,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 114, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,50,45,45,56,52,59,50,67,45,57,60,47,48],
+[50,0,55,55,46,56,56,53,60,49,56,63,47,48],
+[55,45,0,56,52,53,50,56,62,48,53,56,54,44],
+[55,45,44,0,47,48,56,50,53,41,52,56,42,53],
+[44,54,48,53,0,51,60,55,62,41,54,58,52,47],
+[48,44,47,52,49,0,54,54,55,43,54,53,46,47],
+[41,44,50,44,40,46,0,48,50,41,57,44,38,47],
+[50,47,44,50,45,46,52,0,52,49,55,54,51,55],
+[33,40,38,47,38,45,50,48,0,36,39,46,35,36],
+[55,51,52,59,59,57,59,51,64,0,57,54,45,55],
+[43,44,47,48,46,46,43,45,61,43,0,57,40,42],
+[40,37,44,44,42,47,56,46,54,46,43,0,34,47],
+[53,53,46,58,48,54,62,49,65,55,60,66,0,51],
+[52,52,56,47,53,53,53,45,64,45,58,53,49,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 115, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,45,51,36,68,48,51,58,59,60,55,43,50,56],
+[55,0,55,45,76,40,51,45,47,70,61,59,33,59],
+[49,45,0,41,53,44,66,36,45,47,66,47,33,62],
+[64,55,59,0,68,67,76,49,47,62,70,67,44,59],
+[32,24,47,32,0,26,41,25,29,44,41,39,23,30],
+[52,60,56,33,74,0,54,45,51,58,57,51,45,64],
+[49,49,34,24,59,46,0,38,48,59,62,43,40,61],
+[42,55,64,51,75,55,62,0,38,63,59,58,41,65],
+[41,53,55,53,71,49,52,62,0,66,47,64,59,52],
+[40,30,53,38,56,42,41,37,34,0,48,44,27,46],
+[45,39,34,30,59,43,38,41,53,52,0,50,27,43],
+[57,41,53,33,61,49,57,42,36,56,50,0,28,53],
+[50,67,67,56,77,55,60,59,41,73,73,72,0,63],
+[44,41,38,41,70,36,39,35,48,54,57,47,37,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 116, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,39,45,46,57,59,51,36,47,72,52,46,55,56],
+[61,0,49,56,60,49,56,50,56,81,52,62,58,53],
+[55,51,0,50,54,52,53,53,41,72,51,49,52,51],
+[54,44,50,0,62,63,63,54,55,69,62,52,46,53],
+[43,40,46,38,0,43,55,46,47,67,47,52,52,36],
+[41,51,48,37,57,0,55,48,42,58,46,48,52,45],
+[49,44,47,37,45,45,0,49,53,56,46,53,32,39],
+[64,50,47,46,54,52,51,0,44,70,48,45,40,53],
+[53,44,59,45,53,58,47,56,0,68,52,54,47,51],
+[28,19,28,31,33,42,44,30,32,0,36,31,35,37],
+[48,48,49,38,53,54,54,52,48,64,0,53,36,45],
+[54,38,51,48,48,52,47,55,46,69,47,0,53,56],
+[45,42,48,54,48,48,68,60,53,65,64,47,0,42],
+[44,47,49,47,64,55,61,47,49,63,55,44,58,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 117, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,47,59,34,37,31,31,60,28,33,37,39,55,37],
+[53,0,63,44,50,52,49,64,46,49,48,64,41,46],
+[41,37,0,37,34,46,35,51,38,56,38,44,37,37],
+[66,56,63,0,46,48,47,69,58,52,60,59,69,52],
+[63,50,66,54,0,53,47,59,46,60,45,54,63,37],
+[69,48,54,52,47,0,39,52,42,54,45,49,50,43],
+[69,51,65,53,53,61,0,67,49,54,64,74,50,58],
+[40,36,49,31,41,48,33,0,20,35,52,53,34,36],
+[72,54,62,42,54,58,51,80,0,55,56,57,64,59],
+[67,51,44,48,40,46,46,65,45,0,50,56,50,50],
+[63,52,62,40,55,55,36,48,44,50,0,53,54,41],
+[61,36,56,41,46,51,26,47,43,44,47,0,29,42],
+[45,59,63,31,37,50,50,66,36,50,46,71,0,43],
+[63,54,63,48,63,57,42,64,41,50,59,58,57,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 118, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,60,41,55,49,53,52,46,45,52,49,59,38,55],
+[40,0,37,50,46,62,44,33,34,41,49,56,44,53],
+[59,63,0,57,65,59,60,53,48,52,56,63,54,66],
+[45,50,43,0,53,46,45,43,45,45,50,64,36,61],
+[51,54,35,47,0,48,54,35,39,37,61,59,39,52],
+[47,38,41,54,52,0,47,26,46,34,53,56,43,44],
+[48,56,40,55,46,53,0,33,35,43,49,61,44,58],
+[54,67,47,57,65,74,67,0,51,54,57,65,54,69],
+[55,66,52,55,61,54,65,49,0,51,64,61,43,62],
+[48,59,48,55,63,66,57,46,49,0,62,72,45,56],
+[51,51,44,50,39,47,51,43,36,38,0,48,39,51],
+[41,44,37,36,41,44,39,35,39,28,52,0,37,43],
+[62,56,46,64,61,57,56,46,57,55,61,63,0,63],
+[45,47,34,39,48,56,42,31,38,44,49,57,37,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 119, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,45,43,53,52,58,38,50,53,48,52,53,56,52],
+[55,0,46,55,47,60,45,42,55,44,51,51,53,53],
+[57,54,0,57,59,59,43,55,55,44,62,56,67,57],
+[47,45,43,0,48,53,36,39,56,35,43,50,54,51],
+[48,53,41,52,0,51,41,40,49,45,52,51,53,47],
+[42,40,41,47,49,0,47,33,55,38,46,48,41,47],
+[62,55,57,64,59,53,0,46,65,55,54,54,52,61],
+[50,58,45,61,60,67,54,0,61,51,55,56,59,59],
+[47,45,45,44,51,45,35,39,0,38,45,49,48,45],
+[52,56,56,65,55,62,45,49,62,0,57,55,66,55],
+[48,49,38,57,48,54,46,45,55,43,0,49,53,50],
+[47,49,44,50,49,52,46,44,51,45,51,0,55,50],
+[44,47,33,46,47,59,48,41,52,34,47,45,0,48],
+[48,47,43,49,53,53,39,41,55,45,50,50,52,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 120, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,57,50,53,52,52,41,65,43,41,33,40,54,58],
+[43,0,49,49,60,59,40,57,40,39,27,45,64,42],
+[50,51,0,58,64,47,47,57,58,31,56,38,65,57],
+[47,51,42,0,64,34,30,60,43,38,27,38,49,46],
+[48,40,36,36,0,46,18,43,48,37,35,33,57,44],
+[48,41,53,66,54,0,42,53,53,52,52,35,48,61],
+[59,60,53,70,82,58,0,74,67,58,60,49,77,64],
+[35,43,43,40,57,47,26,0,45,37,43,43,64,54],
+[57,60,42,57,52,47,33,55,0,48,31,41,58,54],
+[59,61,69,62,63,48,42,63,52,0,53,30,61,65],
+[67,73,44,73,65,48,40,57,69,47,0,51,80,72],
+[60,55,62,62,67,65,51,57,59,70,49,0,77,61],
+[46,36,35,51,43,52,23,36,42,39,20,23,0,43],
+[42,58,43,54,56,39,36,46,46,35,28,39,57,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 121, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,53,70,53,50,47,54,54,32,33,49,42,62,61],
+[47,0,53,33,52,56,44,45,39,29,68,32,34,29],
+[30,47,0,47,46,23,39,46,20,40,37,30,41,27],
+[47,67,53,0,47,51,47,45,27,30,74,28,68,40],
+[50,48,54,53,0,35,71,45,40,41,66,49,61,55],
+[53,44,77,49,65,0,60,66,46,53,42,40,38,43],
+[46,56,61,53,29,40,0,45,27,26,54,19,47,43],
+[46,55,54,55,55,34,55,0,31,40,45,39,52,19],
+[68,61,80,73,60,54,73,69,0,51,77,38,83,58],
+[67,71,60,70,59,47,74,60,49,0,70,51,62,43],
+[51,32,63,26,34,58,46,55,23,30,0,41,27,33],
+[58,68,70,72,51,60,81,61,62,49,59,0,73,51],
+[38,66,59,32,39,62,53,48,17,38,73,27,0,39],
+[39,71,73,60,45,57,57,81,42,57,67,49,61,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 122, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,31,43,40,35,30,55,36,36,47,46,39,36,37],
+[69,0,47,63,46,50,77,63,55,68,74,50,66,41],
+[57,53,0,60,36,42,50,60,43,52,54,47,58,45],
+[60,37,40,0,39,42,63,66,41,56,53,56,51,47],
+[65,54,64,61,0,66,60,60,46,56,59,51,63,49],
+[70,50,58,58,34,0,69,68,54,62,58,54,65,56],
+[45,23,50,37,40,31,0,39,35,29,44,33,47,38],
+[64,37,40,34,40,32,61,0,46,40,49,40,45,42],
+[64,45,57,59,54,46,65,54,0,46,52,39,53,54],
+[53,32,48,44,44,38,71,60,54,0,51,52,37,36],
+[54,26,46,47,41,42,56,51,48,49,0,45,57,34],
+[61,50,53,44,49,46,67,60,61,48,55,0,53,47],
+[64,34,42,49,37,35,53,55,47,63,43,47,0,48],
+[63,59,55,53,51,44,62,58,46,64,66,53,52,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 123, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,48,68,48,48,73,93,48,48,48,42,48,42,48],
+[52,0,49,74,49,51,67,93,0,45,49,42,67,68],
+[32,51,0,47,47,51,45,51,25,51,20,0,45,48],
+[52,26,53,0,20,51,45,46,0,46,20,20,45,46],
+[52,51,53,80,0,51,71,71,51,71,20,26,45,68],
+[27,49,49,49,49,0,74,49,7,27,49,49,49,42],
+[7,33,55,55,29,26,0,33,33,33,27,26,27,48],
+[52,7,49,54,29,51,67,0,0,45,27,0,45,48],
+[52,100,75,100,49,93,67,100,0,71,49,42,67,68],
+[52,55,49,54,29,73,67,55,29,0,49,22,67,48],
+[58,51,80,80,80,51,73,73,51,51,0,51,45,73],
+[52,58,100,80,74,51,74,100,58,78,49,0,52,68],
+[58,33,55,55,55,51,73,55,33,33,55,48,0,48],
+[52,32,52,54,32,58,52,52,32,52,27,32,52,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 124, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,56,48,61,50,56,54,62,56,63,59,57,60,51],
+[44,0,34,52,45,41,51,50,47,50,51,46,51,51],
+[52,66,0,50,50,56,59,56,57,59,58,52,57,54],
+[39,48,50,0,49,51,60,57,45,49,50,52,53,54],
+[50,55,50,51,0,55,56,54,56,60,50,52,57,55],
+[44,59,44,49,45,0,46,58,54,58,56,51,51,50],
+[46,49,41,40,44,54,0,58,52,55,41,48,48,43],
+[38,50,44,43,46,42,42,0,52,57,44,49,51,41],
+[44,53,43,55,44,46,48,48,0,48,45,44,50,46],
+[37,50,41,51,40,42,45,43,52,0,49,45,47,45],
+[41,49,42,50,50,44,59,56,55,51,0,51,50,47],
+[43,54,48,48,48,49,52,51,56,55,49,0,47,45],
+[40,49,43,47,43,49,52,49,50,53,50,53,0,43],
+[49,49,46,46,45,50,57,59,54,55,53,55,57,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 125, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,49,45,44,40,52,51,56,44,46,53,59,47,48],
+[51,0,43,46,48,45,50,49,43,40,51,55,47,46],
+[55,57,0,46,47,52,58,53,52,58,62,65,56,57],
+[56,54,54,0,56,51,53,53,41,52,52,61,58,57],
+[60,52,53,44,0,50,59,53,49,48,55,63,54,48],
+[48,55,48,49,50,0,52,45,48,50,49,60,55,55],
+[49,50,42,47,41,48,0,45,43,49,49,58,42,52],
+[44,51,47,47,47,55,55,0,46,53,51,55,51,48],
+[56,57,48,59,51,52,57,54,0,49,61,65,56,52],
+[54,60,42,48,52,50,51,47,51,0,51,59,52,52],
+[47,49,38,48,45,51,51,49,39,49,0,55,57,50],
+[41,45,35,39,37,40,42,45,35,41,45,0,38,38],
+[53,53,44,42,46,45,58,49,44,48,43,62,0,50],
+[52,54,43,43,52,45,48,52,48,48,50,62,50,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 126, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,45,48,36,54,38,64,41,45,53,45,42,43,61],
+[55,0,51,68,63,54,76,47,45,49,50,61,54,42],
+[52,49,0,52,57,43,67,40,52,47,43,55,61,49],
+[64,32,48,0,54,44,49,36,39,56,34,36,39,55],
+[46,37,43,46,0,37,51,32,41,40,36,37,37,32],
+[62,46,57,56,63,0,72,51,53,62,57,63,65,46],
+[36,24,33,51,49,28,0,41,34,42,29,32,42,35],
+[59,53,60,64,68,49,59,0,43,51,41,41,65,59],
+[55,55,48,61,59,47,66,57,0,55,50,58,61,47],
+[47,51,53,44,60,38,58,49,45,0,45,44,53,40],
+[55,50,57,66,64,43,71,59,50,55,0,61,64,46],
+[58,39,45,64,63,37,68,59,42,56,39,0,51,41],
+[57,46,39,61,63,35,58,35,39,47,36,49,0,44],
+[39,58,51,45,68,54,65,41,53,60,54,59,56,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 127, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,61,54,56,63,50,57,51,49,53,47,46,58,53],
+[39,0,56,49,67,40,54,43,42,51,45,47,39,50],
+[46,44,0,54,57,45,61,51,51,50,50,50,45,62],
+[44,51,46,0,60,45,53,49,43,46,43,50,37,49],
+[37,33,43,40,0,46,42,38,44,53,43,40,38,59],
+[50,60,55,55,54,0,67,52,45,51,62,47,53,71],
+[43,46,39,47,58,33,0,32,37,50,40,42,40,56],
+[49,57,49,51,62,48,68,0,44,57,63,56,45,53],
+[51,58,49,57,56,55,63,56,0,68,54,46,57,50],
+[47,49,50,54,47,49,50,43,32,0,52,51,39,49],
+[53,55,50,57,57,38,60,37,46,48,0,46,41,56],
+[54,53,50,50,60,53,58,44,54,49,54,0,47,55],
+[42,61,55,63,62,47,60,55,43,61,59,53,0,61],
+[47,50,38,51,41,29,44,47,50,51,44,45,39,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 128, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,43,45,50,49,35,40,38,52,42,53,44,47,40],
+[57,0,54,50,51,52,45,38,53,53,52,53,48,57],
+[55,46,0,53,55,47,46,42,52,41,59,50,51,46],
+[50,50,47,0,47,46,49,47,55,39,52,49,52,50],
+[51,49,45,53,0,46,48,40,44,39,61,51,48,51],
+[65,48,53,54,54,0,52,53,61,49,57,59,58,52],
+[60,55,54,51,52,48,0,47,51,43,55,57,54,58],
+[62,62,58,53,60,47,53,0,60,51,60,57,56,54],
+[48,47,48,45,56,39,49,40,0,43,53,46,51,45],
+[58,47,59,61,61,51,57,49,57,0,65,56,58,55],
+[47,48,41,48,39,43,45,40,47,35,0,48,50,50],
+[56,47,50,51,49,41,43,43,54,44,52,0,47,47],
+[53,52,49,48,52,42,46,44,49,42,50,53,0,54],
+[60,43,54,50,49,48,42,46,55,45,50,53,46,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 129, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,42,60,54,47,46,59,46,41,46,56,55,40,35],
+[58,0,56,59,64,50,62,56,60,50,61,58,54,50],
+[40,44,0,54,52,46,60,51,48,36,56,57,39,36],
+[46,41,46,0,44,37,56,50,39,39,49,37,30,39],
+[53,36,48,56,0,49,57,48,45,43,57,46,41,43],
+[54,50,54,63,51,0,63,54,52,42,53,52,53,48],
+[41,38,40,44,43,37,0,52,49,41,46,44,45,41],
+[54,44,49,50,52,46,48,0,42,48,52,46,52,46],
+[59,40,52,61,55,48,51,58,0,44,56,60,45,35],
+[54,50,64,61,57,58,59,52,56,0,57,66,58,53],
+[44,39,44,51,43,47,54,48,44,43,0,46,39,36],
+[45,42,43,63,54,48,56,54,40,34,54,0,36,40],
+[60,46,61,70,59,47,55,48,55,42,61,64,0,47],
+[65,50,64,61,57,52,59,54,65,47,64,60,53,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 130, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,58,50,23,56,65,40,41,56,56,53,58,58,56],
+[42,0,46,16,45,36,9,25,51,33,31,45,38,36],
+[50,54,0,40,49,36,25,51,54,34,51,38,44,41],
+[77,84,60,0,49,77,51,79,78,47,81,70,58,47],
+[44,55,51,51,0,51,32,45,63,45,56,35,50,44],
+[35,64,64,23,49,0,33,31,64,44,44,74,60,56],
+[60,91,75,49,68,67,0,53,66,53,74,75,72,48],
+[59,75,49,21,55,69,47,0,58,44,61,61,60,41],
+[44,49,46,22,37,36,34,42,0,38,41,67,62,46],
+[44,67,66,53,55,56,47,56,62,0,50,58,67,65],
+[47,69,49,19,44,56,26,39,59,50,0,54,49,45],
+[42,55,62,30,65,26,25,39,33,42,46,0,38,33],
+[42,62,56,42,50,40,28,40,38,33,51,62,0,47],
+[44,64,59,53,56,44,52,59,54,35,55,67,53,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 131, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,60,34,29,45,34,54,44,36,45,45,47,48,38],
+[40,0,30,48,44,31,39,29,35,51,35,35,34,33],
+[66,70,0,64,49,51,59,45,48,55,37,65,49,54],
+[71,52,36,0,34,24,50,29,52,45,45,45,42,33],
+[55,56,51,66,0,47,53,41,48,44,48,59,54,48],
+[66,69,49,76,53,0,60,40,54,54,50,62,62,57],
+[46,61,41,50,47,40,0,33,45,59,35,54,52,34],
+[56,71,55,71,59,60,67,0,67,64,43,71,70,41],
+[64,65,52,48,52,46,55,33,0,45,56,68,56,35],
+[55,49,45,55,56,46,41,36,55,0,44,42,50,41],
+[55,65,63,55,52,50,65,57,44,56,0,67,62,37],
+[53,65,35,55,41,38,46,29,32,58,33,0,32,29],
+[52,66,51,58,46,38,48,30,44,50,38,68,0,38],
+[62,67,46,67,52,43,66,59,65,59,63,71,62,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 132, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,41,45,26,48,61,45,35,64,55,40,55,45,43],
+[59,0,60,31,62,66,49,58,74,70,57,64,70,67],
+[55,40,0,41,62,59,44,58,46,67,59,44,62,52],
+[74,69,59,0,75,66,49,47,65,72,55,60,69,68],
+[52,38,38,25,0,53,36,39,51,55,30,43,53,53],
+[39,34,41,34,47,0,33,48,39,55,43,37,51,60],
+[55,51,56,51,64,67,0,54,58,70,57,50,60,68],
+[65,42,42,53,61,52,46,0,70,81,38,53,62,73],
+[36,26,54,35,49,61,42,30,0,42,46,50,46,51],
+[45,30,33,28,45,45,30,19,58,0,37,39,33,42],
+[60,43,41,45,70,57,43,62,54,63,0,54,51,60],
+[45,36,56,40,57,63,50,47,50,61,46,0,62,63],
+[55,30,38,31,47,49,40,38,54,67,49,38,0,59],
+[57,33,48,32,47,40,32,27,49,58,40,37,41,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 133, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,54,38,44,53,44,61,47,53,39,46,48,46,52],
+[46,0,54,42,49,39,53,54,48,28,41,50,42,52],
+[62,46,0,45,53,45,53,54,64,49,44,56,62,58],
+[56,58,55,0,65,53,57,58,62,45,42,57,63,59],
+[47,51,47,35,0,39,39,41,47,37,49,47,42,58],
+[56,61,55,47,61,0,72,53,67,47,49,59,67,83],
+[39,47,47,43,61,28,0,46,59,50,50,51,52,56],
+[53,46,46,42,59,47,54,0,68,42,44,39,55,56],
+[47,52,36,38,53,33,41,32,0,34,38,49,33,42],
+[61,72,51,55,63,53,50,58,66,0,43,63,45,62],
+[54,59,56,58,51,51,50,56,62,57,0,54,58,62],
+[52,50,44,43,53,41,49,61,51,37,46,0,51,53],
+[54,58,38,37,58,33,48,45,67,55,42,49,0,45],
+[48,48,42,41,42,17,44,44,58,38,38,47,55,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 134, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,58,62,62,64,47,52,50,58,45,57,55,55,51],
+[42,0,63,48,60,49,52,46,68,43,59,56,59,55],
+[38,37,0,36,40,29,36,32,42,25,37,45,39,46],
+[38,52,64,0,57,53,46,44,46,39,55,57,53,60],
+[36,40,60,43,0,34,35,39,44,31,43,51,42,47],
+[53,51,71,47,66,0,57,48,57,53,45,62,60,60],
+[48,48,64,54,65,43,0,47,65,41,53,57,50,53],
+[50,54,68,56,61,52,53,0,71,46,52,64,64,48],
+[42,32,58,54,56,43,35,29,0,34,45,50,40,49],
+[55,57,75,61,69,47,59,54,66,0,63,64,46,61],
+[43,41,63,45,57,55,47,48,55,37,0,46,50,55],
+[45,44,55,43,49,38,43,36,50,36,54,0,43,55],
+[45,41,61,47,58,40,50,36,60,54,50,57,0,49],
+[49,45,54,40,53,40,47,52,51,39,45,45,51,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 135, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,58,57,52,55,51,75,51,55,48,37,56,57,36],
+[42,0,37,32,54,34,49,38,48,59,38,67,33,44],
+[43,63,0,51,44,69,72,53,59,61,53,65,57,45],
+[48,68,49,0,66,46,56,34,42,49,51,61,74,38],
+[45,46,56,34,0,44,58,40,24,42,18,52,31,44],
+[49,66,31,54,56,0,49,35,62,51,58,59,59,44],
+[25,51,28,44,42,51,0,50,38,37,57,47,40,44],
+[49,62,47,66,60,65,50,0,53,48,45,81,74,59],
+[45,52,41,58,76,38,62,47,0,64,50,85,66,55],
+[52,41,39,51,58,49,63,52,36,0,52,69,45,39],
+[63,62,47,49,82,42,43,55,50,48,0,62,50,60],
+[44,33,35,39,48,41,53,19,15,31,38,0,47,45],
+[43,67,43,26,69,41,60,26,34,55,50,53,0,44],
+[64,56,55,62,56,56,56,41,45,61,40,55,56,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 136, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,67,81,97,81,84,100,100,83,48,81,50,51,67],
+[33,0,97,66,50,84,97,100,66,17,50,33,17,64],
+[19,3,0,36,36,67,50,19,19,3,3,19,3,50],
+[3,34,64,0,36,67,83,83,52,3,3,50,34,50],
+[19,50,64,64,0,100,50,50,50,67,64,50,50,50],
+[16,16,33,33,0,0,16,16,16,33,16,16,16,16],
+[0,3,50,17,50,84,0,53,16,17,17,19,17,36],
+[0,0,81,17,50,84,47,0,16,17,17,16,0,64],
+[17,34,81,48,50,84,84,84,0,48,48,50,51,67],
+[52,83,97,97,33,67,83,83,52,0,80,83,83,83],
+[19,50,97,97,36,84,83,83,52,20,0,50,34,50],
+[50,67,81,50,50,84,81,84,50,17,50,0,48,67],
+[49,83,97,66,50,84,83,100,49,17,66,52,0,100],
+[33,36,50,50,50,84,64,36,33,17,50,33,0,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 137, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,43,38,35,55,40,54,52,37,46,56,36,52,36],
+[57,0,47,40,44,43,44,49,53,52,62,40,50,50],
+[62,53,0,49,42,48,47,46,51,51,68,44,58,47],
+[65,60,51,0,57,54,50,60,45,62,69,46,66,54],
+[45,56,58,43,0,45,43,55,40,56,67,39,59,43],
+[60,57,52,46,55,0,43,57,50,53,66,50,65,49],
+[46,56,53,50,57,57,0,52,45,53,67,40,62,50],
+[48,51,54,40,45,43,48,0,53,53,63,45,53,53],
+[63,47,49,55,60,50,55,47,0,54,55,42,57,46],
+[54,48,49,38,44,47,47,47,46,0,64,49,58,47],
+[44,38,32,31,33,34,33,37,45,36,0,30,51,38],
+[64,60,56,54,61,50,60,55,58,51,70,0,60,59],
+[48,50,42,34,41,35,38,47,43,42,49,40,0,39],
+[64,50,53,46,57,51,50,47,54,53,62,41,61,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 138, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,54,53,49,56,48,53,49,50,48,47,37,55,52],
+[46,0,43,36,52,45,48,44,45,42,46,41,46,48],
+[47,57,0,46,51,40,46,49,53,42,42,59,42,45],
+[51,64,54,0,61,57,54,51,56,46,59,43,50,61],
+[44,48,49,39,0,45,41,47,45,39,44,46,41,48],
+[52,55,60,43,55,0,51,59,50,43,41,49,50,52],
+[47,52,54,46,59,49,0,58,48,36,54,40,49,50],
+[51,56,51,49,53,41,42,0,41,47,49,41,45,51],
+[50,55,47,44,55,50,52,59,0,46,48,43,57,56],
+[52,58,58,54,61,57,64,53,54,0,57,48,51,52],
+[53,54,58,41,56,59,46,51,52,43,0,49,50,52],
+[63,59,41,57,54,51,60,59,57,52,51,0,52,51],
+[45,54,58,50,59,50,51,55,43,49,50,48,0,49],
+[48,52,55,39,52,48,50,49,44,48,48,49,51,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 139, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,36,54,53,51,71,46,47,70,49,59,54,65,54],
+[64,0,67,47,53,53,53,43,57,53,50,50,67,56],
+[46,33,0,27,45,58,39,26,44,41,56,47,42,52],
+[47,53,73,0,58,47,43,49,63,53,58,62,56,68],
+[49,47,55,42,0,53,51,38,57,48,50,55,52,62],
+[29,47,42,53,47,0,35,46,42,44,63,54,55,53],
+[54,47,61,57,49,65,0,48,57,68,59,55,69,65],
+[53,57,74,51,62,54,52,0,55,53,64,44,67,58],
+[30,43,56,37,43,58,43,45,0,49,49,57,55,67],
+[51,47,59,47,52,56,32,47,51,0,61,58,67,62],
+[41,50,44,42,50,37,41,36,51,39,0,43,40,45],
+[46,50,53,38,45,46,45,56,43,42,57,0,47,49],
+[35,33,58,44,48,45,31,33,45,33,60,53,0,46],
+[46,44,48,32,38,47,35,42,33,38,55,51,54,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 140, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,54,62,50,59,63,63,63,64,56,54,59,57,58],
+[46,0,44,36,49,66,58,51,59,45,52,51,49,48],
+[38,56,0,49,44,59,57,58,60,54,57,44,50,51],
+[50,64,51,0,62,70,61,55,66,48,56,52,50,52],
+[41,51,56,38,0,63,63,51,52,45,47,41,46,42],
+[37,34,41,30,37,0,47,41,43,32,44,25,32,36],
+[37,42,43,39,37,53,0,46,47,39,37,33,34,31],
+[37,49,42,45,49,59,54,0,51,55,49,37,42,50],
+[36,41,40,34,48,57,53,49,0,42,44,38,48,37],
+[44,55,46,52,55,68,61,45,58,0,57,46,51,44],
+[46,48,43,44,53,56,63,51,56,43,0,38,42,41],
+[41,49,56,48,59,75,67,63,62,54,62,0,54,58],
+[43,51,50,50,54,68,66,58,52,49,58,46,0,47],
+[42,52,49,48,58,64,69,50,63,56,59,42,53,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 141, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,64,54,51,51,54,59,37,38,39,43,44,62,47],
+[36,0,40,40,44,42,51,37,43,38,38,44,48,48],
+[46,60,0,49,50,52,49,49,40,52,47,47,57,47],
+[49,60,51,0,54,50,52,45,53,44,45,47,56,51],
+[49,56,50,46,0,45,57,40,48,43,48,48,53,48],
+[46,58,48,50,55,0,59,43,45,40,36,48,65,48],
+[41,49,51,48,43,41,0,43,35,44,41,45,56,48],
+[63,63,51,55,60,57,57,0,48,46,44,56,65,51],
+[62,57,60,47,52,55,65,52,0,40,51,53,61,51],
+[61,62,48,56,57,60,56,54,60,0,37,51,61,52],
+[57,62,53,55,52,64,59,56,49,63,0,55,66,55],
+[56,56,53,53,52,52,55,44,47,49,45,0,58,52],
+[38,52,43,44,47,35,44,35,39,39,34,42,0,44],
+[53,52,53,49,52,52,52,49,49,48,45,48,56,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 142, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,46,65,61,55,36,48,55,37,34,38,48,49,61],
+[54,0,61,57,59,53,71,65,55,43,49,38,57,59],
+[35,39,0,62,59,40,46,63,31,41,45,47,44,45],
+[39,43,38,0,48,31,43,44,36,21,36,35,41,44],
+[45,41,41,52,0,40,33,40,33,33,35,41,33,46],
+[64,47,60,69,60,0,60,65,47,48,50,51,54,58],
+[52,29,54,57,67,40,0,48,35,30,34,45,39,50],
+[45,35,37,56,60,35,52,0,41,42,49,37,45,57],
+[63,45,69,64,67,53,65,59,0,52,57,56,56,68],
+[66,57,59,79,67,52,70,58,48,0,54,66,63,60],
+[62,51,55,64,65,50,66,51,43,46,0,50,51,57],
+[52,62,53,65,59,49,55,63,44,34,50,0,46,62],
+[51,43,56,59,67,46,61,55,44,37,49,54,0,56],
+[39,41,55,56,54,42,50,43,32,40,43,38,44,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 143, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,56,58,44,53,54,47,50,41,42,52,54,52,50],
+[44,0,48,43,56,59,52,49,48,42,46,48,42,52],
+[42,52,0,44,50,58,48,39,54,44,40,50,50,52],
+[56,57,56,0,50,64,50,48,58,55,51,55,56,51],
+[47,44,50,50,0,51,50,54,56,57,46,53,47,52],
+[46,41,42,36,49,0,44,39,44,41,36,48,38,46],
+[53,48,52,50,50,56,0,46,51,49,46,54,48,48],
+[50,51,61,52,46,61,54,0,56,54,40,48,50,50],
+[59,52,46,42,44,56,49,44,0,53,50,56,50,51],
+[58,58,56,45,43,59,51,46,47,0,45,56,50,53],
+[48,54,60,49,54,64,54,60,50,55,0,49,53,55],
+[46,52,50,45,47,52,46,52,44,44,51,0,43,50],
+[48,58,50,44,53,62,52,50,50,50,47,57,0,49],
+[50,48,48,49,48,54,52,50,49,47,45,50,51,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 144, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,68,51,68,66,69,53,53,65,49,68,62,50,33],
+[32,0,35,54,54,63,41,55,66,37,52,58,48,35],
+[49,65,0,74,51,70,39,51,66,48,76,70,61,47],
+[32,46,26,0,50,66,40,49,64,42,51,43,33,37],
+[34,46,49,50,0,55,30,55,64,35,54,46,37,29],
+[31,37,30,34,45,0,36,32,47,28,55,42,30,38],
+[47,59,61,60,70,64,0,65,68,39,59,56,43,52],
+[47,45,49,51,45,68,35,0,60,56,60,50,46,57],
+[35,34,34,36,36,53,32,40,0,23,42,41,41,40],
+[51,63,52,58,65,72,61,44,77,0,65,62,51,54],
+[32,48,24,49,46,45,41,40,58,35,0,41,46,36],
+[38,42,30,57,54,58,44,50,59,38,59,0,28,41],
+[50,52,39,67,63,70,57,54,59,49,54,72,0,43],
+[67,65,53,63,71,62,48,43,60,46,64,59,57,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 145, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,46,58,58,54,59,46,50,46,50,59,50,49,47],
+[54,0,68,57,65,54,44,54,54,51,63,52,61,51],
+[42,32,0,45,56,49,44,39,40,32,52,42,38,39],
+[42,43,55,0,53,52,44,47,35,37,42,42,45,36],
+[46,35,44,47,0,39,43,45,40,44,46,49,51,41],
+[41,46,51,48,61,0,51,50,40,41,46,45,49,43],
+[54,56,56,56,57,49,0,61,52,42,51,45,53,42],
+[50,46,61,53,55,50,39,0,43,48,51,57,56,46],
+[54,46,60,65,60,60,48,57,0,44,64,47,48,41],
+[50,49,68,63,56,59,58,52,56,0,67,53,60,48],
+[41,37,48,58,54,54,49,49,36,33,0,51,48,47],
+[50,48,58,58,51,55,55,43,53,47,49,0,45,43],
+[51,39,62,55,49,51,47,44,52,40,52,55,0,50],
+[53,49,61,64,59,57,58,54,59,52,53,57,50,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 146, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,42,37,47,48,49,54,46,48,43,45,42,42,38],
+[58,0,44,49,50,56,52,54,43,54,47,52,44,43],
+[63,56,0,61,52,55,57,56,51,53,54,49,60,48],
+[53,51,39,0,53,53,56,49,54,46,54,51,50,43],
+[52,50,48,47,0,60,55,56,47,58,52,57,53,56],
+[51,44,45,47,40,0,54,41,51,47,48,48,49,42],
+[46,48,43,44,45,46,0,51,42,43,46,43,51,38],
+[54,46,44,51,44,59,49,0,48,54,50,51,50,49],
+[52,57,49,46,53,49,58,52,0,52,50,52,53,42],
+[57,46,47,54,42,53,57,46,48,0,49,55,49,44],
+[55,53,46,46,48,52,54,50,50,51,0,57,50,53],
+[58,48,51,49,43,52,57,49,48,45,43,0,52,46],
+[58,56,40,50,47,51,49,50,47,51,50,48,0,48],
+[62,57,52,57,44,58,62,51,58,56,47,54,52,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 147, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,42,42,44,48,55,45,37,48,43,29,44,36,58],
+[58,0,46,40,64,78,62,65,73,72,56,54,48,73],
+[58,54,0,51,46,72,71,56,57,58,48,46,64,67],
+[56,60,49,0,47,64,60,54,58,67,54,54,58,62],
+[52,36,54,53,0,66,47,42,51,53,52,40,48,60],
+[45,22,28,36,34,0,28,41,30,39,40,24,35,40],
+[55,38,29,40,53,72,0,57,60,53,51,37,36,57],
+[63,35,44,46,58,59,43,0,50,56,38,46,42,56],
+[52,27,43,42,49,70,40,50,0,64,52,33,41,60],
+[57,28,42,33,47,61,47,44,36,0,33,34,47,53],
+[71,44,52,46,48,60,49,62,48,67,0,49,40,62],
+[56,46,54,46,60,76,63,54,67,66,51,0,51,65],
+[64,52,36,42,52,65,64,58,59,53,60,49,0,69],
+[42,27,33,38,40,60,43,44,40,47,38,35,31,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 148, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,46,54,61,50,53,50,41,48,47,47,57,47,53],
+[54,0,53,56,43,52,53,52,52,57,55,62,55,59],
+[46,47,0,54,46,55,50,49,53,56,50,63,52,48],
+[39,44,46,0,43,46,41,45,38,43,48,57,43,47],
+[50,57,54,57,0,58,55,54,47,58,60,61,58,56],
+[47,48,45,54,42,0,48,46,44,45,46,64,48,52],
+[50,47,50,59,45,52,0,46,49,50,47,54,47,53],
+[59,48,51,55,46,54,54,0,48,53,50,66,49,51],
+[52,48,47,62,53,56,51,52,0,49,53,65,52,60],
+[53,43,44,57,42,55,50,47,51,0,54,64,51,55],
+[53,45,50,52,40,54,53,50,47,46,0,58,51,48],
+[43,38,37,43,39,36,46,34,35,36,42,0,39,43],
+[53,45,48,57,42,52,53,51,48,49,49,61,0,54],
+[47,41,52,53,44,48,47,49,40,45,52,57,46,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 149, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,56,43,37,51,82,57,31,43,44,55,38,43,42],
+[44,0,49,26,34,39,35,35,46,50,49,26,62,54],
+[57,51,0,45,35,44,60,52,31,48,71,26,65,70],
+[63,74,55,0,48,60,58,35,55,56,77,55,55,75],
+[49,66,65,52,0,65,41,48,53,51,65,53,65,57],
+[18,61,56,40,35,0,34,49,35,39,48,30,54,60],
+[43,65,40,42,59,66,0,35,28,37,40,28,48,55],
+[69,65,48,65,52,51,65,0,46,36,65,27,66,92],
+[57,54,69,45,47,65,72,54,0,51,53,36,67,80],
+[56,50,52,44,49,61,63,64,49,0,52,63,58,69],
+[45,51,29,23,35,52,60,35,47,48,0,34,29,55],
+[62,74,74,45,47,70,72,73,64,37,66,0,74,85],
+[57,38,35,45,35,46,52,34,33,42,71,26,0,61],
+[58,46,30,25,43,40,45,8,20,31,45,15,39,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 150, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,53,46,51,39,50,46,48,42,45,47,44,43,43],
+[47,0,46,44,39,54,44,56,45,41,55,45,43,43],
+[54,54,0,53,48,59,48,56,44,54,61,51,52,44],
+[49,56,47,0,43,49,51,51,44,54,53,44,49,50],
+[61,61,52,57,0,65,53,58,50,57,62,50,56,50],
+[50,46,41,51,35,0,47,44,41,47,47,42,45,41],
+[54,56,52,49,47,53,0,51,45,47,51,42,54,46],
+[52,44,44,49,42,56,49,0,38,41,49,42,44,39],
+[58,55,56,56,50,59,55,62,0,56,60,53,54,49],
+[55,59,46,46,43,53,53,59,44,0,54,52,50,47],
+[53,45,39,47,38,53,49,51,40,46,0,48,42,44],
+[56,55,49,56,50,58,58,58,47,48,52,0,51,47],
+[57,57,48,51,44,55,46,56,46,50,58,49,0,51],
+[57,57,56,50,50,59,54,61,51,53,56,53,49,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 151, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,43,54,48,51,56,40,47,55,59,46,39,64,62],
+[57,0,61,48,50,60,38,47,51,43,55,52,62,55],
+[46,39,0,37,46,47,44,42,41,45,34,43,41,56],
+[52,52,63,0,48,47,30,50,53,42,51,45,64,43],
+[49,50,54,52,0,55,35,46,49,58,46,37,56,60],
+[44,40,53,53,45,0,46,46,49,44,46,42,55,61],
+[60,62,56,70,65,54,0,51,66,78,56,43,75,67],
+[53,53,58,50,54,54,49,0,58,58,41,43,65,62],
+[45,49,59,47,51,51,34,42,0,52,32,28,59,52],
+[41,57,55,58,42,56,22,42,48,0,38,29,68,57],
+[54,45,66,49,54,54,44,59,68,62,0,49,54,64],
+[61,48,57,55,63,58,57,57,72,71,51,0,63,70],
+[36,38,59,36,44,45,25,35,41,32,46,37,0,49],
+[38,45,44,57,40,39,33,38,48,43,36,30,51,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 152, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,45,53,32,45,35,43,50,39,46,42,51,50,49],
+[55,0,56,49,54,44,53,53,46,48,44,52,50,57],
+[47,44,0,45,43,40,46,47,40,43,40,48,48,52],
+[68,51,55,0,53,43,50,54,43,44,54,55,51,55],
+[55,46,57,47,0,37,48,52,50,51,50,54,53,55],
+[65,56,60,57,63,0,62,60,51,49,53,61,61,61],
+[57,47,54,50,52,38,0,61,46,46,46,58,51,48],
+[50,47,53,46,48,40,39,0,45,47,38,50,49,47],
+[61,54,60,57,50,49,54,55,0,50,50,51,53,52],
+[54,52,57,56,49,51,54,53,50,0,47,55,52,51],
+[58,56,60,46,50,47,54,62,50,53,0,55,54,55],
+[49,48,52,45,46,39,42,50,49,45,45,0,48,49],
+[50,50,52,49,47,39,49,51,47,48,46,52,0,49],
+[51,43,48,45,45,39,52,53,48,49,45,51,51,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 153, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,47,47,50,49,59,59,50,46,53,60,56,50,45],
+[53,0,52,55,57,55,57,48,50,58,59,55,59,47],
+[53,48,0,54,56,63,59,49,57,54,58,57,57,57],
+[50,45,46,0,52,52,55,42,51,51,59,52,50,47],
+[51,43,44,48,0,57,55,47,50,48,58,51,56,47],
+[41,45,37,48,43,0,49,40,47,46,55,50,43,42],
+[41,43,41,45,45,51,0,47,47,52,55,46,44,40],
+[50,52,51,58,53,60,53,0,56,54,66,61,52,54],
+[54,50,43,49,50,53,53,44,0,46,54,53,53,50],
+[47,42,46,49,52,54,48,46,54,0,58,58,57,47],
+[40,41,42,41,42,45,45,34,46,42,0,50,39,42],
+[44,45,43,48,49,50,54,39,47,42,50,0,44,44],
+[50,41,43,50,44,57,56,48,47,43,61,56,0,41],
+[55,53,43,53,53,58,60,46,50,53,58,56,59,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 154, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,45,34,50,52,46,55,55,53,42,55,54,48,44],
+[55,0,44,50,55,48,56,45,54,44,56,51,46,45],
+[66,56,0,57,57,52,61,63,61,54,58,66,57,46],
+[50,50,43,0,52,48,49,51,51,38,49,48,51,44],
+[48,45,43,48,0,48,45,57,50,44,48,46,51,43],
+[54,52,48,52,52,0,50,53,56,48,51,55,57,46],
+[45,44,39,51,55,50,0,48,45,33,49,52,51,38],
+[45,55,37,49,43,47,52,0,46,35,49,51,43,42],
+[47,46,39,49,50,44,55,54,0,42,47,45,50,45],
+[58,56,46,62,56,52,67,65,58,0,62,58,58,53],
+[45,44,42,51,52,49,51,51,53,38,0,45,51,38],
+[46,49,34,52,54,45,48,49,55,42,55,0,52,40],
+[52,54,43,49,49,43,49,57,50,42,49,48,0,44],
+[56,55,54,56,57,54,62,58,55,47,62,60,56,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 155, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,49,54,40,44,71,43,36,37,46,42,44,37,48],
+[51,0,34,39,52,52,43,54,37,55,37,47,29,38],
+[46,66,0,41,56,70,53,54,50,55,55,37,42,52],
+[60,61,59,0,49,70,55,60,51,61,31,40,52,43],
+[56,48,44,51,0,63,39,67,33,52,30,51,31,36],
+[29,48,30,30,37,0,41,36,36,48,41,28,38,39],
+[57,57,47,45,61,59,0,64,49,65,44,45,37,31],
+[64,46,46,40,33,64,36,0,43,43,44,40,29,45],
+[63,63,50,49,67,64,51,57,0,73,42,49,57,58],
+[54,45,45,39,48,52,35,57,27,0,26,41,23,32],
+[58,63,45,69,70,59,56,56,58,74,0,64,68,55],
+[56,53,63,60,49,72,55,60,51,59,36,0,47,44],
+[63,71,58,48,69,62,63,71,43,77,32,53,0,51],
+[52,62,48,57,64,61,69,55,42,68,45,56,49,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 156, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,61,55,67,58,97,73,54,35,70,85,61,51,35],
+[39,0,10,57,84,61,37,52,49,69,49,49,56,64],
+[45,90,0,83,85,100,76,43,79,90,73,64,75,71],
+[33,43,17,0,64,55,43,19,34,45,35,49,27,20],
+[42,16,15,36,0,63,43,31,31,39,46,42,38,16],
+[3,39,0,45,37,0,37,16,24,28,12,25,20,25],
+[27,63,24,57,57,63,0,47,61,56,63,27,48,52],
+[46,48,57,81,69,84,53,0,52,84,64,55,66,52],
+[65,51,21,66,69,76,39,48,0,54,60,40,41,52],
+[30,31,10,55,61,72,44,16,46,0,28,30,27,31],
+[15,51,27,65,54,88,37,36,40,72,0,52,35,40],
+[39,51,36,51,58,75,73,45,60,70,48,0,30,45],
+[49,44,25,73,62,80,52,34,59,73,65,70,0,44],
+[65,36,29,80,84,75,48,48,48,69,60,55,56,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 157, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,51,47,46,54,45,53,47,50,49,45,56,48,59],
+[49,0,50,48,52,45,63,50,57,45,58,57,46,58],
+[53,50,0,50,53,57,54,38,45,50,49,53,38,55],
+[54,52,50,0,51,53,54,52,56,52,49,56,47,52],
+[46,48,47,49,0,48,54,56,56,52,48,45,44,57],
+[55,55,43,47,52,0,52,58,50,42,46,54,48,57],
+[47,37,46,46,46,48,0,45,48,46,42,44,44,52],
+[53,50,62,48,44,42,55,0,46,60,53,46,46,53],
+[50,43,55,44,44,50,52,54,0,59,46,49,49,57],
+[51,55,50,48,48,58,54,40,41,0,46,52,56,62],
+[55,42,51,51,52,54,58,47,54,54,0,53,45,50],
+[44,43,47,44,55,46,56,54,51,48,47,0,45,48],
+[52,54,62,53,56,52,56,54,51,44,55,55,0,62],
+[41,42,45,48,43,43,48,47,43,38,50,52,38,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 158, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,52,42,49,49,53,56,53,53,53,54,46,45,50],
+[48,0,52,55,57,55,58,59,56,54,53,55,49,48],
+[58,48,0,60,52,60,62,54,62,54,56,48,54,45],
+[51,45,40,0,48,52,59,47,48,54,51,47,45,47],
+[51,43,48,52,0,54,64,55,54,62,56,51,54,52],
+[47,45,40,48,46,0,57,52,50,46,48,45,43,45],
+[44,42,38,41,36,43,0,43,42,40,46,38,39,35],
+[47,41,46,53,45,48,57,0,43,51,50,48,48,41],
+[47,44,38,52,46,50,58,57,0,44,53,50,39,49],
+[47,46,46,46,38,54,60,49,56,0,42,44,52,43],
+[46,47,44,49,44,52,54,50,47,58,0,46,44,43],
+[54,45,52,53,49,55,62,52,50,56,54,0,52,48],
+[55,51,46,55,46,57,61,52,61,48,56,48,0,45],
+[50,52,55,53,48,55,65,59,51,57,57,52,55,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 159, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,56,52,47,37,50,56,48,51,49,45,55,47,54],
+[44,0,39,47,41,50,45,48,47,44,44,56,48,60],
+[48,61,0,51,49,41,48,45,42,48,56,54,52,55],
+[53,53,49,0,43,55,46,49,48,49,50,61,51,54],
+[63,59,51,57,0,49,58,57,47,45,51,67,56,57],
+[50,50,59,45,51,0,60,44,55,42,57,61,52,64],
+[44,55,52,54,42,40,0,52,38,41,46,59,59,54],
+[52,52,55,51,43,56,48,0,44,50,45,59,50,51],
+[49,53,58,52,53,45,62,56,0,52,49,60,57,62],
+[51,56,52,51,55,58,59,50,48,0,62,53,58,57],
+[55,56,44,50,49,43,54,55,51,38,0,53,54,53],
+[45,44,46,39,33,39,41,41,40,47,47,0,47,58],
+[53,52,48,49,44,48,41,50,43,42,46,53,0,53],
+[46,40,45,46,43,36,46,49,38,43,47,42,47,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 160, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,62,62,46,35,72,62,53,47,54,59,47,57,47],
+[38,0,48,55,37,63,39,45,48,45,53,39,55,40],
+[38,52,0,41,44,72,42,54,50,42,44,57,51,37],
+[54,45,59,0,48,66,57,59,48,57,52,58,63,39],
+[65,63,56,52,0,62,56,62,54,63,51,50,61,52],
+[28,37,28,34,38,0,45,32,31,34,41,35,44,37],
+[38,61,58,43,44,55,0,51,51,51,59,57,64,58],
+[47,55,46,41,38,68,49,0,41,37,39,42,61,43],
+[53,52,50,52,46,69,49,59,0,55,45,45,62,48],
+[46,55,58,43,37,66,49,63,45,0,49,46,57,36],
+[41,47,56,48,49,59,41,61,55,51,0,47,52,43],
+[53,61,43,42,50,65,43,58,55,54,53,0,55,62],
+[43,45,49,37,39,56,36,39,38,43,48,45,0,39],
+[53,60,63,61,48,63,42,57,52,64,57,38,61,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 161, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,49,37,46,43,53,50,50,45,48,48,41,42,49],
+[51,0,47,51,47,46,52,55,43,48,49,37,43,49],
+[63,53,0,54,51,57,61,62,51,47,56,43,44,57],
+[54,49,46,0,50,48,52,57,44,52,49,40,42,55],
+[57,53,49,50,0,62,59,62,46,48,53,47,45,52],
+[47,54,43,52,38,0,53,45,52,44,50,38,40,50],
+[50,48,39,48,41,47,0,52,42,43,55,35,41,42],
+[50,45,38,43,38,55,48,0,41,41,49,32,38,49],
+[55,57,49,56,54,48,58,59,0,55,61,46,44,55],
+[52,52,53,48,52,56,57,59,45,0,62,37,42,53],
+[52,51,44,51,47,50,45,51,39,38,0,39,32,50],
+[59,63,57,60,53,62,65,68,54,63,61,0,50,61],
+[58,57,56,58,55,60,59,62,56,58,68,50,0,55],
+[51,51,43,45,48,50,58,51,45,47,50,39,45,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 162, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,42,54,45,43,43,42,43,47,36,46,43,42,42],
+[58,0,66,55,55,57,43,49,55,42,49,60,55,46],
+[46,34,0,44,40,38,48,40,39,38,37,37,46,42],
+[55,45,56,0,40,58,53,51,52,46,54,54,48,52],
+[57,45,60,60,0,58,43,54,50,50,49,46,49,41],
+[57,43,62,42,42,0,43,48,51,42,44,40,43,46],
+[58,57,52,47,57,57,0,53,54,52,50,50,48,59],
+[57,51,60,49,46,52,47,0,53,45,54,48,58,48],
+[53,45,61,48,50,49,46,47,0,44,44,42,43,50],
+[64,58,62,54,50,58,48,55,56,0,57,52,55,51],
+[54,51,63,46,51,56,50,46,56,43,0,47,47,57],
+[57,40,63,46,54,60,50,52,58,48,53,0,49,51],
+[58,45,54,52,51,57,52,42,57,45,53,51,0,54],
+[58,54,58,48,59,54,41,52,50,49,43,49,46,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 163, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,59,50,51,34,53,56,57,52,51,52,52,53,58],
+[41,0,48,48,38,46,47,55,45,46,43,43,49,53],
+[50,52,0,55,41,59,50,55,47,50,47,51,52,54],
+[49,52,45,0,42,52,54,56,52,51,52,46,45,54],
+[66,62,59,58,0,63,60,60,50,63,59,54,58,65],
+[47,54,41,48,37,0,48,50,47,46,45,45,49,56],
+[44,53,50,46,40,52,0,54,49,51,47,46,52,61],
+[43,45,45,44,40,50,46,0,43,45,46,48,45,49],
+[48,55,53,48,50,53,51,57,0,47,48,50,50,51],
+[49,54,50,49,37,54,49,55,53,0,52,52,55,60],
+[48,57,53,48,41,55,53,54,52,48,0,50,57,57],
+[48,57,49,54,46,55,54,52,50,48,50,0,53,57],
+[47,51,48,55,42,51,48,55,50,45,43,47,0,54],
+[42,47,46,46,35,44,39,51,49,40,43,43,46,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 164, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,45,50,59,49,49,51,47,47,48,55,56,56,48],
+[55,0,56,50,53,51,47,49,47,52,55,58,51,52],
+[50,44,0,52,49,46,49,52,48,51,51,54,45,46],
+[41,50,48,0,50,52,50,48,49,48,55,52,56,44],
+[51,47,51,50,0,48,52,46,49,47,52,56,48,46],
+[51,49,54,48,52,0,51,47,48,52,50,50,50,42],
+[49,53,51,50,48,49,0,48,50,48,53,53,59,52],
+[53,51,48,52,54,53,52,0,50,52,55,52,59,44],
+[53,53,52,51,51,52,50,50,0,54,55,54,45,49],
+[52,48,49,52,53,48,52,48,46,0,49,57,52,51],
+[45,45,49,45,48,50,47,45,45,51,0,50,44,42],
+[44,42,46,48,44,50,47,48,46,43,50,0,48,39],
+[44,49,55,44,52,50,41,41,55,48,56,52,0,47],
+[52,48,54,56,54,58,48,56,51,49,58,61,53,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 165, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,54,65,54,54,51,59,50,61,58,51,61,65,62],
+[46,0,51,46,44,49,52,48,57,52,50,56,53,58],
+[35,49,0,41,51,44,56,42,52,44,44,51,42,50],
+[46,54,59,0,47,50,54,52,54,50,49,57,47,62],
+[46,56,49,53,0,53,51,40,58,49,44,54,51,58],
+[49,51,56,50,47,0,49,33,56,47,45,52,50,54],
+[41,48,44,46,49,51,0,40,51,46,37,47,48,59],
+[50,52,58,48,60,67,60,0,60,59,57,58,63,63],
+[39,43,48,46,42,44,49,40,0,37,42,45,40,53],
+[42,48,56,50,51,53,54,41,63,0,47,55,52,57],
+[49,50,56,51,56,55,63,43,58,53,0,62,55,69],
+[39,44,49,43,46,48,53,42,55,45,38,0,45,55],
+[35,47,58,53,49,50,52,37,60,48,45,55,0,55],
+[38,42,50,38,42,46,41,37,47,43,31,45,45,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 166, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,53,49,53,50,44,59,60,52,44,47,51,53,56],
+[47,0,48,58,49,53,56,59,48,48,54,51,54,55],
+[51,52,0,55,47,48,53,51,50,53,37,48,54,53],
+[47,42,45,0,50,45,52,47,43,46,46,42,37,51],
+[50,51,53,50,0,52,51,44,47,48,43,42,59,54],
+[56,47,52,55,48,0,51,58,46,46,41,47,53,46],
+[41,44,47,48,49,49,0,44,45,48,39,44,52,51],
+[40,41,49,53,56,42,56,0,43,49,49,37,49,47],
+[48,52,50,57,53,54,55,57,0,49,53,54,57,54],
+[56,52,47,54,52,54,52,51,51,0,47,51,51,55],
+[53,46,63,54,57,59,61,51,47,53,0,56,58,49],
+[49,49,52,58,58,53,56,63,46,49,44,0,52,57],
+[47,46,46,63,41,47,48,51,43,49,42,48,0,50],
+[44,45,47,49,46,54,49,53,46,45,51,43,50,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 167, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,59,60,79,48,72,77,62,72,69,63,70,63,57],
+[41,0,56,42,33,60,42,40,50,33,44,59,62,53],
+[40,44,0,40,32,66,60,56,80,59,69,64,45,52],
+[21,58,60,0,46,50,45,51,73,58,68,49,40,64],
+[52,67,68,54,0,48,59,61,64,61,58,46,39,54],
+[28,40,34,50,52,0,56,41,70,51,44,44,55,40],
+[23,58,40,55,41,44,0,41,80,52,66,59,40,57],
+[38,60,44,49,39,59,59,0,83,69,67,46,43,60],
+[28,50,20,27,36,30,20,17,0,42,37,27,28,46],
+[31,67,41,42,39,49,48,31,58,0,42,37,39,36],
+[37,56,31,32,42,56,34,33,63,58,0,47,53,49],
+[30,41,36,51,54,56,41,54,73,63,53,0,45,43],
+[37,38,55,60,61,45,60,57,72,61,47,55,0,45],
+[43,47,48,36,46,60,43,40,54,64,51,57,55,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 168, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,59,50,47,52,54,49,51,57,63,42,61,50,55],
+[41,0,47,41,47,41,52,47,47,43,43,51,47,45],
+[50,53,0,35,56,47,55,46,43,45,45,61,45,44],
+[53,59,65,0,55,59,69,55,58,47,39,64,52,45],
+[48,53,44,45,0,44,48,41,50,48,40,54,45,47],
+[46,59,53,41,56,0,50,48,54,45,48,61,44,52],
+[51,48,45,31,52,50,0,42,49,50,34,56,41,46],
+[49,53,54,45,59,52,58,0,46,48,50,47,37,54],
+[43,53,57,42,50,46,51,54,0,48,54,61,47,42],
+[37,57,55,53,52,55,50,52,52,0,49,61,47,50],
+[58,57,55,61,60,52,66,50,46,51,0,72,49,56],
+[39,49,39,36,46,39,44,53,39,39,28,0,42,44],
+[50,53,55,48,55,56,59,63,53,53,51,58,0,52],
+[45,55,56,55,53,48,54,46,58,50,44,56,48,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 169, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,49,59,54,57,63,54,69,55,59,56,53,68,49],
+[51,0,53,49,62,50,38,66,38,58,57,43,54,51],
+[41,47,0,43,45,45,52,66,42,54,52,46,44,48],
+[46,51,57,0,53,48,58,67,56,62,60,50,61,42],
+[43,38,55,47,0,48,51,50,43,44,62,37,56,39],
+[37,50,55,52,52,0,49,51,52,49,58,38,50,46],
+[46,62,48,42,49,51,0,55,46,52,48,36,43,55],
+[31,34,34,33,50,49,45,0,37,40,40,31,52,38],
+[45,62,58,44,57,48,54,63,0,58,54,50,58,58],
+[41,42,46,38,56,51,48,60,42,0,48,33,56,49],
+[44,43,48,40,38,42,52,60,46,52,0,42,55,42],
+[47,57,54,50,63,62,64,69,50,67,58,0,62,59],
+[32,46,56,39,44,50,57,48,42,44,45,38,0,46],
+[51,49,52,58,61,54,45,62,42,51,58,41,54,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 170, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,48,45,53,47,39,48,48,47,50,45,50,49,44],
+[52,0,46,60,57,45,48,59,52,59,48,47,53,47],
+[55,54,0,60,65,48,52,60,46,58,41,51,55,53],
+[47,40,40,0,49,49,45,48,38,51,38,43,42,41],
+[53,43,35,51,0,41,51,48,44,49,41,43,49,41],
+[61,55,52,51,59,0,48,64,51,54,52,55,50,52],
+[52,52,48,55,49,52,0,59,49,55,52,56,47,43],
+[52,41,40,52,52,36,41,0,41,45,42,38,41,41],
+[53,48,54,62,56,49,51,59,0,55,49,50,48,50],
+[50,41,42,49,51,46,45,55,45,0,37,49,47,48],
+[55,52,59,62,59,48,48,58,51,63,0,49,49,56],
+[50,53,49,57,57,45,44,62,50,51,51,0,46,49],
+[51,47,45,58,51,50,53,59,52,53,51,54,0,44],
+[56,53,47,59,59,48,57,59,50,52,44,51,56,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 171, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,52,57,51,63,52,54,54,52,51,57,47,61,42],
+[48,0,43,38,53,41,40,51,37,45,50,38,41,41],
+[43,57,0,49,56,40,57,55,49,45,58,43,44,48],
+[49,62,51,0,61,54,61,62,51,62,66,48,55,51],
+[37,47,44,39,0,36,59,48,47,46,53,41,43,40],
+[48,59,60,46,64,0,56,61,47,58,61,50,46,48],
+[46,60,43,39,41,44,0,53,46,47,54,46,44,43],
+[46,49,45,38,52,39,47,0,50,47,58,43,55,36],
+[48,63,51,49,53,53,54,50,0,56,57,40,53,43],
+[49,55,55,38,54,42,53,53,44,0,58,43,48,36],
+[43,50,42,34,47,39,46,42,43,42,0,41,36,35],
+[53,62,57,52,59,50,54,57,60,57,59,0,55,49],
+[39,59,56,45,57,54,56,45,47,52,64,45,0,43],
+[58,59,52,49,60,52,57,64,57,64,65,51,57,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 172, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,56,39,46,52,53,53,52,55,44,51,41,42,52],
+[44,0,40,51,49,49,52,43,58,44,51,42,49,52],
+[61,60,0,56,63,51,50,47,53,46,49,52,55,60],
+[54,49,44,0,49,45,50,41,47,43,40,42,49,52],
+[48,51,37,51,0,50,50,49,53,39,47,44,44,49],
+[47,51,49,55,50,0,55,42,56,47,47,43,47,52],
+[47,48,50,50,50,45,0,42,46,37,38,42,46,48],
+[48,57,53,59,51,58,58,0,50,48,44,52,53,54],
+[45,42,47,53,47,44,54,50,0,51,43,42,44,56],
+[56,56,54,57,61,53,63,52,49,0,51,50,54,58],
+[49,49,51,60,53,53,62,56,57,49,0,55,46,56],
+[59,58,48,58,56,57,58,48,58,50,45,0,49,61],
+[58,51,45,51,56,53,54,47,56,46,54,51,0,52],
+[48,48,40,48,51,48,52,46,44,42,44,39,48,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 173, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,44,41,38,33,39,41,46,41,43,47,44,54,48],
+[56,0,55,59,55,57,53,52,60,48,53,60,54,58],
+[59,45,0,44,42,48,55,51,48,51,45,55,52,61],
+[62,41,56,0,42,47,51,49,48,57,58,53,56,52],
+[67,45,58,58,0,55,61,54,48,64,58,62,67,59],
+[61,43,52,53,45,0,48,44,43,53,53,53,57,50],
+[59,47,45,49,39,52,0,48,39,49,47,48,60,57],
+[54,48,49,51,46,56,52,0,43,56,56,46,58,55],
+[59,40,52,52,52,57,61,57,0,60,55,60,64,57],
+[57,52,49,43,36,47,51,44,40,0,50,50,52,55],
+[53,47,55,42,42,47,53,44,45,50,0,49,53,59],
+[56,40,45,47,38,47,52,54,40,50,51,0,53,54],
+[46,46,48,44,33,43,40,42,36,48,47,47,0,42],
+[52,42,39,48,41,50,43,45,43,45,41,46,58,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 174, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,50,47,51,54,49,46,40,46,45,47,45,44,45],
+[50,0,42,56,51,56,49,35,42,43,46,57,52,38],
+[53,58,0,48,47,64,45,33,31,45,47,43,57,45],
+[49,44,52,0,41,58,45,40,35,44,46,42,46,36],
+[46,49,53,59,0,64,48,50,31,40,48,56,47,39],
+[51,44,36,42,36,0,43,43,30,36,42,40,52,45],
+[54,51,55,55,52,57,0,42,33,49,54,49,52,37],
+[60,65,67,60,50,57,58,0,43,60,65,63,59,50],
+[54,58,69,65,69,70,67,57,0,59,58,56,58,48],
+[55,57,55,56,60,64,51,40,41,0,57,62,51,48],
+[53,54,53,54,52,58,46,35,42,43,0,45,63,39],
+[55,43,57,58,44,60,51,37,44,38,55,0,60,47],
+[56,48,43,54,53,48,48,41,42,49,37,40,0,41],
+[55,62,55,64,61,55,63,50,52,52,61,53,59,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 175, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,50,43,62,72,68,58,58,55,45,42,56,53,55],
+[50,0,65,69,63,76,54,53,64,68,49,77,72,68],
+[57,35,0,56,73,78,62,48,62,55,43,59,57,59],
+[38,31,44,0,43,50,38,22,36,30,21,31,31,34],
+[28,37,27,57,0,67,46,50,47,55,39,48,54,46],
+[32,24,22,50,33,0,30,34,33,33,37,42,39,32],
+[42,46,38,62,54,70,0,48,53,50,36,65,55,52],
+[42,47,52,78,50,66,52,0,38,45,49,45,62,37],
+[45,36,38,64,53,67,47,62,0,43,50,53,55,37],
+[55,32,45,70,45,67,50,55,57,0,44,47,57,42],
+[58,51,57,79,61,63,64,51,50,56,0,66,68,57],
+[44,23,41,69,52,58,35,55,47,53,34,0,59,44],
+[47,28,43,69,46,61,45,38,45,43,32,41,0,48],
+[45,32,41,66,54,68,48,63,63,58,43,56,52,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 176, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,48,24,60,55,42,33,49,54,59,56,52,51,63],
+[52,0,38,60,60,56,52,53,51,69,65,63,47,59],
+[76,62,0,63,66,61,49,61,58,70,70,63,50,63],
+[40,40,37,0,50,48,33,45,45,52,59,60,35,50],
+[45,40,34,50,0,64,53,55,44,58,65,43,45,49],
+[58,44,39,52,36,0,30,48,49,61,49,56,49,48],
+[67,48,51,67,47,70,0,54,50,58,63,53,55,56],
+[51,47,39,55,45,52,46,0,43,48,42,54,42,52],
+[46,49,42,55,56,51,50,57,0,54,60,55,50,56],
+[41,31,30,48,42,39,42,52,46,0,39,41,42,39],
+[44,35,30,41,35,51,37,58,40,61,0,48,44,47],
+[48,37,37,40,57,44,47,46,45,59,52,0,46,48],
+[49,53,50,65,55,51,45,58,50,58,56,54,0,70],
+[37,41,37,50,51,52,44,48,44,61,53,52,30,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 177, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,57,51,50,53,66,58,64,60,53,65,53,51,57],
+[43,0,48,45,47,50,51,44,46,45,49,46,49,50],
+[49,52,0,43,53,52,54,60,57,57,62,57,48,49],
+[50,55,57,0,51,59,61,57,56,55,61,54,48,55],
+[47,53,47,49,0,60,55,52,50,48,53,55,46,51],
+[34,50,48,41,40,0,45,45,52,43,54,41,43,50],
+[42,49,46,39,45,55,0,57,54,49,54,51,44,40],
+[36,56,40,43,48,55,43,0,45,47,49,52,44,50],
+[40,54,43,44,50,48,46,55,0,51,58,53,43,53],
+[47,55,43,45,52,57,51,53,49,0,54,49,51,45],
+[35,51,38,39,47,46,46,51,42,46,0,40,41,42],
+[47,54,43,46,45,59,49,48,47,51,60,0,44,47],
+[49,51,52,52,54,57,56,56,57,49,59,56,0,54],
+[43,50,51,45,49,50,60,50,47,55,58,53,46,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 178, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,58,50,52,42,43,55,54,58,56,49,49,45,62],
+[42,0,46,39,42,39,39,58,60,43,48,49,40,33],
+[50,54,0,42,44,46,47,52,59,37,39,41,40,50],
+[48,61,58,0,49,43,44,60,64,45,45,63,42,45],
+[58,58,56,51,0,43,48,60,60,60,54,47,41,38],
+[57,61,54,57,57,0,57,62,71,49,60,66,51,36],
+[45,61,53,56,52,43,0,55,45,35,49,58,54,53],
+[46,42,48,40,40,38,45,0,43,47,38,53,47,41],
+[42,40,41,36,40,29,55,57,0,42,27,56,34,37],
+[44,57,63,55,40,51,65,53,58,0,47,55,49,51],
+[51,52,61,55,46,40,51,62,73,53,0,54,47,47],
+[51,51,59,37,53,34,42,47,44,45,46,0,45,39],
+[55,60,60,58,59,49,46,53,66,51,53,55,0,54],
+[38,67,50,55,62,64,47,59,63,49,53,61,46,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 179, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,49,62,54,54,50,54,62,49,47,55,51,56,65],
+[51,0,57,56,47,47,52,54,49,45,50,51,56,60],
+[38,43,0,44,47,38,44,52,40,41,44,46,43,50],
+[46,44,56,0,46,47,54,57,42,38,50,54,48,58],
+[46,53,53,54,0,48,48,53,51,42,55,49,51,55],
+[50,53,62,53,52,0,52,61,49,51,51,48,57,60],
+[46,48,56,46,52,48,0,55,47,40,44,49,49,52],
+[38,46,48,43,47,39,45,0,44,39,47,44,43,54],
+[51,51,60,58,49,51,53,56,0,46,61,58,53,61],
+[53,55,59,62,58,49,60,61,54,0,55,57,59,59],
+[45,50,56,50,45,49,56,53,39,45,0,46,53,54],
+[49,49,54,46,51,52,51,56,42,43,54,0,52,58],
+[44,44,57,52,49,43,51,57,47,41,47,48,0,59],
+[35,40,50,42,45,40,48,46,39,41,46,42,41,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 180, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,55,44,41,48,46,38,54,45,40,54,50,46,47],
+[45,0,47,57,46,30,35,54,54,51,40,50,49,60],
+[56,53,0,49,55,35,33,60,61,40,45,53,66,52],
+[59,43,51,0,53,52,48,49,43,41,46,53,58,56],
+[52,54,45,47,0,38,40,43,48,44,48,51,57,52],
+[54,70,65,48,62,0,57,64,65,60,49,59,63,56],
+[62,65,67,52,60,43,0,66,60,59,49,70,62,55],
+[46,46,40,51,57,36,34,0,30,54,47,44,49,44],
+[55,46,39,57,52,35,40,70,0,52,44,52,54,37],
+[60,49,60,59,56,40,41,46,48,0,41,65,67,52],
+[46,60,55,54,52,51,51,53,56,59,0,68,65,64],
+[50,50,47,47,49,41,30,56,48,35,32,0,42,48],
+[54,51,34,42,43,37,38,51,46,33,35,58,0,43],
+[53,40,48,44,48,44,45,56,63,48,36,52,57,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 181, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,37,62,33,51,43,52,33,38,58,42,32,52,27],
+[63,0,55,44,49,51,49,46,38,59,55,39,57,40],
+[38,45,0,33,34,48,34,32,30,55,28,31,47,27],
+[67,56,67,0,58,58,54,53,54,68,45,48,79,59],
+[49,51,66,42,0,42,46,41,33,61,41,39,57,44],
+[57,49,52,42,58,0,62,46,36,50,42,40,55,42],
+[48,51,66,46,54,38,0,44,45,63,49,49,58,38],
+[67,54,68,47,59,54,56,0,43,61,51,44,68,64],
+[62,62,70,46,67,64,55,57,0,76,58,55,81,49],
+[42,41,45,32,39,50,37,39,24,0,26,28,44,42],
+[58,45,72,55,59,58,51,49,42,74,0,36,62,45],
+[68,61,69,52,61,60,51,56,45,72,64,0,58,53],
+[48,43,53,21,43,45,42,32,19,56,38,42,0,40],
+[73,60,73,41,56,58,62,36,51,58,55,47,60,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 182, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,47,43,48,47,37,45,47,56,46,46,44,36,36],
+[53,0,42,45,48,44,50,46,55,42,58,47,46,44],
+[57,58,0,52,49,45,57,56,54,56,52,49,51,60],
+[52,55,48,0,41,43,49,54,49,43,47,48,47,44],
+[53,52,51,59,0,45,64,49,55,59,63,50,50,47],
+[63,56,55,57,55,0,64,57,48,56,62,54,51,58],
+[55,50,43,51,36,36,0,42,46,52,45,45,41,38],
+[53,54,44,46,51,43,58,0,43,53,53,44,57,46],
+[44,45,46,51,45,52,54,57,0,51,54,48,45,49],
+[54,58,44,57,41,44,48,47,49,0,51,48,54,41],
+[54,42,48,53,37,38,55,47,46,49,0,39,45,45],
+[56,53,51,52,50,46,55,56,52,52,61,0,48,49],
+[64,54,49,53,50,49,59,43,55,46,55,52,0,47],
+[64,56,40,56,53,42,62,54,51,59,55,51,53,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 183, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,48,46,45,48,46,34,53,41,56,44,47,41,55],
+[52,0,48,45,51,48,51,51,44,55,48,47,54,55],
+[54,52,0,44,48,48,47,55,43,50,50,50,46,49],
+[55,55,56,0,49,47,56,56,43,47,60,49,51,55],
+[52,49,52,51,0,50,48,55,53,57,53,54,57,57],
+[54,52,52,53,50,0,48,56,56,57,53,50,43,57],
+[66,49,53,44,52,52,0,60,53,59,55,58,45,59],
+[47,49,45,44,45,44,40,0,42,57,49,49,46,53],
+[59,56,57,57,47,44,47,58,0,61,52,49,49,64],
+[44,45,50,53,43,43,41,43,39,0,52,48,52,51],
+[56,52,50,40,47,47,45,51,48,48,0,41,44,50],
+[53,53,50,51,46,50,42,51,51,52,59,0,54,54],
+[59,46,54,49,43,57,55,54,51,48,56,46,0,50],
+[45,45,51,45,43,43,41,47,36,49,50,46,50,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 184, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,31,48,50,57,50,31,49,46,69,41,48,70,51],
+[69,0,47,54,52,54,36,61,56,62,47,48,64,55],
+[52,53,0,48,55,73,30,62,60,64,50,40,60,73],
+[50,46,52,0,54,69,26,48,52,59,52,62,54,53],
+[43,48,45,46,0,65,46,44,44,53,39,41,57,55],
+[50,46,27,31,35,0,27,41,40,41,35,32,49,55],
+[69,64,70,74,54,73,0,62,64,73,50,67,61,68],
+[51,39,38,52,56,59,38,0,57,54,42,34,62,55],
+[54,44,40,48,56,60,36,43,0,50,42,40,51,45],
+[31,38,36,41,47,59,27,46,50,0,47,29,59,43],
+[59,53,50,48,61,65,50,58,58,53,0,53,57,76],
+[52,52,60,38,59,68,33,66,60,71,47,0,66,48],
+[30,36,40,46,43,51,39,38,49,41,43,34,0,50],
+[49,45,27,47,45,45,32,45,55,57,24,52,50,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 185, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,46,46,42,43,49,47,44,46,52,43,50,46,47],
+[54,0,51,52,48,51,53,48,53,55,48,50,44,46],
+[54,49,0,46,46,52,49,45,45,58,49,55,46,49],
+[58,48,54,0,49,54,53,49,60,53,50,47,49,50],
+[57,52,54,51,0,61,52,48,53,54,56,58,52,53],
+[51,49,48,46,39,0,56,50,58,52,49,44,46,40],
+[53,47,51,47,48,44,0,44,55,49,57,50,50,52],
+[56,52,55,51,52,50,56,0,57,54,50,57,50,57],
+[54,47,55,40,47,42,45,43,0,55,50,52,42,48],
+[48,45,42,47,46,48,51,46,45,0,52,50,40,47],
+[57,52,51,50,44,51,43,50,50,48,0,46,44,45],
+[50,50,45,53,42,56,50,43,48,50,54,0,46,45],
+[54,56,54,51,48,54,50,50,58,60,56,54,0,49],
+[53,54,51,50,47,60,48,43,52,53,55,55,51,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 186, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,55,47,51,44,48,50,55,52,44,49,53,49,54],
+[45,0,47,58,49,46,50,49,46,47,48,51,55,59],
+[53,53,0,64,51,52,56,59,54,53,47,46,52,52],
+[49,42,36,0,47,50,43,46,45,45,39,42,46,49],
+[56,51,49,53,0,49,42,50,56,52,51,46,43,48],
+[52,54,48,50,51,0,42,54,54,54,49,45,47,52],
+[50,50,44,57,58,58,0,49,50,48,45,47,47,50],
+[45,51,41,54,50,46,51,0,49,37,42,43,46,45],
+[48,54,46,55,44,46,50,51,0,40,41,44,44,56],
+[56,53,47,55,48,46,52,63,60,0,52,51,47,58],
+[51,52,53,61,49,51,55,58,59,48,0,45,49,60],
+[47,49,54,58,54,55,53,57,56,49,55,0,42,54],
+[51,45,48,54,57,53,53,54,56,53,51,58,0,51],
+[46,41,48,51,52,48,50,55,44,42,40,46,49,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 187, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,59,48,59,48,45,42,48,48,50,33,47,42,50],
+[41,0,34,69,50,57,54,40,41,33,43,36,36,54],
+[52,66,0,66,60,50,53,57,55,52,38,50,56,48],
+[41,31,34,0,43,41,30,29,31,35,35,28,30,39],
+[52,50,40,57,0,57,52,46,33,47,33,31,48,52],
+[55,43,50,59,43,0,41,53,50,43,44,45,41,54],
+[58,46,47,70,48,59,0,45,55,45,41,41,38,42],
+[52,60,43,71,54,47,55,0,46,44,42,47,32,57],
+[52,59,45,69,67,50,45,54,0,45,50,46,48,50],
+[50,67,48,65,53,57,55,56,55,0,43,51,47,55],
+[67,57,62,65,67,56,59,58,50,57,0,58,64,58],
+[53,64,50,72,69,55,59,53,54,49,42,0,47,54],
+[58,64,44,70,52,59,62,68,52,53,36,53,0,57],
+[50,46,52,61,48,46,58,43,50,45,42,46,43,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 188, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,45,46,45,51,56,52,50,40,55,49,56,53,50],
+[55,0,49,57,53,60,57,57,56,52,59,51,61,59],
+[54,51,0,55,39,55,59,52,40,60,55,46,62,54],
+[55,43,45,0,51,49,46,44,43,55,43,48,47,48],
+[49,47,61,49,0,55,56,51,45,60,54,54,55,49],
+[44,40,45,51,45,0,50,48,43,55,56,51,51,46],
+[48,43,41,54,44,50,0,45,37,56,38,45,51,45],
+[50,43,48,56,49,52,55,0,35,51,53,55,57,47],
+[60,44,60,57,55,57,63,65,0,66,58,57,59,63],
+[45,48,40,45,40,45,44,49,34,0,47,49,43,33],
+[51,41,45,57,46,44,62,47,42,53,0,54,51,44],
+[44,49,54,52,46,49,55,45,43,51,46,0,53,42],
+[47,39,38,53,45,49,49,43,41,57,49,47,0,50],
+[50,41,46,52,51,54,55,53,37,67,56,58,50,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 189, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,57,53,56,64,56,50,49,48,46,53,50,68,54],
+[43,0,50,46,61,52,46,50,45,49,45,55,50,48],
+[47,50,0,47,57,48,48,52,48,39,47,41,56,54],
+[44,54,53,0,54,49,44,40,48,44,47,39,54,47],
+[36,39,43,46,0,43,46,42,37,41,43,33,45,46],
+[44,48,52,51,57,0,45,48,52,45,46,46,60,41],
+[50,54,52,56,54,55,0,47,43,53,54,53,65,49],
+[51,50,48,60,58,52,53,0,41,47,46,47,56,56],
+[52,55,52,52,63,48,57,59,0,57,50,51,58,49],
+[54,51,61,56,59,55,47,53,43,0,46,45,51,51],
+[47,55,53,53,57,54,46,54,50,54,0,50,57,49],
+[50,45,59,61,67,54,47,53,49,55,50,0,56,54],
+[32,50,44,46,55,40,35,44,42,49,43,44,0,49],
+[46,52,46,53,54,59,51,44,51,49,51,46,51,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 190, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,49,50,52,53,55,51,44,56,51,50,48,49,54],
+[51,0,48,48,53,44,49,45,57,42,47,47,49,53],
+[50,52,0,57,65,63,57,49,70,51,54,49,62,56],
+[48,52,43,0,52,44,50,47,61,45,60,53,52,52],
+[47,47,35,48,0,54,38,41,58,42,53,41,46,50],
+[45,56,37,56,46,0,46,41,62,45,59,36,49,48],
+[49,51,43,50,62,54,0,56,49,42,59,46,51,54],
+[56,55,51,53,59,59,44,0,67,46,61,50,62,59],
+[44,43,30,39,42,38,51,33,0,31,43,43,52,48],
+[49,58,49,55,58,55,58,54,69,0,55,49,62,59],
+[50,53,46,40,47,41,41,39,57,45,0,43,61,51],
+[52,53,51,47,59,64,54,50,57,51,57,0,52,50],
+[51,51,38,48,54,51,49,38,48,38,39,48,0,47],
+[46,47,44,48,50,52,46,41,52,41,49,50,53,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 191, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,50,47,55,53,52,51,50,51,45,49,44,53,52],
+[50,0,49,59,55,57,47,55,54,55,45,45,58,49],
+[53,51,0,57,54,53,56,55,57,50,54,51,57,60],
+[45,41,43,0,47,52,48,46,50,43,40,42,45,45],
+[47,45,46,53,0,50,48,43,53,46,36,42,40,55],
+[48,43,47,48,50,0,56,54,50,42,44,43,49,42],
+[49,53,44,52,52,44,0,42,54,41,48,49,52,53],
+[50,45,45,54,57,46,58,0,56,51,44,47,47,49],
+[49,46,43,50,47,50,46,44,0,40,45,46,51,42],
+[55,45,50,57,54,58,59,49,60,0,45,49,52,55],
+[51,55,46,60,64,56,52,56,55,55,0,50,51,55],
+[56,55,49,58,58,57,51,53,54,51,50,0,49,56],
+[47,42,43,55,60,51,48,53,49,48,49,51,0,50],
+[48,51,40,55,45,58,47,51,58,45,45,44,50,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 192, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,46,51,51,44,44,48,51,62,49,47,47,57,52],
+[54,0,46,50,48,47,50,54,58,45,49,51,53,48],
+[49,54,0,60,44,52,49,59,59,47,52,50,58,54],
+[49,50,40,0,38,42,42,47,53,45,40,45,49,48],
+[56,52,56,62,0,54,49,59,61,54,53,53,61,54],
+[56,53,48,58,46,0,51,56,61,46,57,49,60,47],
+[52,50,51,58,51,49,0,51,65,50,48,49,59,52],
+[49,46,41,53,41,44,49,0,54,42,45,44,51,42],
+[38,42,41,47,39,39,35,46,0,34,43,34,49,43],
+[51,55,53,55,46,54,50,58,66,0,56,50,55,53],
+[53,51,48,60,47,43,52,55,57,44,0,45,59,45],
+[53,49,50,55,47,51,51,56,66,50,55,0,60,53],
+[43,47,42,51,39,40,41,49,51,45,41,40,0,47],
+[48,52,46,52,46,53,48,58,57,47,55,47,53,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 193, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,50,50,50,63,50,74,50,63,50,74,50,37,50],
+[50,0,0,13,63,50,37,13,26,13,87,50,37,50],
+[50,100,0,26,63,100,87,50,26,87,87,63,87,87],
+[50,87,74,0,50,74,74,37,87,87,87,74,74,87],
+[37,37,37,50,0,37,37,0,50,37,37,50,37,74],
+[50,50,0,26,63,0,37,13,26,13,50,63,50,50],
+[26,63,13,26,63,63,0,13,26,26,87,26,13,63],
+[50,87,50,63,100,87,87,0,63,50,87,63,50,87],
+[37,74,74,13,50,74,74,37,0,74,74,50,74,74],
+[50,87,13,13,63,87,74,50,26,0,74,50,37,50],
+[26,13,13,13,63,50,13,13,26,26,0,13,0,50],
+[50,50,37,26,50,37,74,37,50,50,87,0,87,50],
+[63,63,13,26,63,50,87,50,26,63,100,13,0,63],
+[50,50,13,13,26,50,37,13,26,50,50,50,37,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 194, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,48,45,55,53,50,62,64,52,43,54,59,44,53],
+[52,0,46,55,52,61,49,61,43,54,58,62,48,55],
+[55,54,0,57,49,46,58,69,49,57,54,64,50,51],
+[45,45,43,0,42,49,54,55,40,43,46,49,39,42],
+[47,48,51,58,0,62,56,57,49,54,61,60,47,67],
+[50,39,54,51,38,0,50,56,42,50,50,52,42,50],
+[38,51,42,46,44,50,0,55,55,45,55,63,37,47],
+[36,39,31,45,43,44,45,0,41,42,48,49,33,35],
+[48,57,51,60,51,58,45,59,0,42,58,54,41,45],
+[57,46,43,57,46,50,55,58,58,0,56,62,40,47],
+[46,42,46,54,39,50,45,52,42,44,0,54,45,43],
+[41,38,36,51,40,48,37,51,46,38,46,0,32,34],
+[56,52,50,61,53,58,63,67,59,60,55,68,0,58],
+[47,45,49,58,33,50,53,65,55,53,57,66,42,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 195, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,52,45,33,21,34,35,31,36,37,51,31,58,42],
+[48,0,63,30,58,44,36,39,55,64,64,41,73,42],
+[55,37,0,56,48,42,40,38,45,54,40,30,46,51],
+[67,70,44,0,53,66,66,55,45,75,58,51,57,74],
+[79,42,52,47,0,57,55,39,53,40,54,36,50,35],
+[66,56,58,34,43,0,54,36,58,57,49,41,56,32],
+[65,64,60,34,45,46,0,52,57,61,63,52,61,53],
+[69,61,62,45,61,64,48,0,80,64,59,41,61,71],
+[64,45,55,55,47,42,43,20,0,54,51,32,42,46],
+[63,36,46,25,60,43,39,36,46,0,48,47,36,57],
+[49,36,60,42,46,51,37,41,49,52,0,22,44,42],
+[69,59,70,49,64,59,48,59,68,53,78,0,76,68],
+[42,27,54,43,50,44,39,39,58,64,56,24,0,53],
+[58,58,49,26,65,68,47,29,54,43,58,32,47,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 196, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,48,43,49,42,48,57,48,54,48,44,58,57,45],
+[52,0,53,58,50,52,48,56,60,53,58,55,57,51],
+[57,47,0,61,51,59,48,51,59,58,54,59,64,48],
+[51,42,39,0,40,50,47,51,44,52,56,48,49,37],
+[58,50,49,60,0,60,56,61,57,61,64,51,60,48],
+[52,48,41,50,40,0,49,42,45,44,54,57,47,47],
+[43,52,52,53,44,51,0,47,51,51,56,49,58,46],
+[52,44,49,49,39,58,53,0,58,57,51,52,58,57],
+[46,40,41,56,43,55,49,42,0,47,51,47,42,41],
+[52,47,42,48,39,56,49,43,53,0,52,61,48,45],
+[56,42,46,44,36,46,44,49,49,48,0,45,55,39],
+[42,45,41,52,49,43,51,48,53,39,55,0,46,51],
+[43,43,36,51,40,53,42,42,58,52,45,54,0,48],
+[55,49,52,63,52,53,54,43,59,55,61,49,52,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 197, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,49,53,52,52,51,51,62,62,55,50,52,56,51],
+[51,0,52,51,53,52,54,57,55,54,56,57,56,48],
+[47,48,0,50,47,40,44,48,51,43,44,50,52,51],
+[48,49,50,0,47,48,59,55,54,47,50,50,55,49],
+[48,47,53,53,0,47,52,60,57,54,45,53,57,47],
+[49,48,60,52,53,0,53,62,55,49,50,55,50,51],
+[49,46,56,41,48,47,0,53,56,51,41,54,49,56],
+[38,43,52,45,40,38,47,0,44,41,40,47,46,46],
+[38,45,49,46,43,45,44,56,0,45,46,43,50,47],
+[45,46,57,53,46,51,49,59,55,0,48,53,52,45],
+[50,44,56,50,55,50,59,60,54,52,0,54,52,47],
+[48,43,50,50,47,45,46,53,57,47,46,0,56,46],
+[44,44,48,45,43,50,51,54,50,48,48,44,0,46],
+[49,52,49,51,53,49,44,54,53,55,53,54,54,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 198, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,53,52,58,56,47,58,50,47,50,53,51,54,63],
+[47,0,60,47,58,59,56,51,58,54,65,46,65,65],
+[48,40,0,52,48,57,50,42,54,38,52,38,47,60],
+[42,53,48,0,56,62,61,46,53,47,51,56,51,74],
+[44,42,52,44,0,44,44,38,56,40,46,37,43,57],
+[53,41,43,38,56,0,59,41,48,45,48,44,53,50],
+[42,44,50,39,56,41,0,48,53,47,53,38,46,53],
+[50,49,58,54,62,59,52,0,61,65,55,65,62,64],
+[53,42,46,47,44,52,47,39,0,45,44,42,45,52],
+[50,46,62,53,60,55,53,35,55,0,56,51,55,68],
+[47,35,48,49,54,52,47,45,56,44,0,41,42,59],
+[49,54,62,44,63,56,62,35,58,49,59,0,53,66],
+[46,35,53,49,57,47,54,38,55,45,58,47,0,67],
+[37,35,40,26,43,50,47,36,48,32,41,34,33,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 199, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+##############################################################
+om = np.array([
+[0,42,48,40,43,50,66,53,60,33,65,47,58,48],
+[58,0,61,59,53,68,66,61,60,51,65,58,57,47],
+[52,39,0,55,45,56,49,49,57,33,63,55,56,45],
+[60,41,45,0,57,61,58,53,55,58,57,49,54,43],
+[57,47,55,43,0,53,59,54,60,42,67,50,65,54],
+[50,32,44,39,47,0,51,53,43,35,59,43,41,42],
+[34,34,51,42,41,49,0,51,52,32,47,40,41,37],
+[47,39,51,47,46,47,49,0,58,41,51,42,55,43],
+[40,40,43,45,40,57,48,42,0,36,50,45,44,47],
+[67,49,67,42,58,65,68,59,64,0,71,57,72,57],
+[35,35,37,43,33,41,53,49,50,29,0,42,39,31],
+[53,42,45,51,50,57,60,58,55,43,58,0,56,43],
+[42,43,44,46,35,59,59,45,56,28,61,44,0,41],
+[52,53,55,57,46,58,63,57,53,43,69,57,59,0]])
+
+
+
+times = np.zeros(rep)
+for i in range(rep):
+    # Algorithm with Condorcet winner
+    algorithm = alg.AzziniMunda6(om) 
+    start_time = time.time()
+    d = alg.dRP(sc.ranking_to_lineal(sc.borda(om)), om)
+    algorithm.best_dist = d
+    sol = algorithm.execute()
+    t = (time.time() - start_time)
+    times[i] = t
+    #print(t)
+exec_time = np.median(times)
+result = np.append(np.array([14, 100, 200, "ME-BBRCWd", exec_time, sol.shape[0], algorithm.ntentative], dtype=np.dtype(object)), times)
+print(result[:7])
+results = np.vstack((results, result))
+
+ 
+pd.DataFrame(results).to_csv("/Users/noeliarico/Desktop/folder-kemeny/2021EJOR/results/mebbrcwd/mebbrcwd_14_100.csv", index=False, header=False)

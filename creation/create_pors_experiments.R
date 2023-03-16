@@ -59,18 +59,27 @@ pors11nc <- create_profiles_no_condorcet(11,10,5,max_iter = 10000)
 pors12nc <- create_profiles_no_condorcet(12,10,5,max_iter = 10000)
 pors13nc <- create_profiles_no_condorcet(13,10,5,max_iter = 10000)
 pors14nc <- create_profiles_no_condorcet(14,10,5,max_iter = 10000)
+pors15nc <- create_profiles_no_condorcet(15,10,5,max_iter = 10000)
+pors16nc <- create_profiles_no_condorcet(16,10,5,max_iter = 10000)
+pors17nc <- create_profiles_no_condorcet(17,10,5,max_iter = 10000)
+pors18nc <- create_profiles_no_condorcet(18,10,5,max_iter = 10000)
+pors19nc <- create_profiles_no_condorcet(19,10,5,max_iter = 10000)
+pors20nc <- create_profiles_no_condorcet(20,10,5,max_iter = 10000)
 
-save(pors4nc,
-     pors5nc,
-     pors6nc,
-     pors7nc,
-     pors8nc,
-     pors9nc,
-     pors10nc,
-     pors11nc,
-     pors12nc,
-     pors13nc,
-     pors14nc,
-     file = "creation/fuzzieeeNC.RData")
+save(# pors4nc,
+     # pors5nc,
+     # pors6nc,
+     # pors7nc,
+     # pors8nc,
+     # pors9nc,
+     # pors10nc,
+     # pors11nc,
+     # pors12nc,
+     # pors13nc,
+     # pors14nc,
+     # pors15nc,
+     pors16nc,
+     pors17nc,
+     file = "creation/ejorNC.RData")
 
 

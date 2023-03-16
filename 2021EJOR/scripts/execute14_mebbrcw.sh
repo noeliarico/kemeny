@@ -1,0 +1,25 @@
+
+echo 1001
+python3 ~/Desktop/folder-kemeny/2021EJOR/scripts/mebbrcw/mebbrcw_14_1001.py
+echo 1000
+python3 ~/Desktop/folder-kemeny/2021EJOR/scripts/mebbrcw/mebbrcw_14_1000.py
+echo 501
+python3 ~/Desktop/folder-kemeny/2021EJOR/scripts/mebbrcw/mebbrcw_14_501.py
+echo 500
+python3 ~/Desktop/folder-kemeny/2021EJOR/scripts/mebbrcw/mebbrcw_14_500.py
+echo 251
+python3 ~/Desktop/folder-kemeny/2021EJOR/scripts/mebbrcw/mebbrcw_14_251.py
+echo 250
+python3 ~/Desktop/folder-kemeny/2021EJOR/scripts/mebbrcw/mebbrcw_14_250.py
+echo 101
+python3 ~/Desktop/folder-kemeny/2021EJOR/scripts/mebbrcw/mebbrcw_14_101.py
+echo 100
+python3 ~/Desktop/folder-kemeny/2021EJOR/scripts/mebbrcw/mebbrcw_14_100.py
+echo 51
+python3 ~/Desktop/folder-kemeny/2021EJOR/scripts/mebbrcw/mebbrcw_14_51.py
+echo 50
+python3 ~/Desktop/folder-kemeny/2021EJOR/scripts/mebbrcw/mebbrcw_14_50.py
+echo 11
+python3 ~/Desktop/folder-kemeny/2021EJOR/scripts/mebbrcw/mebbrcw_14_11.py
+echo 10
+python3 ~/Desktop/folder-kemeny/2021EJOR/scripts/mebbrcw/mebbrcw_14_10.py

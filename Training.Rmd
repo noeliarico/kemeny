@@ -1,0 +1,636 @@
+---
+title: "Training"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(caret)
+```
+
+# Data
+
+```{r echo=FALSE}
+ggplot(times, aes(x=as.numeric(m),y=exec_time,color=quartile,group=m)) + 
+  geom_jitter(height = 0) +
+  geom_hline(aes(yintercept = mean(exec_time))) +
+  geom_hline(aes(yintercept = median(exec_time)), linetype = "dashed") +
+  facet_wrap(~n, scales = "free_x") +
+  coord_flip() +
+  xlab("") + ylab("") +
+  theme_light()
+```
+
+```{r}
+ggplot(times, aes(exec_time)) +
+  geom_boxplot() +
+  facet_wrap(n~., scales = "free_x", nrow = 3, strip.position = "right")  +
+  theme_bw() +
+  scale_x_continuous(n.breaks = 10) +
+  xlab("") + ylab("") +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        panel.grid.major.y = element_blank())
+```
+
+Numbers divided by quartiles in order to determine the profiles of rankings that are slow and fast. The profiles are divided in four equal parts considering the number of alternatives and one quarter is taking as fast and the other considered as slow.
+
+```{r echo=FALSE}
+ggplot(times %>% count(n,m,quartile), aes(m,nn,fill=quartile)) +
+  geom_bar(aes(alpha = as.numeric(as.character(m))%%2==0),stat="identity", position="fill") +
+  geom_text(aes(label=nn),position = position_fill(vjust = 0.5), angle = 90) +
+  facet_grid(.~n) +
+  geom_hline(yintercept = .75) +
+  geom_hline(yintercept = .5) +
+  geom_hline(yintercept = .25) +
+  scale_alpha_discrete(range = c(0.6,1)) +
+  theme_bw() +
+  theme(legend.position = "none")
+```
+```{r}
+# For the reggresion problem
+# fitControl <- trainControl(
+#   method = "repeatedcv",
+#   number = 5,
+#   repeats = 2)
+
+fitControl <- trainControl(
+  method = "repeatedcv",
+  number = 5,
+  repeats = 2,
+  classProbs = TRUE,
+  summaryFunction = prSummary)
+```
+
+# Predicting execution time for profiles of a fixed size
+
+```{r}
+data_quartiles <- left_join(predict_times %>% 
+                              mutate(id = as.double(as.character(id))), times) 
+data_quartiles
+```
+
+```{r echo=FALSE}
+data_quartiles_normalized <- left_join(data_normalized %>% 
+                               mutate(id = as.double(as.character(id))), times) 
+data_quartiles_normalized
+```
+
+```{r}
+# Fit control para 
+fitControl <- trainControl(
+  method = "repeatedcv",
+  number = 5,
+  repeats = 2,
+  classProbs = TRUE,
+  summaryFunction = prSummary)
+```
+
+Training 25%-75%
+
+```{r}
+# Da muy malos resultados porque está desbalanceado
+# # Para n = 10
+# totrain <- data_quartiles %>% 
+#   filter(n==10) %>% 
+#   mutate(quartile = fct_collapse(quartile, fast = c("q1"), slow = c("q2","q3","q4"))) %>%
+#   select(starts_with("mu"), quartile) 
+# set.seed(123)
+# trainIndex <- createDataPartition(totrain$quartile, p = .8, 
+#                                   list = FALSE, 
+#                                   times = 1)
+# dataTrain <- totrain[ trainIndex,]
+# dataTest  <- totrain[-trainIndex,]
+# set.seed(123)
+# mclas_rf_10 <- train(
+#   quartile ~., data = dataTrain, 
+#   method = "rf",
+#   tuneLength = 3,
+#   trControl = fitControl,
+#   metric = "AUC"
+# )
+# mclas_rf_10
+```
+
+```{r}
+library(ROSE)
+```
+
+Para n = 10 con los datos normalizados
+
+```{r}
+totrain <- data_quartiles_normalized %>% 
+  filter(n==10) %>%
+  mutate(quartile = fct_collapse(quartile, fast = c("q1"), slow = c("q2","q3","q4"))) %>%
+  select(starts_with("mu"), quartile)
+  
+set.seed(123) 
+rose_train <- ROSE(quartile ~ ., data  = totrain)$data %>%
+  mutate(quartile = fct_relevel(quartile, "slow", after = Inf))
+# print(table(rose_train$quartile))
+
+set.seed(123)
+trainIndex <- createDataPartition(rose_train$quartile, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+dataTrain <- rose_train[ trainIndex,]
+dataTest  <- rose_train[-trainIndex,]
+
+set.seed(123)
+rf_10_rose_norm <- train(
+  quartile ~., data = dataTrain, method = "rf",
+  tuneLength = 3,
+  trControl = fitControl,
+  metric = "AUC"
+)
+
+vip_rf_10_rose_norm <- vip(rf_10_rose_norm)
+confusionMatrix(rf_10_rose_norm)
+```
+
+
+Y en test:
+
+```{r}
+pred <- predict(rf_10_rose_norm, dataTest)
+postResample(pred = pred, obs = dataTest$quartile)
+confusionMatrix(data = pred, reference = dataTest$quartile, mode = "prec_recall")
+```
+
+Y sin normalizar:
+
+```{r}
+fitControl <- trainControl(
+  method = "repeatedcv",
+  number = 5,
+  repeats = 2,
+  classProbs = TRUE,
+  summaryFunction = prSummary,
+  sampling = "up")
+
+data_quartiles <- left_join(predict_times %>% 
+                              mutate(id = as.double(id)), times) 
+
+totrain <- data_quartiles %>% 
+  filter(n==10) %>%
+  mutate(quartile = fct_collapse(quartile, fast = c("q1"), slow = c("q2","q3","q4"))) %>%
+  select(starts_with("mu"), quartile)
+  
+trainIndex <- createDataPartition(totrain$quartile, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+
+dataTrain <- totrain[ trainIndex,]
+dataTest  <- totrain[-trainIndex,]
+
+rf_10_rose <- train(
+  quartile ~., data = dataTrain, method = "rf",
+  tuneLength = 3,
+  trControl = fitControl,
+  metric = "AUC"
+)
+rf_10_rose
+```
+
+
+
+
+```{r}
+data_quartiles <- left_join(predict_times %>% 
+                              mutate(id = as.double(id)), times) 
+
+totrain <- data_quartiles %>% 
+  filter(n==10) %>%
+  mutate(quartile = fct_collapse(quartile, fast = c("q1"), slow = c("q2","q3","q4"))) %>%
+  select(starts_with("mu"), quartile)
+  
+trainIndex <- createDataPartition(totrain$quartile, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+
+dataTrain <- totrain[ trainIndex,]
+dataTest  <- totrain[-trainIndex,]
+
+set.seed(123) 
+rose_train <- ROSE(quartile ~ ., data  = dataTrain)$data %>%
+  mutate(quartile = fct_relevel(quartile, "slow", after = Inf))
+
+
+set.seed(123)
+rf_10_rose <- train(
+  quartile ~., data = rose_train, method = "rf",
+  tuneLength = 3,
+  trControl = fitControl,
+  metric = "AUC"
+)
+
+vip_rf_10_rose <- vip(rf_10_rose)
+confusionMatrix(rf_10_rose)
+```
+
+```{r}
+pred <- predict(rf_10_rose, dataTest)
+postResample(pred = pred, obs = dataTest$quartile)
+confusionMatrix(data = pred, reference = dataTest$quartile, mode = "prec_recall")
+```
+
+
+
+
+
+
+```{r}
+data_quartiles <- left_join(predict_times %>% 
+                              mutate(id = as.double(id)), times) 
+
+totrain <- data_quartiles %>% 
+  filter(n==10) %>%
+  mutate(quartile = fct_collapse(quartile, fast = c("q1"), slow = c("q2","q3","q4"))) %>%
+  select(starts_with("mu"), quartile)
+  
+set.seed(123) 
+rose_train <- ROSE(quartile ~ ., data  = totrain)$data %>%
+  mutate(quartile = fct_relevel(quartile, "slow", after = Inf))
+# print(table(rose_train$quartile))
+
+set.seed(123)
+trainIndex <- createDataPartition(rose_train$quartile, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+dataTrain <- rose_train[ trainIndex,]
+dataTest  <- rose_train[-trainIndex,]
+
+set.seed(123)
+rf_10_rose <- train(
+  quartile ~., data = dataTrain, method = "rf",
+  tuneLength = 3,
+  trControl = fitControl,
+  metric = "AUC"
+)
+
+vip_rf_10_rose <- vip(rf_10_rose)
+confusionMatrix(rf_10_rose)
+```
+
+```{r}
+set.seed(123)
+rpart_10_rose_norm <- train(
+  quartile ~., data = dataTrain, method = "nnet",
+  tuneLength = 3,
+  trControl = fitControl,
+  preProcess = c("center","scale"),
+  metric = "AUC"
+)
+```
+
+
+
+
+Comparación de las variables más importantes
+
+```{r}
+(vip_mreg_rf_8_norm + vip_mreg_rf_9_norm + vip_mreg_rf_10_norm) |
+(vip_mreg_rf_8 + vip_mreg_rf_9 + vip_mreg_rf_10)
+```
+
+
+
+
+
+
+
+
+
+
+```{r}
+totrain <- data_quartiles %>% 
+  mutate(quartile = fct_collapse(quartile, fast = c("q1"), slow = c("q2","q3","q4"))) %>%
+  select(starts_with("mu"), quartile) %>%
+  filter(n!=10)
+totest <- data_quartiles %>% 
+  mutate(quartile = fct_collapse(quartile, fast = c("q1"), slow = c("q2","q3","q4"))) %>%
+  select(starts_with("mu"), quartile) %>%
+  filter(n==10)
+
+set.seed(123)
+rose_train <- ROSE(quartile ~ ., data  = totrain)$data %>%
+  mutate(quartile = fct_relevel(quartile, "slow", after = Inf))
+print(table(rose_train$quartile))
+
+set.seed(123)
+trainIndex <- createDataPartition(rose_train$quartile, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+dataTrain <- rose_train[ trainIndex,]
+dataTest  <- rose_train[-trainIndex,]
+```
+
+
+# Seeking for the outliers
+
+```{r}
+data_outliers_normalized <- left_join(data_normalized %>% 
+                               mutate(id = as.double(as.character(id))), outliers) 
+
+fitControl <- trainControl(
+  method = "repeatedcv",
+  number = 10,
+  repeats = 5,
+  classProbs = TRUE,
+  summaryFunction = twoClassSummary,
+  sampling = "down")
+
+data_outliers_normalized
+```
+
+```{r}
+totrain <- data_outliers_normalized %>% 
+  filter(n==8) %>%
+  select(starts_with("mu"), outlier)
+  
+set.seed(123)
+trainIndex <- createDataPartition(totrain$outlier, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+
+dataTrain <- totrain[ trainIndex,]
+dataTest  <- totrain[-trainIndex,]
+
+set.seed(123)
+rf_8_outlier <- train(
+  outlier ~., data = dataTrain, method = "rf",
+  tuneLength = 10,
+  trControl = fitControl,
+  metric = "ROC"
+)
+
+vip_rf_8_outlier <- vip(rf_8_outlier)
+pred <- predict(rf_8_outlier, dataTest)
+confusionMatrix(data = pred, reference = dataTest$outlier, mode = "sens_spec")
+sens_rf_8_outlier <- sensitivity(pred, dataTest$outlier)
+pred <- predict(rf_8_outlier, dataTest, type= "prob")
+auc_rf_8_outlier <- AUC(pred$yes, ifelse(dataTest$outlier == "yes", 1, 0))
+```
+
+```{r}
+totrain <- data_outliers_normalized %>% 
+  filter(n==9) %>%
+  select(starts_with("mu"), outlier)
+  
+set.seed(123)
+trainIndex <- createDataPartition(totrain$outlier, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+
+dataTrain <- totrain[ trainIndex,]
+dataTest  <- totrain[-trainIndex,]
+
+set.seed(123)
+rf_9_outlier <- train(
+  outlier ~., data = dataTrain, method = "rf",
+  tuneLength = 10,
+  trControl = fitControl,
+  metric = "ROC"
+)
+
+vip_rf_9_outlier <- vip(rf_9_outlier)
+pred <- predict(rf_9_outlier, dataTest)
+confusionMatrix(data = pred, reference = dataTest$outlier, mode = "sens_spec")
+sens_rf_9_outlier <- sensitivity(pred, dataTest$outlier)
+pred <- predict(rf_9_outlier, dataTest, type= "prob")
+auc_rf_9_outlier <- AUC(pred$yes, ifelse(dataTest$outlier == "yes", 1, 0))
+```
+
+```{r}
+totrain <- data_outliers_normalized %>% 
+  filter(n==10) %>%
+  select(starts_with("mu"), outlier)
+  
+set.seed(123)
+trainIndex <- createDataPartition(totrain$outlier, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+
+dataTrain <- totrain[ trainIndex,]
+dataTest  <- totrain[-trainIndex,]
+
+set.seed(123)
+rf_10_outlier <- train(
+  outlier ~., data = dataTrain, method = "rf",
+  tuneLength = 10,
+  trControl = fitControl,
+  metric = "ROC"
+)
+
+vip_rf_10_outlier <- vip(rf_10_outlier)
+pred <- predict(rf_10_outlier, dataTest)
+confusionMatrix(data = pred, reference = dataTest$outlier, mode = "sens_spec")
+sens_rf_10_outlier <- sensitivity(pred, dataTest$outlier)
+pred <- predict(rf_10_outlier, dataTest, type= "prob")
+auc_rf_10_outlier <- AUC(pred$yes, ifelse(dataTest$outlier == "yes", 1, 0))
+```
+
+```{r}
+vip_rf_8_outlier + vip_rf_9_outlier + vip_rf_10_outlier
+```
+
+
+```{r}
+totrain <- data_outliers_normalized %>% 
+  select(starts_with("mu"), outlier)
+  
+set.seed(123)
+trainIndex <- createDataPartition(totrain$outlier, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+
+dataTrain <- totrain[ trainIndex,]
+dataTest  <- totrain[-trainIndex,]
+
+set.seed(123)
+rf_all_outlier <- train(
+  #outlier ~., data = dataTrain, method = "rf",
+  outlier ~., data = dataTrain, method = "rf",
+  tuneLength = 8,
+  trControl = fitControl,
+  metric = "ROC"
+)
+
+pred <- predict(rf_all_outlier, dataTest)
+postResample(pred = pred, obs = dataTest$outlier)
+confusionMatrix(data = pred, reference = dataTest$outlier, mode = "sens_spec")
+sens_rf_all_outlier <- sensitivity(pred, dataTest$outlier)
+
+vip(rf_all_outlier)
+
+pred <- predict(rf_all_outlier, dataTest, type= "prob")
+auc_rf_all_outlier <- AUC(pred$yes, ifelse(dataTest$outlier == "yes", 1, 0))
+```
+
+```{r}
+vip(rf_all_outlier, 
+    horizontal = FALSE,
+    aesthetics = list(width = .5)) +
+  theme_bw() + 
+  scale_x_discrete(labels = function(x) parse(text=paste0("mu[", str_remove(x, "mu"), "]"))) +
+  ylab("Variable\nimportance") +
+  theme(text=element_text(size = 12, family="Times New Roman"),
+        axis.title.x = element_text(margin = margin(t = 10)))
+  
+```
+
+
+```{r}
+sens_rf_8_outlier
+auc_rf_8_outlier
+sens_rf_9_outlier
+auc_rf_9_outlier
+sens_rf_10_outlier
+auc_rf_10_outlier
+sens_rf_all_outlier
+auc_rf_all_outlier
+```
+
+
+```{r}
+# fitControl <- trainControl(
+#   method = "repeatedcv",
+#   number = 3,
+#   repeats = 5,
+#   classProbs = TRUE,
+#   summaryFunction = twoClassSummary,
+#   sampling = "down")
+
+totrain <- data_outliers_normalized %>% 
+  filter(n!=10) %>%
+  select(starts_with("mu"), outlier)
+
+totest <- data_outliers_normalized %>% 
+  filter(n==10) %>%
+  select(starts_with("mu"), outlier) 
+  
+set.seed(123)
+trainIndex <- createDataPartition(totrain$outlier, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+
+dataTrain <- totrain[ trainIndex,]
+dataTest  <- totrain[-trainIndex,]
+
+set.seed(123)
+rf_all_outlier2 <- train(
+  outlier ~., data = dataTrain, method = "rf", # 85 with rpart2
+  tuneLength = 8,
+  trControl = fitControl,
+  metric = "ROC"
+)
+
+pred <- predict(rf_all_outlier2, dataTest)
+postResample(pred = pred, obs = dataTest$outlier)
+confusionMatrix(data = pred, reference = dataTest$outlier, mode = "sens_spec")
+pred <- predict(rf_all_outlier2, totest)
+postResample(pred = pred, obs = totest$outlier)
+confusionMatrix(data = pred, reference = totest$outlier, mode = "sens_spec")
+
+
+pred <- predict(rf_all_outlier2, totest, type= "prob")
+AUC(pred$yes, ifelse(totest$outlier == "yes", 1, 0))
+
+vip(rf_all_outlier2)
+```
+
+
+# Ahora para los cuartiles
+
+
+```{r}
+totrain <- data_quartiles_normalized %>% 
+  filter(n!=10) %>%
+  select(starts_with("mu"), quartile) %>%
+  mutate(quartile = fct_collapse(quartile, fast = c("q1"), slow = c("q2","q3","q4")))
+
+totest <- data_quartiles_normalized %>% 
+  filter(n==10) %>%
+  select(starts_with("mu"), quartile) %>%
+  mutate(quartile = fct_collapse(quartile, fast = c("q1"), slow = c("q2","q3","q4")))
+  
+set.seed(123)
+trainIndex <- createDataPartition(totrain$quartile, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+
+dataTrain <- totrain[ trainIndex,]
+dataTest  <- totrain[-trainIndex,]
+
+set.seed(123)
+rf_quartiles <- train(
+  quartile ~., data = dataTrain, method = "rf",
+  tuneLength = 10,
+  trControl = fitControl,
+  metric = "ROC"
+) 
+
+pred <- predict(rf_quartiles, dataTest)
+postResample(pred = pred, obs = dataTest$quartile)
+# confusionMatrix(data = pred, reference = dataTest$quartile, mode = "sens_spec")
+pred <- predict(rf_quartiles, totest)
+postResample(pred = pred, obs = totest$quartile)
+confusionMatrix(data = pred, reference = totest$quartile, mode = "sens_spec")
+
+pred <- predict(rf_quartiles, totest, type= "prob")
+AUC(pred$fast, ifelse(totest$quartile == "fast", 1, 0))
+
+vip(rf_quartiles)
+```
+
+```{r}
+totrain <- data_quartiles_normalized %>% 
+  filter(n!=10) %>%
+  select(starts_with("mu"), quartile) %>%
+  mutate(quartile = fct_collapse(quartile, fast = c("q1"), slow = c("q2","q3","q4")))
+
+totest <- data_quartiles_normalized %>% 
+  filter(n==10) %>%
+  select(starts_with("mu"), quartile) %>%
+  mutate(quartile = fct_collapse(quartile, fast = c("q1"), slow = c("q2","q3","q4")))
+  
+set.seed(123)
+trainIndex <- createDataPartition(totrain$quartile, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+
+dataTrain <- totrain[ trainIndex,]
+dataTest  <- totrain[-trainIndex,]
+
+set.seed(123)
+rf_quartiles2 <- train(
+  quartile ~., data = dataTrain, method = "rpart2",
+  tuneLength = 10,
+  trControl = fitControl,
+  metric = "ROC"
+) 
+
+pred <- predict(rf_quartiles2, dataTest)
+postResample(pred = pred, obs = dataTest$quartile)
+# confusionMatrix(data = pred, reference = dataTest$quartile, mode = "sens_spec")
+pred <- predict(rf_quartiles2, totest)
+postResample(pred = pred, obs = totest$quartile)
+confusionMatrix(data = pred, reference = totest$quartile, mode = "sens_spec")
+
+pred <- predict(rf_quartiles2, totest, type= "prob")
+AUC(pred$fast, ifelse(totest$quartile == "fast", 1, 0))
+
+vip(rf_quartiles2)
+```
+
+```{r}
+vip(rf_quartiles2, 
+    num_features = 5,
+    aesthetics = list(width = .5)) +
+  theme_bw() + 
+  scale_x_discrete(labels = function(x) parse(text=paste0("mu[", str_remove(x, "mu"), "]"))) +
+  ylab("Variable importance") +
+  theme(text=element_text(size = 12, family="Times New Roman"),
+        axis.title.x = element_text(margin = margin(t = 10)))
+```
+

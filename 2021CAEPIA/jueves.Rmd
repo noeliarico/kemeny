@@ -1,0 +1,565 @@
+---
+title: "métricas"
+output: html_document
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(consensus)
+load("../predict_time_results.RData")
+```
+
+$n$ num de alternativas
+$m$ num de votantes
+
+Las métricas:
+
+- (1) Average kemeny distance between rankings in the profile (Betzler)
+- Range of positions taken by an alternative 
+  - (2) Min (Betzler)
+  - (3) Max (Betzler)
+  - (4) Average 
+- Bounds to the optimal cost
+  - (5) Min (www)
+  - (6) Max (www)
+  - (7) Range
+- Pairwise opinion of the voters
+  - (8) Average margin (www, eusflat)
+  - (9) Most common margin
+  - (10) Number of unique margins
+- Based on rowsums
+  - (11) Borda (www) -> linear extension
+  - (12) Omega (fuzzieee) número de filas con alpha positivo
+  - (13) Sd de rowsums
+- Based on beta
+  - (14) Sd
+  - (15) Mean 
+  - (16) Median
+  - (17) Mean-Median
+  - (18) Borda score of the beta ranking
+- (19) Intransitive cycles
+- Tied alternatives (?) - problema, solo funciona con $m$s pares
+(voy a añadir como hablamos el min margin, o sea contar 0 en pares y 1 en impares)
+
+Dos problemas diferentes:
+
+1. Tengo datos para todos los valores de $n$ y $m$ que quiero predecir luego con el modelo. Hago el modelo con eso y acoto el tiempo de ejecución del algoritmo "en producción"
+1. Lo que necesito para los experimentos: poder saber con qué tipos de perfil va a funcionar cuando incremento el valor de $n$
+  
+# Datos
+
+Exploración de cómo se comportan las métricas. Usando $n = 8$ y $n = 9$ y $m \in \{10,11,20,21,30,31,50,51,80,81,130,131,210,211,340,341,550,551,890,891\}$ genero para posible de $(n, m)$ 
+
+- 1000 perfiles usando distribución normal
+- 1000 perfiles usando distribución uniforme
+
+Es decir, 2000 perfiles para cada par $(n, m)$ (controlando que NO sean Condorcet). Esto hace un total de 40000 perfiles para cada valor de $n$.
+
+En los siguientes gráficos (primero para $n=8$ y después para $n=9$) se ve para cada distribución (filas) y valor de $m$ (columnas) un punto por cada perfil indicando el tiempo de ejecución. Se observa una tendencia a la reducción según aumenta el num de votantes $m$. Los colores son para resaltar los valores de $m$ pares e impares. En el primero hay más outliers para números de $m$ pares, lo cual podría ser debido a los empates de $(o_{ij},o_{ji})$.
+
+```{r echo=FALSE}
+# execution time by distribution and m for n = 8
+ggplot(data8, aes(x = 0, y = time, color = as.factor(m%%2))) +
+  geom_jitter(height = 0, alpha = 0.8) +
+  facet_grid(dist~m) +
+  scale_x_continuous(breaks = NULL) + 
+  guides(color=FALSE)
+ggplot(data9, aes(x = 0, y = time, color = as.factor(m%%2))) +
+  geom_jitter(height = 0, alpha = 0.8) +
+  facet_grid(dist~m) +
+  scale_x_continuous(breaks = NULL) + 
+  guides(color=FALSE)
+```
+
+# Average kemeny distance
+
+Esta métrica es $\mu_1$. Os mando otro PDF adjunto razonando de dónde sale.
+
+Ejemplo en R
+
+```{r}
+por <- parse_profile_of_rankings("
+3, b > d > a > c,
+5, c > a > d > b,
+2, a > c > b > d
+")
+v <- votrix(por) # outranking matrix
+m <- v[1,2]+v[2,1] # num de votantes
+print(v)
+v <- v * t(v) # para multiplicar cada par con su simetrico
+print(v)
+print(sum(v[upper.tri(v)])) # quedarme con la mitad y sumarlo
+print(2*sum(v[upper.tri(v)])/(m*(m-1))) # dividir la suma entre el num triangular
+```
+
+En los siguientes gráficos muestro para cada valor de $m$ (filas) el tiempo de ejecución (eje $y$) en relación con el valor de $\mu_1$ del perfil. 
+Cuanto más se incrementa $\mu_1$, más distancia hay entre los rankings del perfil. Esto se puede interpretar como que menos acuerdo hay entre los votantes y más difícil es llegar a un consenso.
+
+Se ve que hacia la derecha todas acumulan más, la que tiene esto más pronunciado es $m=11$. Esto tiene sentido ya que los tiempos con $m$ más pequeñas veíamos que eran más altos. Además, parece lógico que a la derecha haya puntos con tiempo más alto, ya que los rankings del perfil están más distantes y parece lógico que tarde más en resolverse.
+
+También se observa que para valores más pequeños de $m$ el indice $\mu_1$ tiende a alcanzar valores más altos. En estos casos hay menos rankings, puede ser que coincida que son más extremos, y que al incrementar el valor de $m$ el número de rankings sea mayor y tienda a haber más posturas intermedias.
+
+```{r, echo = FALSE, fig.width=8,fig.height=12}
+cat("Para n=8\n")
+ggplot(data8, aes(mu1, time, color = as.factor(m%%2))) + 
+  geom_point() +
+  facet_grid(m~.) + 
+  guides(color=FALSE)
+```
+
+```{r, echo = FALSE, fig.width=8,fig.height=12}
+cat("Para n=9\n")
+ggplot(data9, aes(mu1, time, color = as.factor(m%%2))) + 
+  geom_point() +
+  facet_grid(m~.) + 
+  guides(color=FALSE)
+```
+
+Liberando las escala del eje $y$ se ve mejor el incremento del tiempo de ejecución según se incrementa $\mu_1$ en cualquier valor de $m$.
+
+```{r, echo = FALSE, fig.width=8,fig.height=12}
+cat("Para n=8\n")
+ggplot(data8, aes(mu1, time, color = as.factor(m%%2))) + 
+  geom_point() +
+  facet_grid(m~., scales = "free") + 
+  guides(color=FALSE)
+```
+
+```{r, echo = FALSE, fig.width=8,fig.height=12}
+cat("Para n=9\n")
+ggplot(data9, aes(mu1, time, color = as.factor(m%%2))) + 
+  geom_point() +
+  facet_grid(m~., scales="free") + 
+  guides(color=FALSE)
+```
+
+- Este índice depende del número de alternativas $n$ pero no del número de votantes $m$ (al menos en la fórmula, otra cosa es que luego influya). 
+- Para un num de alternativas $n$, hay que hacer $T_n$ (siendo $T_n$ el num triangular de $n$ por lo que $T_n = \frac{n(n-1)}{2}$) comparaciones para saber la distancia entre dos rankings. 
+- Para cada comparación se anota un 0 si están en el mismo orden en ambos rankings y un 1 si están en orden opuesto
+- Por lo tanto el rango de la distancia de kemeny es $[0,T_n]$ para dos rankings tal que uno sea inverso de otro. 
+- En el rango, el 0 se daría en la situación ideal de que todos los rankings del profile fueran el mismo. La distancia entre todos los rankings es 0 y por lo tanto la media es 0.
+- $T_n$ se daría, por ejemplo con dos rankings en el perfil y que esos rankings fueran opuestos. Al haber dos rankings hago solo una comparación que me devuelve como distancia $T_n$.
+
+Para 8 el rango es [0,28] y para 9 [0,36]. Sin embargo los valores experimentales se acercan a otros límites superiores.
+
+```{r}
+# por comprobar el rango que sea correcto
+kemeny_distance(parse_ranking("a>b>c>d>e>f>g>h>i"), parse_ranking("i>h>g>f>e>d>c>b>a"))
+```
+
+```{r}
+range(data8$mu1)
+range(data9$mu1)
+```
+
+Para normalizarlo hay que utilizar $T_n$
+
+# Rango de posiciones 
+
+Se refiere a las posiciones que toman las alternativas en los diferentes rankings del perfil
+
+El rango de posiciones depende solo del número de alternativas $n$ y es $[0, n-1]$
+
+
+Si el mayor rango es pequeño, se intuye menos incertidumbre
+Histogramas del mayor rango.
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(as.factor(mu2))) + 
+  geom_bar() +
+  facet_wrap(m~.) 
+cat("Para n=9\n")
+ggplot(data9, aes(as.factor(mu2))) + 
+  geom_bar() +
+  facet_wrap(m~.) 
+```
+
+Si el menor rango es grande, se intuye más incertidumbre
+Histogramas del menor rango.
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(as.factor(mu3))) + 
+  geom_bar() +
+  facet_wrap(m~.) 
+cat("Para n=9\n")
+ggplot(data9, aes(as.factor(mu3))) + 
+  geom_bar() +
+  facet_wrap(m~.) 
+```
+
+Histogramas del rango medio. En este caso el eje x ya no es continuo
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu4)) + 
+  geom_histogram() +
+  facet_wrap(m~.) 
+cat("Para n=9\n")
+ggplot(data9, aes(mu4)) + 
+  geom_histogram() +
+  facet_wrap(m~.) 
+```
+
+# Bounds of the distance
+
+Este valor depende del número de alternativas $n$ y del valor de $m$
+
+En teoría, cogiendo todas las posibles permutaciones del set de $n$ alternativas, si tenemos un perfil de rankings donde los $m$ votantes dan el mismo ranking, la distancia del ranking ganador al perfil sería 0 y la distancia del ranking más lejano sería $T_n \cdot m$.
+
+En perfiles reales el rango no es ese, se ve acotado por los margenes de votos que hay entre las alternativas
+
+Este valor depende de los pares $(o_{ij}, o_{ji})$
+
+Lower bound: Como mínimo la dist será igual a la suma de los mínimos de todos los pares. Y con alta probabilidad mayor porque coger estos mínimos sin ciclos es altamente improbable. 
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu5)) + 
+  geom_histogram() +
+  facet_wrap(m~.) 
+cat("Para n=9\n")
+ggplot(data9, aes(mu5)) + 
+  geom_histogram() +
+  facet_wrap(m~.) 
+```
+
+Haciendo zoom en cada una de las ms para ver mejor la distribución:
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu5)) + 
+  geom_histogram() +
+  facet_wrap(m~., scales = "free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu5)) + 
+  geom_histogram() +
+  facet_wrap(m~., scales = "free") 
+```
+
+Upper bound: 
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu6)) + 
+  geom_histogram() +
+  facet_wrap(m~.) 
+cat("Para n=9\n")
+ggplot(data9, aes(mu6)) + 
+  geom_histogram() +
+  facet_wrap(m~.) 
+```
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu6)) + 
+  geom_histogram() +
+  facet_wrap(m~., scales = "free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu6)) + 
+  geom_histogram() +
+  facet_wrap(m~., scales = "free") 
+```
+
+Ahora a ver el rango
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu7)) + 
+  geom_histogram() +
+  facet_wrap(m~.) 
+cat("Para n=9\n")
+ggplot(data9, aes(mu7)) + 
+  geom_histogram() +
+  facet_wrap(m~.) 
+```
+
+Y haciendo zoom
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu7)) + 
+  geom_histogram() +
+  facet_wrap(m~., scales="free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu7)) + 
+  geom_histogram() +
+  facet_wrap(m~., scales="free") 
+```
+
+Relación con el tiempo de ejecución:
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu7, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~.)#, scales = "free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu7, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~.)#, scales = "free") 
+```
+y con zoom:
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu7, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu7, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+```
+
+# Margin of the votes in the alternatives
+
+Los márgenes dependen del número de votantes. El rango de valores que puede tomar un margen es $[0, m]$
+
+Average margins. Depende solo de $m$, al ser la media no depende de $n$. Las líneas indican $\frac{1}{4}$ y $\frac{1}{2}$ de los votantes.
+
+Se ve que cuanto más se incrementa la $m$ más se aleja el margen del cuarto de los votantes.
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu8)) + 
+  geom_histogram() +
+  geom_vline(aes(xintercept=m/4))+
+  geom_vline(aes(xintercept=m/2))+
+  facet_wrap(m~., scales="free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu8)) + 
+  geom_histogram() +
+  geom_vline(aes(xintercept=m/4))+
+  geom_vline(aes(xintercept=m/2))+
+  facet_wrap(m~., scales="free") 
+```
+En relación con el tiempo
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu8, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~.)#, scales = "free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu8, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~.)#, scales = "free") 
+```
+Y haciendo zoom:
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu8, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu8, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+```
+
+Ahora *Most common margin*. Este no sabría como normalizarlo. Depende de $m$, al ser el más común no depende de $n$.
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu9)) + 
+  geom_histogram() +
+  geom_vline(aes(xintercept=m/4))+
+  geom_vline(aes(xintercept=m/2))+
+  facet_wrap(m~., scales="free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu9)) + 
+  geom_histogram() +
+  geom_vline(aes(xintercept=m/4))+
+  geom_vline(aes(xintercept=m/2))+
+  facet_wrap(m~., scales="free") 
+```
+
+*Number of different marings*. Este tampoco sé como normalizarlo. Depende de $m$ pero en este caso tb depende del número de rankings que haya en el perfil. Los valores van a salir muy pequeños al normalizar.
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu10)) + 
+  geom_histogram() +
+  facet_wrap(m~., scales="free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu10)) + 
+  geom_histogram() +
+  facet_wrap(m~., scales="free") 
+```
+
+# Based on rowsums
+
+La distancia del ranking ganador que obtengo aplicando Borda (su linear extension) al perfil. Esta distancia se ve afectada por $n$ y por $m$
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu11)) + 
+  geom_histogram() +
+  facet_wrap(m~., scales="free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu11)) + 
+  geom_histogram() +
+  facet_wrap(m~., scales="free") 
+```
+Respecto al tiempo, parece que hay más ruido en las pares
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu11, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu11, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+```
+
+Omega (fuzzieee) número de filas con alpha positivo. Este solo depende del valor de $n$ ya que su rango es $[0, n]$
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu12)) + 
+  geom_histogram() +
+  facet_wrap(m~., scales="free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu12)) + 
+  geom_histogram() +
+  facet_wrap(m~., scales="free") 
+```
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu12, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu12, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+```
+
+Sd de rowsums. La media no se puede hacer porque es siempre la misma ya que la suma de todos los elementos es constante. Cómo normalizaría esto? Porque depende de $m$
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu13)) + 
+  geom_histogram() +
+  facet_wrap(m~., scales="free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu13)) + 
+  geom_histogram() +
+  facet_wrap(m~., scales="free") 
+```
+
+# Based on beta
+
+Esta sección son métricas basadas en los valores de beta de cada fila. el valor de beta es el num de elementos de la fila que es mayor que la mitad
+
+Sd
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu14, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu14, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+```
+
+Mean tiene un problema, que en los impares siempre es la misma porque uno de los elementos del par tiene que ser mayor que otro sí o sí y la suma de betas da siempre lo mismo.
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu15, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu15, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+```
+
+Median
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu16, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu16, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+```
+
+Mean-Median. esto se me ocurrió porque en el ranking de condorcet siempre es 0, pero en verdad hay más casos en los que es 0
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu17, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu17, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+```
+
+Ponderación del ranking beta, vuelve a haber el mismo problema con las impares
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu18, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu18, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+```
+
+# Intransitive alternatives
+
+En un paper de Betzler se refiere a estos como dirty triplets. Son alternativas a,b,c tal que a>b, b>c y c>a. El rango de valors que puede tomar este índice viene determinado por $n$. 
+
+```{r echo=FALSE}
+cat("Para n=8\n")
+ggplot(data8, aes(mu19, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+cat("Para n=9\n")
+ggplot(data9, aes(mu19, time, color = as.factor(m%%2))) +
+  geom_point(alpha = 0.5) +
+  guides(color=FALSE) +
+  facet_wrap(m~., scales = "free") 
+```
+
+

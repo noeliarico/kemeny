@@ -3,75 +3,65 @@ title: "R Notebook"
 output: html_notebook
 ---
 
-## Uncertanty: Measuring the difficulty of the profile of rankings
+## Measuring the difficulty of the profile of rankings
 
 - $n$ number of alternatives in the profile of rankings
 - $m$ number of voters in the profile of rankings
 
 All the measure presented below are adapted to represent the difficulty of the problem in a [0,1] scale, representing 1 the maximum degree of difficulty according to that index.
 
-### u1: lower bound to the optimal cost
+### d1: lower bound to the optimal cost
 
 The lower bound of the optimal cost.
 
-$$u_1 = \frac{2}{m \times n \times (n-1)} \sum{min(o_{ij},o_{ji})}$$
+$$d_1 = \frac{2}{m \times n \times (n-1)} \sum{min(o_{ij},o_{ji})}$$
 
-### u2: upper bound to the optimal 
+### d2: upper bound to the optimal 
 
 The upper bound of the optimal cost.
 
-$$u_2 = \frac{2}{m \times n \times (n-1)} \sum{max(o_{ij},o_{ji}) - min(o_{ij},o_{ji})}$$
+$$d_2 = \frac{2}{m \times n \times (n-1)} \sum{max(o_{ij},o_{ji}) - min(o_{ij},o_{ji})}$$
 
-### u3: uniformity
+### d3: uniformity
 
-$$u_3 = \frac{1}{n(n-1)} \sum_{a,b} I(0.5 - \delta \leq Q_{ab} \leq 0.5)$$
+$$d_3 = \frac{1}{n(n-1)} \sum_{a,b} I(0.5 - \delta \leq Q_{ab} \leq 0.5)$$
 
 which is the proportion of weights $o_{ij}$ which are within $\delta$ from 0.5, for e..g. $\delta=0.1$
 
-### u4: intransitivity
+### d4: intransitivity
 
 Proportion of intransitive triplets a,b,c in !. An unordered triplet of alternatives (a,b,c) is called intransitive if all three of $o_{ij},o_{jk},o_{ki}$ are either simultaneously greater than 0.5 or smaller than 0.5.
 
-### u5: average rank entropy
+### d5: average rank entropy
 
 where $H(a_i)$ is the discrete entropy of the rank distribution of alternative $a_i$
 
-$$u_5 = \frac{1}{n} \sum_{a=1}^n H(a)$$
+$$d_5 = \frac{1}{n} \sum_{a=1}^n H(a)$$
 
-### u6: average rank variance
+### d6: average rank variance
 
-$$u_6 = var(r(a))$$
+$$d_6 = var(r(a))$$
 
 where $r(a_i)$ is the position of the alternative $a_i$ in the ranking $r$.
 
-### u7: borda score
+### d7: borda score
 
 Borda score of the ranking normalized by $n$
 
-$$u_7 = $$
+$$d_7 = $$
 
 esta y la anterior intuitivamente me parece que tienen que tener algún tipo de relación.
 
 
 Hasta aquí las que presentan en www. Algunas que propongo
 
-### u8: sum of the absolute majorities
+### d10: count of the ties in the profile of rankings
 
-This index measures the number of times that 
+The index $d_8$ measures the number of ties in the outranking matrix. If all the alternatives were tied, then the maximum level of difficulty would be reached, as the voters do not have a clear opinion of who should be the winner.
 
-For each pair $(o_{ij},o_{ji})$, there are two options:
-- One of the elements is bigger
-- None of the elements is greater. Meaning that candidates are tied
+Given $n$ alternatives, the number of pairs case is $\frac{n(n-1)}{2}$. This is also the maximum number of elements that could be tied. If none of the alternatives are tied in number of voters, then the $d_8 = 0$. This index is normalized in the interval [0,1].
 
-Therefore, if all the candidates are tied, which would be the maximum level of uncertainty between the voters, the value of $u8$ would be 0. The best case is that the none of the elements are tied and for each pair there is a winner. Therefore, the best case is $(n(n-1)/2)-n$.
-
-
-
-This index will be normalized for the number of voters:
-
-$$u_8 = \sum{a,b} o_{ij} > o_{ji}$$
-This is equivalent to count the number of ties in the profile of rankings. If a profile of rankings has a $u_8$ index of 0 then it does not have ties. Profiles of rankings that have a Condorcet ranking have $u_8=0$ but there are more perfiles that fulfills this property also.
-
+$$d_8 = \frac{2}{n(n-1)} \sum_{i=1}^{n-1}\sum_{j=i+1}^n o_{ij} == o_{ji}$$
 
 ```{r}
 por <- parse_profile_of_rankings(
@@ -79,7 +69,7 @@ por <- parse_profile_of_rankings(
    5, d > c > b > a"
 )
 votrix(por)
-u8(por)
+d8(por)
 ```
 
 ```{r}
@@ -90,36 +80,73 @@ por <- random_profile_of_rankings(ncandidates = 4,
                                   distinct = 5)
 votrix(por)
 por$votrix > 5
-u8(por)
+d8(por, trace = TRUE)
 ```
+```{r}
+set.seed(1234)
+por <- random_profile_of_rankings(ncandidates = 4,
+                                  nvoters = 10,
+                                  cnames = letters[1:4],
+                                  distinct = 5)
+votrix(por)
+por$votrix > 5
+d8(por, trace = TRUE)
+```
+Problem: only works for profiles of rankings with an even number of voters
 
-### u9: mean value of beta
+### d11: mean value of beta
 
-$$u_9 = $$
+$$d_9 = \frac{1}{n} \sum_{i=1}^n \beta_i$$
 
-### u10: desviación de la media de las rowsums
+Problem: there are vectors that may have the same value of beta than the Condorcet winner
+
+### d12: desviación de la media de las rowsums
+
+La suma dde todos los elementos de la matriz es siempre igual a $\frac{n*(n-1)*m}{2}$.
+Por consiguiente, la suma de todas las filas tiene que se también igual a ese número.
+El máximo que puede tener una fila es $(n-1)*m$
 
 La mean of the rowsums es siempre la misma
 
 This value is normalized between 0 and 1 so the max value can be $m(n-1)$
 
-$$u_{10} = $$
+$$d_{10} = sd(\sum_{j=1}^n o_{ij})$$
 
-### u11: difference between the mean and the median of beta
+### d13: difference between the mean and the median of beta
 
 Given the vector $\beta = \{\beta_i, \beta_j, \dots\}$ 
 
-$$u_{11} = | mean(\beta) - median(\beta)|$$
+$$d_{11} = | mean(\beta) - median(\beta)|$$
+
 Given a Condorcet ranking, the mean and the media is asured to be the same
 
-### u12: ponderated beta
+### d14: ponderated beta
 
 Dar una puntuación de kemeny a la distribución de beta
 
-### u13: condorcet proximity
-
-
-Por ejemplo, yo creo que los que tengan 0,0 siempre van a tardar más en ejecutarse.
+### d15: condorcet proximity
 
 Comparar de alguna forma la dispersión respecto al ranking de Condorcet
+
+Conclusiones 
+
+- Lo primero, el hecho de que se acerque a un ranking de Condorcet significa que sea de menor dificultad para el algoritmo? Realmente un ranking de Condorcet puede tener un omega alto. Por ejemplo, los votos representados con la outranking matrix
+
+```{r}
+por <- parse_profile_of_rankings("
+4, a > b > c > d,
+1, a > d > c > b,
+1, a > b > d > c,
+2, c > d > b > a,
+2, b > c > d > a
+")
+votrix(por)
+get_alpha(por)
+get_omega(por)
+```
+tiene $\omega=3$, que es $\omega=n-1$.
+
+
+Yo creo que hay que orientar la distribución de las betas como idea de cuántos se pueden quitar de primeras. Por ejemplo, yo creo que los que tengan 0,0 siempre van a tardar más en ejecutarse.
+
 

@@ -1,0 +1,118 @@
+---
+title: "README"
+output: html_document
+---
+
+1.  `load_execution_times.R`
+
+    Takes the files in the results folder and load them in an object `execution_times`. The object has the following structure:
+
+        tibble [8,400 × 4] (S3: tbl_df/tbl/data.frame)
+        $ n        : Factor w/ 3 levels "8","9","10": 1 1 1 1 1 1 1 1 1 1 ...
+        $ m        : Factor w/ 14 levels "10","11","50",..: 1 1 1 1 1 1 1 1 1 1 ...
+        $ id       : Factor w/ 200 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
+        $ exec_time: num [1:8400] 0.0156 0.0408 0.2009 0.0429 0.0514 ...
+        
+        There are 8400 rows because for each value of n (8, 9, or 10), there 
+        are 14 values of m (10, 11, 50, 51, 100, 101, 250, 251, 500, 
+        501, 1000, 1001, 2000, 2001) and 200 for each combination of (n, m).
+        Therefore, $3 \times 14 \times 200 = 8400$.
+        
+        
+2.  `load_profiles.R`
+
+    Load the profiles of rankings stored in the folder `profiles` into an environment called `profiles_jifs`. These profiles are needed to compute the indexes later in order to create the dataset. The profiles can be accesed for example as `profiles_jifs$porsJIFS8_100[[5]]`, which gets
+    the fifth profile of rankings of the list of 200 rankings with 8 alternatives and 100 voters.
+
+3.  `define_indexes.R`
+
+    Defines the functions used to characterize the profiles of rankings, which will be used as input data in order to predict the execution time. The functions are from `d1()` to `d16()`.
+
+4.  `create_dataset.R`
+
+    Compute the indexes for each profile of rankings and stores for each of the
+    8400 profiles a tibble called `indexes` that has the following structure:
+    
+    ```
+    Rows: 8,400
+    Columns: 20
+    $ n         <dbl> 
+    $ m         <dbl> 
+    $ id        <int> 
+    $ nrankings <int> de donde sale esto? 
+    $ mu1       <dbl> 
+    $ mu2       <int> 
+    $ mu3       <int> 
+    $ mu4       <dbl> 
+    $ mu5       <dbl> 
+    $ mu6       <dbl> 
+    $ mu7       <dbl> 
+    $ mu8       <int> 
+    $ mu9       <int> 
+    $ mu10      <dbl> 
+    $ mu11      <int> 
+    $ mu12      <dbl> 
+    $ mu13      <dbl> 
+    $ mu14      <dbl> 
+    $ mu15      <dbl> 
+    $ mu16      <dbl> 
+    ```
+    
+    Then, these indexes are merged with the `execution_times` tibble computed in
+    the first file, obtaining the `predict_times` tibble of the following shape:
+    
+    ```
+    Rows: 8,400
+    Columns: 21
+    $ n         <fct> 
+    $ m         <fct> 
+    $ id        <fct> 
+    $ time      <dbl> 
+    $ nrankings <int> 
+    $ mu1       <dbl> 
+    $ mu2       <int> 
+    $ mu3       <int> 
+    $ mu4       <dbl> 
+    $ mu5       <dbl> 
+    $ mu6       <dbl> 
+    $ mu7       <dbl> 
+    $ mu8       <int> 
+    $ mu9       <int> 
+    $ mu10      <dbl> 
+    $ mu11      <int> 
+    $ mu12      <dbl> 
+    $ mu13      <dbl> 
+    $ mu14      <dbl> 
+    $ mu15      <dbl> 
+    $ mu16      <dbl> 
+    ```
+
+5.  `normalize.R`
+
+    Define the ranges needed to normalize the data. This file defines the
+    functions `tr(num)` that computes the triangular number of the number `num`
+    given as parameter and the function `normalize(data)`, that given a dataset
+    with the values of `n` and `m` and indexes `mu1` to `mu16` normalizes them.
+
+6.  `normalize_data.R`
+
+    Takes the tibble `predict_times` and normalizes the indexes, storing the
+    values in a variable called `data_normalized` 
+    
+
+7.  `predict_time_fixed_n_m_regression.R`
+
+    Create models to predict the time with `n` and `m` fixed. This allows to
+    explore if the impact of the variables is the same, no matter the dimensions
+    of the profile.
+    
+
+8.  `train_models_regression.R`
+
+9.  `train_models_classification.R`
+
+MACHINE LEARNING
+
+1.  exploratory_analysis
+2.  problem1
+3.  problem2

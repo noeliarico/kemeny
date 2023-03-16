@@ -1,0 +1,114 @@
+# Los que propongo con el baseline
+
+# me vs mebb
+
+	Welch Two Sample t-test
+
+data:  res_me_8$exec_time and res_mebb_8$exec_time
+t = 44.336, df = 3026.2, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.04359415 0.04762846
+sample estimates:
+ mean of x  mean of y 
+0.05951492 0.01390362 
+
+# me vs mebbrcw
+
+	Welch Two Sample t-test
+
+data:  res_me_9$exec_time and res_mebb_9$exec_time
+t = 41.132, df = 2967, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.2150462 0.2365750
+sample estimates:
+ mean of x  mean of y 
+0.28156835 0.05575779 
+
+
+	Welch Two Sample t-test
+
+data:  res_me_10$exec_time and res_mebb_10$exec_time
+t = 39.52, df = 2953.5, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 1.212274 1.338847
+sample estimates:
+mean of x mean of y 
+1.5439646 0.2684042 
+
+
+	Welch Two Sample t-test
+
+data:  res_me_8$exec_time and res_mebbrcw_8$exec_time
+t = 52.269, df = 2861.7, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.05101773 0.05499464
+sample estimates:
+  mean of x   mean of y 
+0.059514924 0.006508737 
+
+
+	Welch Two Sample t-test
+
+data:  res_me_9$exec_time and res_mebbrcw_9$exec_time
+t = 47.718, df = 2835.8, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.2483230 0.2696056
+sample estimates:
+ mean of x  mean of y 
+0.28156835 0.02260406 
+
+
+	Welch Two Sample t-test
+
+data:  res_me_10$exec_time and res_mebbrcw_10$exec_time
+t = 45.439, df = 2822.1, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 1.387189 1.512309
+sample estimates:
+ mean of x  mean of y 
+1.54396457 0.09421572 
+
+
+# El mejor con el otro
+
+	Welch Two Sample t-test
+
+data:  res_mebb_8$exec_time and res_mebbrcw_8$exec_time
+t = 32.203, df = 4233.1, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.006944686 0.007845079
+sample estimates:
+  mean of x   mean of y 
+0.013903620 0.006508737 
+
+
+	Welch Two Sample t-test
+
+data:  res_mebb_9$exec_time and res_mebbrcw_9$exec_time
+t = 32.032, df = 3968.6, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.03112450 0.03518296
+sample estimates:
+ mean of x  mean of y 
+0.05575779 0.02260406 
+
+
+	Welch Two Sample t-test
+
+data:  res_mebb_10$exec_time and res_mebbrcw_10$exec_time
+t = 30.698, df = 3617.9, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.1630634 0.1853137
+sample estimates:
+ mean of x  mean of y 
+0.26840424 0.09421572 
+
